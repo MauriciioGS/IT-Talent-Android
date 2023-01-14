@@ -1,5 +1,6 @@
 package mx.mauriciogs.ittalent.authentication
 
+import androidx.navigation.fragment.findNavController
 import com.example.ittalent.R
 import com.example.ittalent.databinding.FragmentWelcomeBinding
 import com.google.android.material.tabs.TabLayoutMediator
@@ -13,6 +14,15 @@ class WelcomeFragment : BaseFrag<FragmentWelcomeBinding>(R.layout.fragment_welco
     override fun FragmentWelcomeBinding.initialize() {
         mBinding = this
         initTab()
+        initListeners()
+    }
+
+    private fun initListeners() {
+        with(mBinding) {
+            btnContinue.setOnClickListener {
+                findNavController().navigate(WelcomeFragmentDirections.actionWelcomeFragmentToSignUpFragment())
+            }
+        }
     }
 
     private fun initTab() {

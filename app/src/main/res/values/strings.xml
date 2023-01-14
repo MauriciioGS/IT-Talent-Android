@@ -3,14 +3,26 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    Buttons
+    <!--Buttons-->
     <string name="btn_continue">Continuar</string>
     <string name="btn_already_registered">Ya tengo una cuenta</string>
 
-<!--    Welcome Fragment-->
+    <!--    Welcome Fragment-->
     <string name="soy_talento">Soy talento</string>
     <string name="busco_talento">Busco talento</string>
     <string name="talento_desc">Soy talento en busca de oportunidades laborales y nuevos retos.</string>
     <string name="reclutador_desc">Busco el mejor talento para una empresa o proyecto.</string>
+
+    <!--SignUp-->
+    <string name="registrate">Registrate con correo y contraseña</string>
+    <string name="hint_mail">Correo electrónico</string>
+
+    <!--SignUp2-->
+    <string name="welcome_talent">¡Bienvenido, Talento!</string>
+    <string name="welcome_recruiter">¡Bienvenido, Reclutador!</string>
+    <string name="hint_name">Ingresa tu nombre completo</string>
+    <string name="hint_pass">Contraseña</string>
+    <string name="hint_passrepeat">Repite tu contraseña</string>
+
 
 </resources>

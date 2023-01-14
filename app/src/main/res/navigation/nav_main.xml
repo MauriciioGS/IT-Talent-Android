@@ -9,5 +9,23 @@
         android:id="@+id/welcomeFragment"
         android:name="mx.mauriciogs.ittalent.authentication.WelcomeFragment"
         android:label="fragment_welcome"
-        tools:layout="@layout/fragment_welcome" />
+        tools:layout="@layout/fragment_welcome" >
+        <action
+            android:id="@+id/action_welcomeFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="mx.mauriciogs.ittalent.authentication.signup.SignUpFragment"
+        android:label="SignUpFragment"
+        tools:layout="@layout/fragment_sign_up">
+        <action
+            android:id="@+id/action_signUpFragment_to_signUpFragment2"
+            app:destination="@id/signUpFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment2"
+        android:name="mx.mauriciogs.ittalent.authentication.signup.SignUpFragment2"
+        android:label="SignUpFragment2"
+        tools:layout="@layout/fragment_sign_up2"/>
 </navigation>

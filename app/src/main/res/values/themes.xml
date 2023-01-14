@@ -76,9 +76,31 @@
 
     </style>
 
+    <!--EditText-->
+    <style name="EditTextGeneral" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusBottomEnd">@dimen/dimen10dp</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/dimen10dp</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/dimen10dp</item>
+        <item name="boxCornerRadiusTopStart">@dimen/dimen10dp</item>
+        <item name="errorIconTint">@color/error</item>
+        <item name="errorTextColor">@color/error</item>
+    </style>
+
+    <style name="H6Primary" parent="TextAppearance.AppCompat">
+        <item name="fontFamily">@font/nunitosasnssemibold</item>
+        <item name="android:textSize">@dimen/dimen20dp</item>
+        <item name="android:textColor">@color/textBold</item>
+    </style>
+
     <style name="BodySecondary" parent="TextAppearance.AppCompat">
         <item name="fontFamily">@font/montserratregular</item>
         <item name="android:textSize">@dimen/dimen16dp</item>
+    </style>
+
+    <style name="SubtitleSecondary" parent="TextAppearance.AppCompat">
+        <item name="fontFamily">@font/montserratmedium</item>
+        <item name="android:textSize">@dimen/dimen14dp</item>
+        <item name="android:textColor">@color/textBold</item>
     </style>
     
 </resources>
