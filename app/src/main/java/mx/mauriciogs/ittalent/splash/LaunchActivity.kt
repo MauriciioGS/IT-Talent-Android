@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.delay
-import mx.mauriciogs.ittalent.MainActivity
+import mx.mauriciogs.ittalent.main.MainActivity
 
 class LaunchActivity : AppCompatActivity() {
 

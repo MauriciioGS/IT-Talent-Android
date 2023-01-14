@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="mx.mauriciogs.ittalent.MainActivity"
+            android:name="mx.mauriciogs.ittalent.main.MainActivity"
             android:exported="false">
         </activity>
     </application>
