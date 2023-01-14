@@ -19,8 +19,14 @@ class SignUpFragment : BaseFrag<FragmentSignUpBinding>(R.layout.fragment_sign_up
 
     override fun FragmentSignUpBinding.initialize() {
         mBinding = this
+        saveUserType()
         initObservers()
         initUI()
+    }
+
+    private fun saveUserType() {
+        val user = arguments?.getBoolean(USER_KEY)
+        if (user != null) signUpViewModel.setUser(user)
     }
 
     private fun initObservers() {
@@ -54,5 +60,10 @@ class SignUpFragment : BaseFrag<FragmentSignUpBinding>(R.layout.fragment_sign_up
             is SignInException.Email -> snackbar(error).showError()
             else -> snackbar(message).showError()
         }
+    }
+
+    companion object {
+
+        const val USER_KEY = "user"
     }
 }

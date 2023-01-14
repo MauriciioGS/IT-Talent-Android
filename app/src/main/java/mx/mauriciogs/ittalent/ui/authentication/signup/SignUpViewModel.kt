@@ -1,5 +1,6 @@
 package mx.mauriciogs.ittalent.ui.authentication.signup
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -7,13 +8,15 @@ import androidx.lifecycle.ViewModelProvider
 import mx.mauriciogs.ittalent.domain.authentication.Credentials
 import mx.mauriciogs.ittalent.ui.authentication.SignUpExceptionHandler
 import mx.mauriciogs.ittalent.ui.authentication.signup.util.UserSignUpCredentials
-import mx.mauriciogs.ittalent.ui.global.extensions.ENTERPRISE_R_UT
-import mx.mauriciogs.ittalent.ui.global.extensions.PROJECT_R_UT
-import mx.mauriciogs.ittalent.ui.global.extensions.TALENT_UT
+import mx.mauriciogs.ittalent.ui.global.extensions.*
 
 class SignUpViewModel: ViewModel() {
 
     private val userSignUpCredentials = UserSignUpCredentials.empty()
+
+    private val _isTalent = MutableLiveData<Boolean>()
+    val isTalent : LiveData<Boolean>
+        get() = _isTalent
 
     private val _signUpUIModel = MutableLiveData<SignUpUIModel>()
     val signUpUIModel : LiveData<SignUpUIModel>
@@ -25,6 +28,10 @@ class SignUpViewModel: ViewModel() {
 
     fun getUserSignUpCredentials() {
         _userSignUpCredentials.value = userSignUpCredentials
+    }
+
+    fun setUser(user: Boolean) {
+        _isTalent.value = user
     }
 
     fun setUserType(type: Int) {

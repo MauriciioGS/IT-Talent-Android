@@ -1,15 +1,21 @@
 package mx.mauriciogs.ittalent.ui.authentication
 
+import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import com.example.ittalent.R
 import com.example.ittalent.databinding.FragmentWelcomeBinding
+import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import mx.mauriciogs.ittalent.ui.authentication.adapters.VpWelcomeAdapter
 import mx.mauriciogs.ittalent.ui.global.BaseFrag
+import mx.mauriciogs.ittalent.ui.global.extensions.default
+import mx.mauriciogs.ittalent.ui.global.extensions.one
+import mx.mauriciogs.ittalent.ui.global.extensions.yes
 
 class WelcomeFragment : BaseFrag<FragmentWelcomeBinding>(R.layout.fragment_welcome) {
 
     private lateinit var mBinding: FragmentWelcomeBinding
+    private var user: Boolean = Boolean.yes()
 
     override fun FragmentWelcomeBinding.initialize() {
         mBinding = this
@@ -19,8 +25,21 @@ class WelcomeFragment : BaseFrag<FragmentWelcomeBinding>(R.layout.fragment_welco
 
     private fun initListeners() {
         with(mBinding) {
+            tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
+                override fun onTabSelected(tab: TabLayout.Tab?) {
+                    if (tab != null) user = tab.position == 0
+                }
+                override fun onTabUnselected(tab: TabLayout.Tab?) { }
+                override fun onTabReselected(tab: TabLayout.Tab?) { }
+            })
+
             btnContinue.setOnClickListener {
-                findNavController().navigate(WelcomeFragmentDirections.actionWelcomeFragmentToSignUpFragment())
+                val bundle = bundleOf("user" to user)
+                findNavController().navigate(R.id.action_welcomeFragment_to_signUpFragment, bundle)
+            }
+
+            btnSignIn.setOnClickListener {
+                findNavController().navigate(WelcomeFragmentDirections.actionWelcomeFragmentToSignInFragment())
             }
         }
     }

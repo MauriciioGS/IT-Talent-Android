@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_welcomeFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -28,4 +31,9 @@
         android:name="mx.mauriciogs.ittalent.ui.authentication.signup.SignUpFragment2"
         android:label="SignUpFragment2"
         tools:layout="@layout/fragment_sign_up2"/>
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="mx.mauriciogs.ittalent.ui.authentication.signin.SignInFragment"
+        android:label="SignInFragment"
+        tools:layout="@layout/fragment_sign_in"/>
 </navigation>

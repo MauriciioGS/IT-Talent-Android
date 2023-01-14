@@ -10,18 +10,40 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/background"
-        tools:context="mx.mauriciogs.ittalent.ui.authentication.signup.SignUpFragment">
+        tools:context="mx.mauriciogs.ittalent.ui.authentication.">
 
         <ImageView
             android:id="@+id/ivLogo"
             android:layout_width="280dp"
-            android:layout_height="@dimen/dimen0dp"
+            android:layout_height="300dp"
             android:src="@drawable/logo"
-            app:layout_constraintBottom_toTopOf="@+id/tvRegister"
+            app:layout_constraintBottom_toTopOf="@+id/view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="ContentDescription" />
+
+        <Button
+            android:id="@+id/button"
+            style="@style/TertiaryPrimaryButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dimen16dp"
+            android:text="@string/btn_registrate"
+            app:layout_constraintBottom_toTopOf="@+id/view"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen1dp"
+            android:layout_marginHorizontal="@dimen/dimen16dp"
+            android:layout_marginBottom="@dimen/dimen16dp"
+            android:background="@color/icon"
+            app:layout_constraintBottom_toTopOf="@+id/tvRegister"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/otfMail"
@@ -31,13 +53,32 @@
             android:layout_marginHorizontal="@dimen/dimen16dp"
             android:layout_marginBottom="@dimen/dimen16dp"
             android:hint="@string/hint_mail"
-            app:layout_constraintBottom_toTopOf="@+id/btnContinue">
+            app:layout_constraintBottom_toTopOf="@+id/otfPass"
+            tools:layout_editor_absoluteX="16dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"/>
+                android:inputType="textEmailAddress" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/otfPass"
+            style="@style/EditTextGeneral"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dimen16dp"
+            android:layout_marginBottom="@dimen/dimen16dp"
+            android:hint="@string/hint_pass"
+            app:layout_constraintBottom_toTopOf="@+id/btnContinue">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -46,8 +87,8 @@
             style="@style/SubtitleSecondary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/registrate"
             android:layout_marginBottom="@dimen/dimen16dp"
+            android:text="@string/inicia_sesion"
             app:layout_constraintBottom_toTopOf="@+id/otfMail"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -57,22 +98,11 @@
             style="@style/PrimaryButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toTopOf="@+id/btnSignIn"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <Button
-            android:id="@+id/btnSignIn"
-            style="@style/SecondaryButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/btn_already_registered"
-            android:layout_marginBottom="32dp"
+            android:layout_marginBottom="@dimen/dimen32dp"
+            android:text="@string/btn_iniciar_sesion"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

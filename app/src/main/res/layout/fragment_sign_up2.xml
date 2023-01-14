@@ -101,7 +101,7 @@
 
         <Button
             android:id="@+id/btnContinue"
-            style="@style/PrimaryButtonContinue"
+            style="@style/PrimaryButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/dimen32dp"

@@ -18,6 +18,11 @@
     <string name="error_invalid_passwords">Las contraseñas no coinciden.</string>
     <string name="error_invalid_name">Por favor ingresa tu nombre completo</string>
 
+    <!--SignIn-->
+    <string name="inicia_sesion">Continuar con correo y contraseña</string>
+    <string name="btn_iniciar_sesion">Iniciar sesión</string>
+    <string name="btn_registrate"><u>Registrate</u></string>
+
     <!--SignUp-->
     <string name="registrate">Registrate con correo y contraseña</string>
     <string name="hint_mail">Correo electrónico</string>
