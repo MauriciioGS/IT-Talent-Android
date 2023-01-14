@@ -14,7 +14,9 @@
     <string name="reclutador_desc">Busco el mejor talento para una empresa o proyecto.</string>
 
     <string name="error_invalid_email_form">"Ingresa un email válido."</string>
-    <string name="error_invalid_password">Ingresa una contraseña válida</string>
+    <string name="error_invalid_password">Ingresa una contraseña válida de al menos 6 caracteres.</string>
+    <string name="error_invalid_passwords">Las contraseñas no coinciden.</string>
+    <string name="error_invalid_name">Por favor ingresa tu nombre completo</string>
 
     <!--SignUp-->
     <string name="registrate">Registrate con correo y contraseña</string>

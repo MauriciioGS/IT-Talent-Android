@@ -5,7 +5,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.ittalent.R
 import com.example.ittalent.databinding.FragmentSignUpBinding
 import mx.mauriciogs.ittalent.ui.authentication.SignInException
-import mx.mauriciogs.ittalent.ui.authentication.SignInExceptionHandler
+import mx.mauriciogs.ittalent.ui.authentication.SignUpExceptionHandler
 import mx.mauriciogs.ittalent.ui.global.BaseFrag
 import mx.mauriciogs.ittalent.ui.global.extensions.TALENT_UT
 import mx.mauriciogs.ittalent.ui.global.extensions.showError
@@ -42,17 +42,16 @@ class SignUpFragment : BaseFrag<FragmentSignUpBinding>(R.layout.fragment_sign_up
         with(mBinding) {
             btnContinue.setOnClickListener {
                 val email = etEmail.text.toString().trim()
-                val (invalidEmail, exception) = SignInExceptionHandler().invalidEmail(email)
+                val (invalidEmail, exception) = SignUpExceptionHandler().invalidEmail(email)
                 if (invalidEmail) showError(exception)
                 else signUpViewModel.setUserEmail(email)
             }
         }
     }
 
-    private fun showError(exception: SignInException) = exception.run {
+    private fun showError(exception: Exception) = exception.run {
         when(this) {
             is SignInException.Email -> snackbar(error).showError()
-            is SignInException.Password -> snackbar(error).showError()
             else -> snackbar(message).showError()
         }
     }

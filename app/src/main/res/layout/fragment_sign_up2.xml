@@ -54,6 +54,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/btnContinue">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName" />
@@ -71,6 +72,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/btnContinue">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etPass1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword" />
@@ -88,6 +90,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/btnContinue">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etPass2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword" />

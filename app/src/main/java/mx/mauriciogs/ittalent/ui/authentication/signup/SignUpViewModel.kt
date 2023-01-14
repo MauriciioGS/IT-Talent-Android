@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import mx.mauriciogs.ittalent.domain.authentication.Credentials
+import mx.mauriciogs.ittalent.ui.authentication.SignUpExceptionHandler
 import mx.mauriciogs.ittalent.ui.authentication.signup.util.UserSignUpCredentials
 import mx.mauriciogs.ittalent.ui.global.extensions.ENTERPRISE_R_UT
 import mx.mauriciogs.ittalent.ui.global.extensions.PROJECT_R_UT
@@ -39,6 +41,15 @@ class SignUpViewModel: ViewModel() {
     }
 
     fun setUserPass(pass: String) { userSignUpCredentials.password = pass }
+
+    fun signUpEmail(pass: String, passConfirm: String, fullName: String) {
+        val userCredentials = Credentials(userSignUpCredentials.email, pass, passConfirm, fullName)
+        val (areInvalidCredentials, exception) = SignUpExceptionHandler().areInvalidUserCredentials(userCredentials)
+        if (areInvalidCredentials) return emitUiState(exception = exception)
+        userSignUpCredentials.password = pass
+        userSignUpCredentials.fullName = fullName
+        emitUiState(enableContinueButton = true)
+    }
 
     fun stopButtonContinue(enableContinueButton: Boolean = false) {
         emitUiState(enableContinueButton = enableContinueButton)
