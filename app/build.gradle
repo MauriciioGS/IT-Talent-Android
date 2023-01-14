@@ -61,5 +61,8 @@ dependencies {
     // Feature module Support
     implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
 
+    /*Images*/
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
 
 }

@@ -13,5 +13,6 @@ class MainActivity : AppCompatActivity() {
         setTheme(R.style.Theme_ITTalent)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.hide()
     }
 }

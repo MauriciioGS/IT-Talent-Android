@@ -20,6 +20,7 @@
     <color name="info">#FF1264EB</color>
     <color name="warning">#FFFFA602</color>
     <color name="icon">#FF001848</color>
+    <color name="disable">#FFA7A7A7</color>
 
 
 </resources>
