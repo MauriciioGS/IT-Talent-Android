@@ -1,11 +1,11 @@
-package mx.mauriciogs.ittalent.authentication
+package mx.mauriciogs.ittalent.ui.authentication
 
 import androidx.navigation.fragment.findNavController
 import com.example.ittalent.R
 import com.example.ittalent.databinding.FragmentWelcomeBinding
 import com.google.android.material.tabs.TabLayoutMediator
-import mx.mauriciogs.ittalent.authentication.adapters.VpWelcomeAdapter
-import mx.mauriciogs.ittalent.global.BaseFrag
+import mx.mauriciogs.ittalent.ui.authentication.adapters.VpWelcomeAdapter
+import mx.mauriciogs.ittalent.ui.global.BaseFrag
 
 class WelcomeFragment : BaseFrag<FragmentWelcomeBinding>(R.layout.fragment_welcome) {
 

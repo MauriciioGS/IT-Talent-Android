@@ -13,6 +13,9 @@
     <string name="talento_desc">Soy talento en busca de oportunidades laborales y nuevos retos.</string>
     <string name="reclutador_desc">Busco el mejor talento para una empresa o proyecto.</string>
 
+    <string name="error_invalid_email_form">"Ingresa un email válido."</string>
+    <string name="error_invalid_password">Ingresa una contraseña válida</string>
+
     <!--SignUp-->
     <string name="registrate">Registrate con correo y contraseña</string>
     <string name="hint_mail">Correo electrónico</string>

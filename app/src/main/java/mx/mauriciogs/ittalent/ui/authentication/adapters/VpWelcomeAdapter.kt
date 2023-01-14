@@ -1,4 +1,4 @@
-package mx.mauriciogs.ittalent.authentication.adapters
+package mx.mauriciogs.ittalent.ui.authentication.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter

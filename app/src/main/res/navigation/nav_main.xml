@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/welcomeFragment"
-        android:name="mx.mauriciogs.ittalent.authentication.WelcomeFragment"
+        android:name="mx.mauriciogs.ittalent.ui.authentication.WelcomeFragment"
         android:label="fragment_welcome"
         tools:layout="@layout/fragment_welcome" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="mx.mauriciogs.ittalent.authentication.signup.SignUpFragment"
+        android:name="mx.mauriciogs.ittalent.ui.authentication.signup.SignUpFragment"
         android:label="SignUpFragment"
         tools:layout="@layout/fragment_sign_up">
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUpFragment2"
-        android:name="mx.mauriciogs.ittalent.authentication.signup.SignUpFragment2"
+        android:name="mx.mauriciogs.ittalent.ui.authentication.signup.SignUpFragment2"
         android:label="SignUpFragment2"
         tools:layout="@layout/fragment_sign_up2"/>
 </navigation>

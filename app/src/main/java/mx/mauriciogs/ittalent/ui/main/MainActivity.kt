@@ -1,4 +1,4 @@
-package mx.mauriciogs.ittalent.main
+package mx.mauriciogs.ittalent.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

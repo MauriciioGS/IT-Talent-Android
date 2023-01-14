@@ -13,7 +13,7 @@
         android:theme="@style/Theme.ITTalent"
         tools:targetApi="31">
         <activity
-            android:name="mx.mauriciogs.ittalent.splash.LaunchActivity"
+            android:name="mx.mauriciogs.ittalent.ui.splash.LaunchActivity"
             android:theme="@style/SplashScreen"
             android:exported="true">
             <intent-filter>
@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="mx.mauriciogs.ittalent.main.MainActivity"
+            android:name="mx.mauriciogs.ittalent.ui.main.MainActivity"
             android:exported="false">
         </activity>
     </application>

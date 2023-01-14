@@ -1,4 +1,4 @@
-package mx.mauriciogs.ittalent.global
+package mx.mauriciogs.ittalent.ui.global
 
 import android.app.Dialog
 import android.os.Bundle
@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import mx.mauriciogs.ittalent.main.MainActivity
+import mx.mauriciogs.ittalent.ui.main.MainActivity
 
 open class BaseFrag <T : ViewDataBinding>(@LayoutRes private val layoutResId : Int): Fragment()
     //, BaseListView {

@@ -1,11 +1,11 @@
-package mx.mauriciogs.ittalent.splash
+package mx.mauriciogs.ittalent.ui.splash
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.delay
-import mx.mauriciogs.ittalent.main.MainActivity
+import mx.mauriciogs.ittalent.ui.main.MainActivity
 
 class LaunchActivity : AppCompatActivity() {
 
