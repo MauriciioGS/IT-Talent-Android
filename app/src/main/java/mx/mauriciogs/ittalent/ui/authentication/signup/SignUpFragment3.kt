@@ -1,6 +1,9 @@
 package mx.mauriciogs.ittalent.ui.authentication.signup
 
+import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.fragment.app.activityViewModels
 import com.example.ittalent.R
 import com.example.ittalent.databinding.FragmentSignUp3Binding
 import com.google.android.material.tabs.TabLayoutMediator
@@ -9,12 +12,26 @@ import mx.mauriciogs.ittalent.ui.global.BaseFrag
 
 class SignUpFragment3 : BaseFrag<FragmentSignUp3Binding>(R.layout.fragment_sign_up3) {
 
+    private val signUpViewModel: SignUpViewModel by activityViewModels()
+
     private lateinit var mBinding: FragmentSignUp3Binding
 
     override fun FragmentSignUp3Binding.initialize() {
         mBinding = this
         initTab()
+        initObserver()
         //initListeners()
+    }
+
+    private fun initObserver() {
+        signUpViewModel.stopButtonContinue()
+
+        signUpViewModel.signUpUIModel.observe(requireActivity()) {
+            if (it.enableNextStep) {
+                Toast.makeText(requireActivity(), "Datos almacenados", Toast.LENGTH_SHORT).show()
+                mBinding.viewPager2.currentItem = mBinding.viewPager2.currentItem + 1
+            }
+        }
     }
 
     private fun initTab() {

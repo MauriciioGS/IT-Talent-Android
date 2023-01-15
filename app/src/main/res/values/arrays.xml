@@ -85,9 +85,7 @@
         <item>Ambassador</item>
         <item>Git</item>
         <item>Linux</item>
-    </string-array>
-
-    <string-array name="s_skills">
+        <!--SoftSkills-->
         <item>Adaptabilidad</item>
         <item>Networking</item>
         <item>Creatividad</item>

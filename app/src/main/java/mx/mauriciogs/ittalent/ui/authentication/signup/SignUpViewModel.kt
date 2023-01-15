@@ -61,6 +61,13 @@ class SignUpViewModel: ViewModel() {
         emitUiState(enableContinueButton = true)
     }
 
+    fun saveSkills(profRole: String, profLevel: String, skills: List<String>) {
+        userSignUpCredentials.role = profRole
+        userSignUpCredentials.xpLevel = profLevel
+        userSignUpCredentials.skills = skills
+        emitUiState(enableContinueButton = true)
+    }
+
     fun stopButtonContinue(enableContinueButton: Boolean = false) {
         emitUiState(enableContinueButton = enableContinueButton)
     }

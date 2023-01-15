@@ -1,27 +1,25 @@
 package mx.mauriciogs.ittalent.ui.authentication.signup
 
-import android.content.Context
 import android.content.Context.INPUT_METHOD_SERVICE
-import android.view.ContextThemeWrapper
+import android.util.Log
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.activityViewModels
 import com.example.ittalent.R
 import com.example.ittalent.databinding.FragmentRegisterSkillsBinding
 import com.google.android.material.chip.Chip
 import mx.mauriciogs.ittalent.ui.authentication.signup.util.UserSignUpCredentials
 import mx.mauriciogs.ittalent.ui.global.BaseFrag
-import mx.mauriciogs.ittalent.ui.global.extensions.empty
+import mx.mauriciogs.ittalent.ui.global.extensions.*
 
 
 class RegisterSkillsFragment : BaseFrag<FragmentRegisterSkillsBinding>(R.layout.fragment_register_skills) {
 
     private lateinit var mBinding: FragmentRegisterSkillsBinding
 
-    private lateinit var listHSkills: Array<String>
+    private lateinit var listSkills: Array<String>
     private var listUserSkills = mutableListOf<String>()
 
     private val signUpViewModel: SignUpViewModel by activityViewModels()
@@ -31,6 +29,28 @@ class RegisterSkillsFragment : BaseFrag<FragmentRegisterSkillsBinding>(R.layout.
         signUpViewModel.getUserSignUpCredentials()
         initObservers()
         initListeners()
+    }
+
+    private fun initObservers() {
+        signUpViewModel.stopButtonContinue()
+        signUpViewModel.userSignUp.observe(requireActivity()) {
+            initUI(it?: return@observe)
+        }
+    }
+
+    private fun initUI(userSignUpCredentials: UserSignUpCredentials) {
+        with(mBinding) {
+            val firstName = userSignUpCredentials.fullName.split(" ")
+            tvRole.text = getString(R.string.tv_role, firstName[0])
+
+            val roles = resources.getStringArray(R.array.roles)
+            dropdownMenuRol.setText(roles[0], false)
+            val levels = resources.getStringArray(R.array.level)
+            dropdownMenuLevel.setText(levels[0], false)
+
+            listSkills = resources.getStringArray(R.array.hskills)
+            actvSearchSkill.setAdapter(ArrayAdapter<String>(requireActivity(), android.R.layout.simple_list_item_1, listSkills))
+        }
     }
 
     private fun initListeners() {
@@ -49,6 +69,20 @@ class RegisterSkillsFragment : BaseFrag<FragmentRegisterSkillsBinding>(R.layout.
                 }
                 processed
             }
+
+            btnContinue.setOnClickListener {
+                checkSkills()
+            }
+        }
+    }
+
+    private fun checkSkills() {
+        if (listUserSkills.isEmpty() || listUserSkills.size < MINIMUN_SKILLS) {
+            snackbar(R.string.error_skills).showError()
+        } else {
+            val profRole = mBinding.dropdownMenuRol.text.toString()
+            val profLevel = mBinding.dropdownMenuLevel.text.toString()
+            signUpViewModel.saveSkills(profRole, profLevel, listUserSkills)
         }
     }
 
@@ -68,26 +102,9 @@ class RegisterSkillsFragment : BaseFrag<FragmentRegisterSkillsBinding>(R.layout.
         }
     }
 
-    private fun initObservers() {
-        signUpViewModel.userSignUp.observe(requireActivity()) {
-            initUI(it?: return@observe)
-        }
+    companion object {
+
+        const val MINIMUN_SKILLS = 2
     }
-
-    private fun initUI(userSignUpCredentials: UserSignUpCredentials) {
-        with(mBinding) {
-            val firstName = userSignUpCredentials.fullName.split(" ")
-            tvRole.text = getString(R.string.tv_role, firstName[0])
-
-            val roles = resources.getStringArray(R.array.roles)
-            dropdownMenuRol.setText(roles[0], false)
-            val levels = resources.getStringArray(R.array.level)
-            dropdownMenuLevel.setText(levels[0], false)
-
-            listHSkills = resources.getStringArray(R.array.hskills)
-            actvSearchSkill.setAdapter(ArrayAdapter<String>(requireActivity(), android.R.layout.simple_list_item_1, listHSkills))
-        }
-    }
-
 
 }
