@@ -129,6 +129,19 @@
         <item name="errorTextColor">@color/error</item>
     </style>
 
+    <!--DropdownList-->
+    <style name="DropdownMenuOutline" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="endIconTint">@color/icon</item>
+        <item name="boxStrokeWidth">@dimen/dimen1dp</item>
+        <item name="boxStrokeColor">@color/icon</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/dimen10dp</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/dimen10dp</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/dimen10dp</item>
+        <item name="boxCornerRadiusTopStart">@dimen/dimen10dp</item>
+        <item name="errorIconTint">@color/error</item>
+        <item name="errorTextColor">@color/error</item>
+    </style>
+
     <!--Chips-->
     <style name="MyChip" parent="@style/Widget.MaterialComponents.Chip.Choice">
         <item name="android:layout_height">@dimen/dimen64dp</item>

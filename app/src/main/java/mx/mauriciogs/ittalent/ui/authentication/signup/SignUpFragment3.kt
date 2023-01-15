@@ -1,6 +1,5 @@
 package mx.mauriciogs.ittalent.ui.authentication.signup
 
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.activityViewModels
@@ -38,8 +37,8 @@ class SignUpFragment3 : BaseFrag<FragmentSignUp3Binding>(R.layout.fragment_sign_
         with(mBinding) {
             val adapter = VpWelcomeAdapter(this@SignUpFragment3)
             adapter.addFragment(RegisterSkillsFragment())
-            adapter.addFragment(RegisterSkillsFragment())
-            adapter.addFragment(RegisterSkillsFragment())
+            adapter.addFragment(RegisterXPFragment())
+            adapter.addFragment(RegisterXPFragment())
             viewPager2.adapter = adapter
 
             val titles = arrayOf(resources.getString(R.string.tab_skills), resources.getString(R.string.tab_xp), resources.getString(R.string.tab_profile))

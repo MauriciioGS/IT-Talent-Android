@@ -5,6 +5,7 @@
 
     <!--Buttons-->
     <string name="btn_continue">Continuar</string>
+    <string name="btn_guardar">Guardar</string>
     <string name="btn_already_registered">Ya tengo una cuenta</string>
 
     <!--    Welcome Fragment-->
@@ -36,6 +37,9 @@
 
     <!--SignUp3-->
     <string name="tab_skills">Skills</string>
+    <string name="tab_xp">Experiencia</string>
+    <string name="tab_profile">Perfil</string>
+    <!--Skills-->
     <string name="tv_role">%1$s, ¿En que rol te desenvuelves como profesional?</string>
     <string name="tv_level">Selecciona el nivel profesional con el que te sientes identificado para poder ofrecerte puestos acorde a tu trayectoria.</string>
     <string name="tv_hskills_header">Mis skills</string>
@@ -43,10 +47,20 @@
     <string name="hint_skills">Ingresa una hard/soft skill</string>
     <string name="tv_hskills_desc">Selecciona las habilidades tecnológicas y blandas con las que estás más familiarizado para poder brindarte una mejor oferta laboral y las empresas vean un perfil completo.</string>
     <string name="error_skills">Ingresa mínimo dos habilidades profesionales</string>
-
-
-    <string name="tab_xp">Experiencia</string>
-    <string name="tab_profile">Perfil</string>
+    <!--Experiences-->
+    <string name="h6_xp">Experiencia</string>
+    <string name="xp_desc">Ingresa los puestos / proyectos en los que has estado, cuéntale brevemente a los reclutadores sobre tus experiencias.</string>
+    <string name="hint_cargo">Cargo</string>
+    <string name="hint_empresa">Empresa / Nombre del proyecto</string>
+    <string name="hint_ciudad">Ciudad / Región</string>
+    <string name="hint_modalidad">Modalidad del empleo</string>
+    <string name="hint_tipo">Tipo de empleo</string>
+    <string name="hint_inicio">Fecha de inicio:</string>
+    <string name="hint_fin">Fecha de termino:</string>
+    <string name="hint_mes">Mes</string>
+    <string name="hint_ano">Año</string>
+    <string name="btn_i_work_here">Trabajo aquí</string>
+    <string name="hint_logros">Cuéntanos sobre tus aprendizajes, logros, etc.</string>
 
 
 </resources>
