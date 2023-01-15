@@ -34,6 +34,23 @@
         <item name="android:layout_marginEnd">16dp</item>
     </style>
 
+    <style name="PrimaryButtonEndIcon" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerRadius">10dp</item>
+        <item name="backgroundTint">@color/secondary</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/nunitosanseegular</item>
+        <item name="icon">@drawable/ic_navigate_next</item>
+        <item name="iconGravity">end</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:paddingTop">15dp</item>
+        <item name="android:paddingBottom">15dp</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:text">@string/btn_continue</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+    </style>
+
     <style name="PrimaryButtonDisabled" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerRadius">10dp</item>
@@ -86,6 +103,43 @@
         <item name="errorTextColor">@color/error</item>
     </style>
 
+    <!--EditText-->
+    <style name="EditTextIcon" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusBottomEnd">@dimen/dimen10dp</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/dimen10dp</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/dimen10dp</item>
+        <item name="boxCornerRadiusTopStart">@dimen/dimen10dp</item>
+        <item name="endIconMode">custom</item>
+        <item name="endIconDrawable">@drawable/ic_add</item>
+        <item name="endIconTint">@color/icon</item>
+        <item name="errorIconTint">@color/error</item>
+        <item name="errorTextColor">@color/error</item>
+    </style>
+    
+    <!--DropdownList-->
+    <style name="DropdownMenu" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
+        <item name="boxBackgroundColor">@color/secondary</item>
+        <item name="endIconTint">@color/main</item>
+        <item name="boxStrokeWidth">@dimen/dimen0dp</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/dimen10dp</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/dimen10dp</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/dimen10dp</item>
+        <item name="boxCornerRadiusTopStart">@dimen/dimen10dp</item>
+        <item name="errorIconTint">@color/error</item>
+        <item name="errorTextColor">@color/error</item>
+    </style>
+
+    <!--Chips-->
+    <style name="MyChip" parent="@style/Widget.MaterialComponents.Chip.Choice">
+        <item name="android:layout_height">@dimen/dimen64dp</item>
+        <item name="android:layout_weight"></item>
+        <item name="chipBackgroundColor">@color/secondary</item>
+        <item name="android:textAppearance">@style/SubtitleSecondary</item>
+        <item name="android:textColor">@color/textBold</item>
+        <item name="chipCornerRadius">@dimen/dimen10dp</item>
+    </style>
+
+    <!--Texts-->
     <style name="H6Primary" parent="TextAppearance.AppCompat">
         <item name="fontFamily">@font/nunitosasnssemibold</item>
         <item name="android:textSize">@dimen/dimen20dp</item>
@@ -95,6 +149,11 @@
     <style name="BodySecondary" parent="TextAppearance.AppCompat">
         <item name="fontFamily">@font/montserratregular</item>
         <item name="android:textSize">@dimen/dimen16dp</item>
+    </style>
+
+    <style name="Body2Secondary" parent="TextAppearance.AppCompat">
+        <item name="fontFamily">@font/montserratregular</item>
+        <item name="android:textSize">@dimen/dimen14dp</item>
     </style>
 
     <style name="SubtitleSecondary" parent="TextAppearance.AppCompat">

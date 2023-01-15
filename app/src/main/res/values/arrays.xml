@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="roles">
+        <item>Software Engineer</item>
+        <item>Frontend Developer</item>
+        <item>Backend Developer</item>
+        <item>Fullstack Developer</item>
+        <item>Web Developer</item>
+        <item>Mobile Software Engineer</item>
+        <item>Software Architect</item>
+        <item>Cloud Engineer</item>
+        <item>Data Analyst</item>
+        <item>Data Engineer</item>
+        <item>Data Scientist</item>
+        <item>Database Administrator</item>
+        <item>Infrastructure Architect</item>
+        <item>Security Consultant</item>
+        <item>QA Engineer</item>
+        <item>IT Consultant</item>
+        <item>Tech Lead</item>
+        <item>Project Manager</item>
+        <item>DevOps Engineer</item>
+        <item>Linux Administrator</item>
+    </string-array>
+
+    <string-array name="level">
+        <item>Senior</item>
+        <item>Semi Senior</item>
+        <item>Junior</item>
+        <item>Trainee</item>
+    </string-array>
+
+    <string-array name="hskills">
+        <item>Python</item>
+        <item>R</item>
+        <item>Django</item>
+        <item>Flask</item>
+        <item>Java</item>
+        <item>Spring</item>
+        <item>Hibernate</item>
+        <item>C</item>
+        <item>C++</item>
+        <item>C#</item>
+        <item>Golang</item>
+        <item>Elixir</item>
+        <item>PHP</item>
+        <item>Laravel</item>
+        <item>.NET</item>
+        <item>Ruby on Rails</item>
+        <item>Perl</item>
+        <item>Fortran</item>
+        <item>Fortran</item>
+        <item>Shell</item>
+        <item>Dart</item>
+        <item>Flutter</item>
+        <item>Android</item>
+        <item>Kotlin</item>
+        <item>Firebase</item>
+        <item>iOS</item>
+        <item>Swift</item>
+        <item>Objective-C</item>
+        <item>React</item>
+        <item>Javascript</item>
+        <item>Typescript</item>
+        <item>Node.JS</item>
+        <item>Angular</item>
+        <item>Vue</item>
+        <item>jQuery</item>
+        <item>GCP</item>
+        <item>AWS</item>
+        <item>Azure</item>
+        <item>Oracle Cloud</item>
+        <item>Alibaba Cloud</item>
+        <item>SQL</item>
+        <item>MySQL</item>
+        <item>PostreSQL</item>
+        <item>SQLServer</item>
+        <item>MongoDB</item>
+        <item>MariaDB</item>
+        <item>Cassandra</item>
+        <item>T-SQL</item>
+        <item>PLSQL</item>
+        <item>Salesforce</item>
+        <item>Arduino</item>
+        <item>Ambassador</item>
+        <item>Git</item>
+        <item>Linux</item>
+    </string-array>
+
+    <string-array name="s_skills">
+        <item>Adaptabilidad</item>
+        <item>Networking</item>
+        <item>Creatividad</item>
+        <item>Comunicación</item>
+        <item>Compromiso</item>
+        <item>Confianza</item>
+        <item>Liderazgo</item>
+        <item>Oratoria</item>
+        <item>Escucha</item>
+        <item>Motivación</item>
+        <item>Negociación</item>
+        <item>Resolución de problemas</item>
+        <item>Pensamiento crítico</item>
+        <item>Ética profesional</item>
+        <item>Manejo del tiempo</item>
+        <item>Resolción de conflictos</item>
+        <item>Trabajo en equipo</item>
+    </string-array>
+</resources>

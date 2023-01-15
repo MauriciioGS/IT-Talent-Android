@@ -27,10 +27,7 @@ class WelcomeFragment : BaseFrag<FragmentWelcomeBinding>(R.layout.fragment_welco
     private fun initListeners() {
         with(mBinding) {
             tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
-                override fun onTabSelected(tab: TabLayout.Tab?) {
-                    if (tab != null) user = tab.position == 0
-                    Log.d("Ubol", "$user")
-                }
+                override fun onTabSelected(tab: TabLayout.Tab?) { if (tab != null) user = tab.position == 0 }
                 override fun onTabUnselected(tab: TabLayout.Tab?) { }
                 override fun onTabReselected(tab: TabLayout.Tab?) { }
             })

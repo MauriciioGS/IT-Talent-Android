@@ -36,7 +36,6 @@ class SignUpFragment2 : BaseFrag<FragmentSignUp2Binding>(R.layout.fragment_sign_
 
     private fun initUI(isTalent: Boolean) {
         with(mBinding) {
-            Log.d("Ubol", "$isTalent")
             if (isTalent) tvWelcome.text = getString(R.string.welcome_talent)
             else tvWelcome.text = getString(R.string.welcome_recruiter)
 

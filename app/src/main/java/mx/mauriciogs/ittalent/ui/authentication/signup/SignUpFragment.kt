@@ -28,7 +28,6 @@ class SignUpFragment : BaseFrag<FragmentSignUpBinding>(R.layout.fragment_sign_up
     private fun saveUserType() {
         val user = arguments?.getBoolean(USER_KEY)
         if (user != null) signUpViewModel.setUser(user)
-        Log.d("Ubol", "$user")
     }
 
     private fun initObservers() {

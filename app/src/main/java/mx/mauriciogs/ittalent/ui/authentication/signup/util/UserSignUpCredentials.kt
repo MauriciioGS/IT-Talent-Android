@@ -16,7 +16,7 @@ data class UserSignUpCredentials(
     var phoneNumber: String = String.empty(),
     var resume: String = String.empty(),
     var xpLevel: String = String.empty(),
-    var skills: List<Skills>? = null,
+    var skills: List<String>? = null,
     var experiences: List<Experience>? = null,
 
     // Recruit
@@ -36,10 +36,6 @@ data class Enterprise(
     var name: String = String.empty(),
     var urlImage: String = String.empty(),
     var country: String = String.empty(),
-)
-
-data class  Skills(
-    var name: String = String.empty()
 )
 
 data class Experience(

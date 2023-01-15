@@ -36,6 +36,14 @@
 
     <!--SignUp3-->
     <string name="tab_skills">Skills</string>
+    <string name="tv_role">%1$s, ¿En que rol te desenvuelves como profesional?</string>
+    <string name="tv_level">Selecciona el nivel profesional con el que te sientes identificado para poder ofrecerte puestos acorde a tu trayectoria.</string>
+    <string name="tv_hskills_header">Mis skills</string>
+    <string name="tv_hskills_header2">Mis soft skills</string>
+    <string name="hint_skills">Ingresa una hard/soft skill</string>
+    <string name="tv_hskills_desc">Selecciona las habilidades tecnológicas y blandas con las que estás más familiarizado para poder brindarte una mejor oferta laboral y las empresas vean un perfil completo.</string>
+
+
     <string name="tab_xp">Experiencia</string>
     <string name="tab_profile">Perfil</string>
 
