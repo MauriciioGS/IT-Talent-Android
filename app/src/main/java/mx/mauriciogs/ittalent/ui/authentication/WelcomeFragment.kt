@@ -1,5 +1,6 @@
 package mx.mauriciogs.ittalent.ui.authentication
 
+import android.util.Log
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import com.example.ittalent.R
@@ -8,8 +9,6 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import mx.mauriciogs.ittalent.ui.authentication.adapters.VpWelcomeAdapter
 import mx.mauriciogs.ittalent.ui.global.BaseFrag
-import mx.mauriciogs.ittalent.ui.global.extensions.default
-import mx.mauriciogs.ittalent.ui.global.extensions.one
 import mx.mauriciogs.ittalent.ui.global.extensions.yes
 
 class WelcomeFragment : BaseFrag<FragmentWelcomeBinding>(R.layout.fragment_welcome) {
@@ -28,6 +27,7 @@ class WelcomeFragment : BaseFrag<FragmentWelcomeBinding>(R.layout.fragment_welco
             tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
                 override fun onTabSelected(tab: TabLayout.Tab?) {
                     if (tab != null) user = tab.position == 0
+                    Log.d("Ubol", "$user")
                 }
                 override fun onTabUnselected(tab: TabLayout.Tab?) { }
                 override fun onTabReselected(tab: TabLayout.Tab?) { }

@@ -3,13 +3,11 @@ package mx.mauriciogs.ittalent.ui.authentication.signup
 import android.content.Context
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
-import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
+import androidx.fragment.app.activityViewModels
 import com.example.ittalent.R
 import com.example.ittalent.databinding.FragmentSignUp2Binding
 import mx.mauriciogs.ittalent.ui.authentication.SignInException
 import mx.mauriciogs.ittalent.ui.authentication.SignUpExeption
-import mx.mauriciogs.ittalent.ui.authentication.signup.util.UserSignUpCredentials
 import mx.mauriciogs.ittalent.ui.global.BaseFrag
 import mx.mauriciogs.ittalent.ui.global.extensions.*
 
@@ -17,16 +15,16 @@ class SignUpFragment2 : BaseFrag<FragmentSignUp2Binding>(R.layout.fragment_sign_
 
     private lateinit var mBinding: FragmentSignUp2Binding
 
-    private val signUpViewModel: SignUpViewModel by viewModels(){ SignUpViewModel.SignUpFragmentsVMFactory() }
+    private val signUpViewModel: SignUpViewModel by activityViewModels()
 
     override fun FragmentSignUp2Binding.initialize() {
         mBinding = this
-        signUpViewModel.getUserSignUpCredentials()
+        signUpViewModel.getUser()
         initObservers()
     }
 
     private fun initObservers() {
-        signUpViewModel.userSignUp.observe(requireActivity()) {
+        signUpViewModel.isTalent.observe(requireActivity()) {
             initUI(it?:return@observe)
         }
         signUpViewModel.signUpUIModel.observe(requireActivity()) {
@@ -34,14 +32,11 @@ class SignUpFragment2 : BaseFrag<FragmentSignUp2Binding>(R.layout.fragment_sign_
         }
     }
 
-    private fun initUI(userSignUpCredentials: UserSignUpCredentials) {
+    private fun initUI(isTalent: Boolean) {
         with(mBinding) {
-            when (userSignUpCredentials.userType) {
-                Int.default() -> { tvWelcome.text = getString(R.string.welcome_talent) }
-                Int.TALENT_UT() -> { tvWelcome.text = getString(R.string.welcome_talent) }
-                Int.ENTERPRISE_R_UT() -> { tvWelcome.text = getString(R.string.welcome_recruiter) }
-                Int.PROJECT_R_UT() -> { tvWelcome.text = getString(R.string.welcome_recruiter) }
-            }
+            Log.d("Ubol", "$isTalent")
+            if (isTalent) tvWelcome.text = getString(R.string.welcome_talent)
+            else tvWelcome.text = getString(R.string.welcome_recruiter)
 
             btnContinue.setOnClickListener {
                 val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -57,7 +52,7 @@ class SignUpFragment2 : BaseFrag<FragmentSignUp2Binding>(R.layout.fragment_sign_
             val fullName = etName.text.toString()
             val password = etPass1.text.toString().trim()
             val passConfirm = etPass2.text.toString().trim()
-            signUpViewModel.signUpEmail(password, passConfirm, fullName)
+            signUpViewModel.saveNamePass(password, passConfirm, fullName)
         }
     }
 

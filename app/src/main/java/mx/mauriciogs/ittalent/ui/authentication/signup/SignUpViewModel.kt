@@ -13,6 +13,7 @@ import mx.mauriciogs.ittalent.ui.global.extensions.*
 class SignUpViewModel: ViewModel() {
 
     private val userSignUpCredentials = UserSignUpCredentials.empty()
+    private var userT = Boolean.yes()
 
     private val _isTalent = MutableLiveData<Boolean>()
     val isTalent : LiveData<Boolean>
@@ -31,7 +32,11 @@ class SignUpViewModel: ViewModel() {
     }
 
     fun setUser(user: Boolean) {
-        _isTalent.value = user
+        userT = user
+    }
+
+    fun getUser() {
+        _isTalent.value = userT
     }
 
     fun setUserType(type: Int) {
@@ -47,9 +52,7 @@ class SignUpViewModel: ViewModel() {
         emitUiState(enableContinueButton = true)
     }
 
-    fun setUserPass(pass: String) { userSignUpCredentials.password = pass }
-
-    fun signUpEmail(pass: String, passConfirm: String, fullName: String) {
+    fun saveNamePass(pass: String, passConfirm: String, fullName: String) {
         val userCredentials = Credentials(userSignUpCredentials.email, pass, passConfirm, fullName)
         val (areInvalidCredentials, exception) = SignUpExceptionHandler().areInvalidUserCredentials(userCredentials)
         if (areInvalidCredentials) return emitUiState(exception = exception)

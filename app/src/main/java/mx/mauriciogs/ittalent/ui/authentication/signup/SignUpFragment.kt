@@ -1,13 +1,13 @@
 package mx.mauriciogs.ittalent.ui.authentication.signup
 
-import androidx.fragment.app.viewModels
+import android.util.Log
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.ittalent.R
 import com.example.ittalent.databinding.FragmentSignUpBinding
 import mx.mauriciogs.ittalent.ui.authentication.SignInException
 import mx.mauriciogs.ittalent.ui.authentication.SignUpExceptionHandler
 import mx.mauriciogs.ittalent.ui.global.BaseFrag
-import mx.mauriciogs.ittalent.ui.global.extensions.TALENT_UT
 import mx.mauriciogs.ittalent.ui.global.extensions.showError
 import mx.mauriciogs.ittalent.ui.global.extensions.snackbar
 
@@ -15,7 +15,7 @@ class SignUpFragment : BaseFrag<FragmentSignUpBinding>(R.layout.fragment_sign_up
 
     private lateinit var mBinding: FragmentSignUpBinding
 
-    private val signUpViewModel: SignUpViewModel by viewModels(){ SignUpViewModel.SignUpFragmentsVMFactory() }
+    private val signUpViewModel: SignUpViewModel by activityViewModels()
 
     override fun FragmentSignUpBinding.initialize() {
         mBinding = this
@@ -27,10 +27,10 @@ class SignUpFragment : BaseFrag<FragmentSignUpBinding>(R.layout.fragment_sign_up
     private fun saveUserType() {
         val user = arguments?.getBoolean(USER_KEY)
         if (user != null) signUpViewModel.setUser(user)
+        Log.d("Ubol", "$user")
     }
 
     private fun initObservers() {
-        signUpViewModel.setUserType(Int.TALENT_UT())
         signUpViewModel.stopButtonContinue()
         signUpViewModel.signUpUIModel.observe(requireActivity()) {
             signUpUi(it?: return@observe)
