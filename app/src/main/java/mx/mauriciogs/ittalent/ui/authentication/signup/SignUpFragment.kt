@@ -8,6 +8,8 @@ import com.example.ittalent.databinding.FragmentSignUpBinding
 import mx.mauriciogs.ittalent.ui.authentication.SignInException
 import mx.mauriciogs.ittalent.ui.authentication.SignUpExceptionHandler
 import mx.mauriciogs.ittalent.ui.global.BaseFrag
+import mx.mauriciogs.ittalent.ui.global.extensions.findNavControllerSafely
+import mx.mauriciogs.ittalent.ui.global.extensions.safeNavigate
 import mx.mauriciogs.ittalent.ui.global.extensions.showError
 import mx.mauriciogs.ittalent.ui.global.extensions.snackbar
 
@@ -39,8 +41,7 @@ class SignUpFragment : BaseFrag<FragmentSignUpBinding>(R.layout.fragment_sign_up
 
     private fun signUpUi(signUpUIModel: SignUpUIModel) {
         if (signUpUIModel.enableNextStep) {
-            signUpViewModel.stopButtonContinue()
-            findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToSignUpFragment2())
+            findNavControllerSafely()?.safeNavigate(SignUpFragmentDirections.actionSignUpFragmentToSignUpFragment2())
         }
     }
 

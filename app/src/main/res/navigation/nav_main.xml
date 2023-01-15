@@ -17,6 +17,13 @@
             android:id="@+id/action_welcomeFragment_to_signInFragment"
             app:destination="@id/signInFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="mx.mauriciogs.ittalent.ui.authentication.signin.SignInFragment"
+        android:label="SignInFragment"
+        tools:layout="@layout/fragment_sign_in"/>
+
     <fragment
         android:id="@+id/signUpFragment"
         android:name="mx.mauriciogs.ittalent.ui.authentication.signup.SignUpFragment"
@@ -26,14 +33,20 @@
             android:id="@+id/action_signUpFragment_to_signUpFragment2"
             app:destination="@id/signUpFragment2" />
     </fragment>
+
     <fragment
         android:id="@+id/signUpFragment2"
         android:name="mx.mauriciogs.ittalent.ui.authentication.signup.SignUpFragment2"
         android:label="SignUpFragment2"
-        tools:layout="@layout/fragment_sign_up2"/>
+        tools:layout="@layout/fragment_sign_up2">
+        <action
+            android:id="@+id/action_signUpFragment2_to_signUpFragment3"
+            app:destination="@id/signUpFragment3" />
+    </fragment>
+
     <fragment
-        android:id="@+id/signInFragment"
-        android:name="mx.mauriciogs.ittalent.ui.authentication.signin.SignInFragment"
-        android:label="SignInFragment"
-        tools:layout="@layout/fragment_sign_in"/>
+        android:id="@+id/signUpFragment3"
+        android:name="mx.mauriciogs.ittalent.ui.authentication.signup.SignUpFragment3"
+        android:label="SignUpFragment3"
+        tools:layout="@layout/fragment_sign_up3"/>
 </navigation>

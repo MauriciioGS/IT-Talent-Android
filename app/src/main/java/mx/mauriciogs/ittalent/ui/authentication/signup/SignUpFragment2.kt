@@ -24,6 +24,8 @@ class SignUpFragment2 : BaseFrag<FragmentSignUp2Binding>(R.layout.fragment_sign_
     }
 
     private fun initObservers() {
+        signUpViewModel.stopButtonContinue()
+
         signUpViewModel.isTalent.observe(requireActivity()) {
             initUI(it?:return@observe)
         }
@@ -58,9 +60,9 @@ class SignUpFragment2 : BaseFrag<FragmentSignUp2Binding>(R.layout.fragment_sign_
 
     private fun signUpUi(signUpUIModel: SignUpUIModel) = signUpUIModel.run{
         if (enableNextStep) {
-            signUpViewModel.stopButtonContinue()
+            //signUpViewModel.stopButtonContinue()
             Log.d("Success", "Datos correctos")
-            // findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToSignUpFragment2())
+            findNavControllerSafely()?.safeNavigate(SignUpFragment2Directions.actionSignUpFragment2ToSignUpFragment3())
         }
         if (exception != null) showError(exception)
     }

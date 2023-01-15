@@ -34,5 +34,10 @@
     <string name="hint_pass">Contraseña</string>
     <string name="hint_passrepeat">Repite tu contraseña</string>
 
+    <!--SignUp3-->
+    <string name="tab_skills">Skills</string>
+    <string name="tab_xp">Experiencia</string>
+    <string name="tab_profile">Perfil</string>
+
 
 </resources>

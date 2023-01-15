@@ -9,6 +9,8 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import mx.mauriciogs.ittalent.ui.authentication.adapters.VpWelcomeAdapter
 import mx.mauriciogs.ittalent.ui.global.BaseFrag
+import mx.mauriciogs.ittalent.ui.global.extensions.findNavControllerSafely
+import mx.mauriciogs.ittalent.ui.global.extensions.safeNavigateBundle
 import mx.mauriciogs.ittalent.ui.global.extensions.yes
 
 class WelcomeFragment : BaseFrag<FragmentWelcomeBinding>(R.layout.fragment_welcome) {
@@ -35,7 +37,7 @@ class WelcomeFragment : BaseFrag<FragmentWelcomeBinding>(R.layout.fragment_welco
 
             btnContinue.setOnClickListener {
                 val bundle = bundleOf("user" to user)
-                findNavController().navigate(R.id.action_welcomeFragment_to_signUpFragment, bundle)
+                findNavControllerSafely()?.safeNavigateBundle(WelcomeFragmentDirections.actionWelcomeFragmentToSignUpFragment(), bundle)
             }
 
             btnSignIn.setOnClickListener {
@@ -51,11 +53,9 @@ class WelcomeFragment : BaseFrag<FragmentWelcomeBinding>(R.layout.fragment_welco
             adapter.addFragment(CardUserType(RECRUIT_CARD))
             viewPager2.adapter = adapter
 
-            val titles = arrayOf(resources.getString(R.string.soy_talento), resources.getString(R.string.busco_talento))
+            val titles = arrayOf(resources.getString(R.string.tab_skills), resources.getString(R.string.busco_talento))
             TabLayoutMediator(tabLayout, viewPager2) { tab, position -> tab.text = titles[position] }.attach()
         }
-
-
     }
 
     companion object {
