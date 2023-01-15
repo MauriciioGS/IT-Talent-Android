@@ -2,7 +2,6 @@ package mx.mauriciogs.ittalent.ui.authentication.signup
 
 import android.util.Log
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.findNavController
 import com.example.ittalent.R
 import com.example.ittalent.databinding.FragmentSignUpBinding
 import mx.mauriciogs.ittalent.ui.authentication.SignInException
@@ -52,6 +51,9 @@ class SignUpFragment : BaseFrag<FragmentSignUpBinding>(R.layout.fragment_sign_up
                 val (invalidEmail, exception) = SignUpExceptionHandler().invalidEmail(email)
                 if (invalidEmail) showError(exception)
                 else signUpViewModel.setUserEmail(email)
+            }
+            btnSignIn.setOnClickListener {
+                findNavControllerSafely()?.navigate(SignUpFragmentDirections.actionSignUpFragmentToSignInFragment())
             }
         }
     }
