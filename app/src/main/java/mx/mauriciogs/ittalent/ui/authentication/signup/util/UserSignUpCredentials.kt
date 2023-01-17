@@ -17,7 +17,7 @@ data class UserSignUpCredentials(
     var resume: String = String.empty(),
     var xpLevel: String = String.empty(),
     var skills: List<String>? = null,
-    var experiences: List<Experience>? = null,
+    var experiences: MutableList<Experience> = mutableListOf(),
 
     // Recruit
     var enterprise: Enterprise? = null,
@@ -40,7 +40,7 @@ data class Enterprise(
 
 data class Experience(
     var charge: String = String.empty(),
-    var enterprise: Enterprise?,
+    var enterprise: String,
     var city: String = String.empty(),
     var mode: String = String.empty(),
     var type: String = String.empty(),

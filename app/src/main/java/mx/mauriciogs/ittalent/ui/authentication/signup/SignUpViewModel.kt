@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import mx.mauriciogs.ittalent.domain.authentication.Credentials
 import mx.mauriciogs.ittalent.ui.authentication.SignUpExceptionHandler
+import mx.mauriciogs.ittalent.ui.authentication.signup.util.Experience
 import mx.mauriciogs.ittalent.ui.authentication.signup.util.UserSignUpCredentials
 import mx.mauriciogs.ittalent.ui.global.extensions.*
 
@@ -68,12 +69,23 @@ class SignUpViewModel: ViewModel() {
         emitUiState(enableContinueButton = true)
     }
 
+    fun setExprecience(experience: Experience) {
+        userSignUpCredentials.experiences.add(experience)
+        Log.d("XPLIST", "${userSignUpCredentials.experiences}")
+        emitUiState(successExperience = true)
+    }
+
+    fun stopExperienceSuccess(successExperience: Boolean = false){
+        emitUiState(successExperience = successExperience)
+    }
+
     fun stopButtonContinue(enableContinueButton: Boolean = false) {
         emitUiState(enableContinueButton = enableContinueButton)
     }
 
-    private fun emitUiState(showProgress: Boolean = false, exception: Exception? = null, enableContinueButton: Boolean = false, showSuccess: Boolean? = null) {
-        val signUpUiModel = SignUpUIModel(showProgress, exception, enableNextStep = enableContinueButton, showSuccess)
+    private fun emitUiState(showProgress: Boolean = false, exception: Exception? = null, enableContinueButton: Boolean = false,
+                            successExperience: Boolean = false, showSuccess: Boolean? = null) {
+        val signUpUiModel = SignUpUIModel(showProgress, exception, enableNextStep = enableContinueButton, successExperience, showSuccess)
         _signUpUIModel.value = signUpUiModel
     }
 

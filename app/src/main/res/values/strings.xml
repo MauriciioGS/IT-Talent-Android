@@ -71,5 +71,8 @@
     <string name="txt_no_fin">Selecciona el mes y año en finalizaste tu trabajo o si aún trabajas en %1$s</string>
     <string name="txt_no_logros">Describe en al menos 15 palabras tus logros obtenidos, retos superados, etc.</string>
 
+    <string name="txt_yes">Si</string>
+    <string name="txt_saved_data">Datos guardados</string>
+    <string name="txt_desc_xp">¿Deseas añadir otra experiencia de trabajo?</string>
 
 </resources>
