@@ -1,6 +1,5 @@
 package mx.mauriciogs.ittalent.ui.authentication
 
-import android.util.Log
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import com.example.ittalent.R
@@ -50,7 +49,7 @@ class WelcomeFragment : BaseFrag<FragmentWelcomeBinding>(R.layout.fragment_welco
             adapter.addFragment(CardUserType(RECRUIT_CARD))
             viewPager2.adapter = adapter
 
-            val titles = arrayOf(resources.getString(R.string.tab_skills), resources.getString(R.string.busco_talento))
+            val titles = arrayOf(resources.getString(R.string.soy_talento), resources.getString(R.string.busco_talento))
             TabLayoutMediator(tabLayout, viewPager2) { tab, position -> tab.text = titles[position] }.attach()
         }
     }

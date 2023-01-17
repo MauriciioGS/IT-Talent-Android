@@ -62,5 +62,14 @@
     <string name="btn_i_work_here">Trabajo aquí</string>
     <string name="hint_logros">Cuéntanos sobre tus aprendizajes, logros, etc.</string>
 
+    <string name="txt_no_cargo">Se requiere un cargo</string>
+    <string name="txt_no_empresa">Se requiere una empresa / proyecto</string>
+    <string name="txt_no_ciudad">Ingresa la ciudad/región donde trabajaste remoto o presencialmente</string>
+    <string name="txt_no_modalidad">Selecciona la modalidad en que trabajaste</string>
+    <string name="txt_no_tipo">Selecciona el tipo de empleo que tuviste</string>
+    <string name="txt_no_inicio">Selecciona el mes y año en el que iniciaste a trabajar en %1$s</string>
+    <string name="txt_no_fin">Selecciona el mes y año en finalizaste tu trabajo o si aún trabajas en %1$s</string>
+    <string name="txt_no_logros">Describe en al menos 15 palabras tus logros obtenidos, retos superados, etc.</string>
+
 
 </resources>
