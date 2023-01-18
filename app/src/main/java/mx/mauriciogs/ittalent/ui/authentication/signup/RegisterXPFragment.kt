@@ -115,7 +115,7 @@ class RegisterXPFragment : BaseFrag<FragmentRegisterXPBinding>(R.layout.fragment
                         nowadays = swIWorkHere.isChecked,
                         achievements = desc
                     )
-                    signUpViewModel.setExprecience(experience)
+                    signUpViewModel.setExperience(experience)
                 }
             }
         }
@@ -176,12 +176,12 @@ class RegisterXPFragment : BaseFrag<FragmentRegisterXPBinding>(R.layout.fragment
             etEmpresa.text?.clear()
             etCiudad.text?.clear()
             etAbout.text?.clear()
-            dropdownMenuModalidad.setText(firstItemMod)
-            dropdownMenuTipo.setText(firstItemTipo)
-            dropdownMenuMesI.text?.clear()
-            dropdownMenuMesF.text?.clear()
-            dropdownMenuYearI.text?.clear()
-            dropdownMenuYearF.text?.clear()
+            dropdownMenuModalidad.text.clear()
+            dropdownMenuTipo.text.clear()
+            dropdownMenuMesI.text.clear()
+            dropdownMenuMesF.text.clear()
+            dropdownMenuYearI.text.clear()
+            dropdownMenuYearF.text.clear()
         }
     }
 

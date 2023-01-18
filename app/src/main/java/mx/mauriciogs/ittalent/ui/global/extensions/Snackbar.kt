@@ -12,3 +12,5 @@ fun Fragment.snackbar(@StringRes resId: Int, duration: Int = Snackbar.LENGTH_SHO
     Snackbar.make(requireView(), resId, duration).apply { show() }
 
 fun Snackbar.showError() = apply { view.setBackgroundResource(R.color.error) }
+
+fun Snackbar.showInfo() = apply { view.setBackgroundResource(R.color.info) }

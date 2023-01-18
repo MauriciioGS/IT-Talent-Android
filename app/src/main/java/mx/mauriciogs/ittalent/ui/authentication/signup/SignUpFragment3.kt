@@ -4,6 +4,7 @@ import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.activityViewModels
 import com.example.ittalent.R
+import com.example.ittalent.RegisterProfileFragment
 import com.example.ittalent.databinding.FragmentSignUp3Binding
 import com.google.android.material.tabs.TabLayoutMediator
 import mx.mauriciogs.ittalent.ui.authentication.adapters.VpWelcomeAdapter
@@ -19,7 +20,6 @@ class SignUpFragment3 : BaseFrag<FragmentSignUp3Binding>(R.layout.fragment_sign_
         mBinding = this
         initTab()
         initObserver()
-        //initListeners()
     }
 
     private fun initObserver() {
@@ -38,8 +38,9 @@ class SignUpFragment3 : BaseFrag<FragmentSignUp3Binding>(R.layout.fragment_sign_
             val adapter = VpWelcomeAdapter(this@SignUpFragment3)
             adapter.addFragment(RegisterSkillsFragment())
             adapter.addFragment(RegisterXPFragment())
-            adapter.addFragment(RegisterXPFragment())
+            adapter.addFragment(RegisterProfileFragment())
             viewPager2.adapter = adapter
+            viewPager2.isUserInputEnabled = false
 
             val titles = arrayOf(resources.getString(R.string.tab_skills), resources.getString(R.string.tab_xp), resources.getString(R.string.tab_profile))
             val icons = arrayOf(AppCompatResources.getDrawable(requireContext(), R.drawable.ic_skills_selector),

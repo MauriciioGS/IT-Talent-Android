@@ -193,4 +193,25 @@
         <item>1970</item>
     </string-array>
 
+    <string-array name="countries">
+        <item>México</item>
+        <item>Colombia</item>
+        <item>Argentina</item>
+        <item>Chile</item>
+        <item>Uruguay</item>
+        <item>Costa Rica</item>
+        <item>Perú</item>
+        <item>Paraguay</item>
+        <item>Panamá</item>
+        <item>Venezuela</item>
+        <item>Ecuador</item>
+        <item>Bolivia</item>
+        <item>Cuba</item>
+        <item>El Salvador</item>
+        <item>Honduras</item>
+        <item>Guatemala</item>
+        <item>Nicaragua</item>
+        <item>España</item>
+    </string-array>
+
 </resources>

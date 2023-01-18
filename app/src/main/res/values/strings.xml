@@ -32,6 +32,7 @@
     <string name="welcome_talent">¡Bienvenido, Talento!</string>
     <string name="welcome_recruiter">¡Bienvenido, Reclutador!</string>
     <string name="hint_name">Ingresa tu nombre completo</string>
+    <string name="txt_name">Ingresa tu nombre</string>
     <string name="hint_pass">Contraseña</string>
     <string name="hint_passrepeat">Repite tu contraseña</string>
 
@@ -74,5 +75,24 @@
     <string name="txt_yes">Si</string>
     <string name="txt_saved_data">Datos guardados</string>
     <string name="txt_desc_xp">¿Deseas añadir otra experiencia de trabajo?</string>
+    <!-- Profile Register -->
+    <string name="h6_perfil">Mi perfil</string>
+    <string name="btn_foto"><u>Suebe una foto de perfil</u></string>
+    <string name="hint_pais">País</string>
+    <string name="txt_require_pais">Selecciona un país</string>
+    <string name="hint_ciudad_p">Ciudad</string>
+    <string name="txt_ciudad_p">Ingresa tu ciudad</string>
+    <string name="hint_edad">Edad</string>
+    <string name="txt_mayor_edad">Debes ser mayor de edad</string>
+    <string name="txt_require_edad">Ingresa tu edad</string>
+    <string name="hint_phonenum">Número de teléfono</string>
+    <string name="txt_requite_phonenum">Ingresa tu número de teléfono con extensión (max 10 caracteres)</string>
+    <string name="hint_correo">fulanito@correo.com</string>
+    <string name="hint_desc">Resumen de tí</string>
+    <string name="txt_require_desc">Ingresa un resumen de tí</string>
+    <string name="btn_registrame">Registrarme</string>
+    <string name="info_foto">No seleccionaste una imagen</string>
+    <string name="txt_no_foto">Por favor sube una foto de perfil</string>
+
 
 </resources>

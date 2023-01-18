@@ -63,13 +63,13 @@ class SignUpViewModel: ViewModel() {
     }
 
     fun saveSkills(profRole: String, profLevel: String, skills: List<String>) {
-        userSignUpCredentials.role = profRole
+        userSignUpCredentials.profRole = profRole
         userSignUpCredentials.xpLevel = profLevel
         userSignUpCredentials.skills = skills
         emitUiState(enableContinueButton = true)
     }
 
-    fun setExprecience(experience: Experience) {
+    fun setExperience(experience: Experience) {
         userSignUpCredentials.experiences.add(experience)
         Log.d("XPLIST", "${userSignUpCredentials.experiences}")
         emitUiState(successExperience = true)
@@ -87,6 +87,18 @@ class SignUpViewModel: ViewModel() {
                             successExperience: Boolean = false, showSuccess: Boolean? = null) {
         val signUpUiModel = SignUpUIModel(showProgress, exception, enableNextStep = enableContinueButton, successExperience, showSuccess)
         _signUpUIModel.value = signUpUiModel
+    }
+
+    fun signUpProfile(name: String, country: String, city: String, age: Int, phoneNum: String, resume: String, photoUri: String) {
+        userSignUpCredentials.fullName = name
+        userSignUpCredentials.country = country
+        userSignUpCredentials.city = city
+        userSignUpCredentials.age = age
+        userSignUpCredentials.phoneNumber = phoneNum
+        userSignUpCredentials.resume = resume
+        userSignUpCredentials.photoUri = photoUri
+
+        Log.d("USERCRED", "$userSignUpCredentials")
     }
 
     class SignUpFragmentsVMFactory(): ViewModelProvider.Factory{

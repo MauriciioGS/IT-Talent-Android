@@ -15,6 +15,8 @@ data class UserSignUpCredentials(
     var age: Int = Int.default(),
     var phoneNumber: String = String.empty(),
     var resume: String = String.empty(),
+    var profRole: String = String.empty(),
+    var photoUri: String = String.empty(),
     var xpLevel: String = String.empty(),
     var skills: List<String>? = null,
     var experiences: MutableList<Experience> = mutableListOf(),
