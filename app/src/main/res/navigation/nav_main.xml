@@ -45,11 +45,19 @@
         <action
             android:id="@+id/action_signUpFragment2_to_signUpFragment3"
             app:destination="@id/signUpFragment3" />
+        <action
+            android:id="@+id/action_signUpFragment2_to_signUpFragment3Recruiter"
+            app:destination="@id/signUpFragment3Recruiter" />
     </fragment>
 
     <fragment
         android:id="@+id/signUpFragment3"
-        android:name="mx.mauriciogs.ittalent.ui.authentication.signup.SignUpFragment3"
+        android:name="mx.mauriciogs.ittalent.ui.authentication.signup.SignUpFragment3Talent"
         android:label="SignUpFragment3"
         tools:layout="@layout/fragment_sign_up3"/>
+    <fragment
+        android:id="@+id/signUpFragment3Recruiter"
+        android:name="mx.mauriciogs.ittalent.ui.authentication.signup.SignUpFragment3Recruiter"
+        android:label="SignUpFragment3Recruiter"
+        tools:layout="@layout/fragment_sign_up_fragment3_recruiter"/>
 </navigation>

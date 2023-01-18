@@ -16,6 +16,7 @@ class SignUpFragment2 : BaseFrag<FragmentSignUp2Binding>(R.layout.fragment_sign_
     private lateinit var mBinding: FragmentSignUp2Binding
 
     private val signUpViewModel: SignUpViewModel by activityViewModels()
+    private var isTalent = Boolean.yes()
 
     override fun FragmentSignUp2Binding.initialize() {
         mBinding = this
@@ -27,14 +28,15 @@ class SignUpFragment2 : BaseFrag<FragmentSignUp2Binding>(R.layout.fragment_sign_
         signUpViewModel.stopButtonContinue()
 
         signUpViewModel.isTalent.observe(viewLifecycleOwner) {
-            initUI(it?:return@observe)
+            isTalent = it
+            initUI()
         }
         signUpViewModel.signUpUIModel.observe(viewLifecycleOwner) {
             signUpUi(it?: return@observe)
         }
     }
 
-    private fun initUI(isTalent: Boolean) {
+    private fun initUI() {
         with(mBinding) {
             if (isTalent) tvWelcome.text = getString(R.string.welcome_talent)
             else tvWelcome.text = getString(R.string.welcome_recruiter)
@@ -59,9 +61,8 @@ class SignUpFragment2 : BaseFrag<FragmentSignUp2Binding>(R.layout.fragment_sign_
 
     private fun signUpUi(signUpUIModel: SignUpUIModel) = signUpUIModel.run{
         if (enableNextStep) {
-            //signUpViewModel.stopButtonContinue()
-            Log.d("Success", "Datos correctos")
-            findNavControllerSafely()?.safeNavigate(SignUpFragment2Directions.actionSignUpFragment2ToSignUpFragment3())
+            if (isTalent) findNavControllerSafely()?.safeNavigate(SignUpFragment2Directions.actionSignUpFragment2ToSignUpFragment3())
+            else findNavControllerSafely()?.safeNavigate(SignUpFragment2Directions.actionSignUpFragment2ToSignUpFragment3Recruiter())
         }
         if (exception != null) showError(exception)
     }

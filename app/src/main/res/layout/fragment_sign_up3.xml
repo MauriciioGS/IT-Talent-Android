@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/background"
-        tools:context="mx.mauriciogs.ittalent.ui.authentication.signup.SignUpFragment3">
+        tools:context="mx.mauriciogs.ittalent.ui.authentication.signup.SignUpFragment3Talent">
 
         <ImageView
             android:id="@+id/ivHeader"

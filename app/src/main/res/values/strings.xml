@@ -97,5 +97,14 @@
     <string name="info_foto">No seleccionaste una imagen</string>
     <string name="txt_no_foto">Por favor sube una foto de perfil</string>
 
+<!--
+    SignUp4 Recruiter
+-->
+    <string name="txt_buscas_talento">%1$s, buscas talento para:</string>
+    <string name="txt_empresarec">Ingresa el nombre de la empresa para la que trabajas:</string>
+    <string name="txt_empresaorg">Nombre de la empresa / organización</string>
+    <string name="txt_rolerec">Rol que desempeñas en esa empresa</string>
+    <string name="txt_registrarempresa">Registrar una empresa</string>
+
 
 </resources>

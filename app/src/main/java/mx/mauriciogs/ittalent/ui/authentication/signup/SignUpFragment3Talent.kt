@@ -15,7 +15,7 @@ import mx.mauriciogs.ittalent.ui.global.BaseFrag
 import mx.mauriciogs.ittalent.ui.global.extensions.*
 import mx.mauriciogs.ittalent.ui.main.MainViewModel
 
-class SignUpFragment3 : BaseFrag<FragmentSignUp3Binding>(R.layout.fragment_sign_up3) {
+class SignUpFragment3Talent : BaseFrag<FragmentSignUp3Binding>(R.layout.fragment_sign_up3) {
 
     private val signUpViewModel: SignUpViewModel by activityViewModels()
     private val mainViewModel : MainViewModel by viewModels() {
@@ -48,7 +48,7 @@ class SignUpFragment3 : BaseFrag<FragmentSignUp3Binding>(R.layout.fragment_sign_
 
     private fun initTab() {
         with(mBinding) {
-            val adapter = VpWelcomeAdapter(this@SignUpFragment3)
+            val adapter = VpWelcomeAdapter(this@SignUpFragment3Talent)
             adapter.addFragment(RegisterSkillsFragment())
             adapter.addFragment(RegisterXPFragment())
             adapter.addFragment(RegisterProfileFragment())
@@ -67,12 +67,12 @@ class SignUpFragment3 : BaseFrag<FragmentSignUp3Binding>(R.layout.fragment_sign_
     }
 
     private fun openLostConnDialog() = LostConnectionFragment.newInstance().run {
-        this@SignUpFragment3.childFragmentManager.executePendingTransactions()
-        if(!this@SignUpFragment3.findChildFragmentByTag(WelcomeFragment.lostConnBottomSheetTag)?.isAdded.orDefault())
-            show(this@SignUpFragment3.childFragmentManager, WelcomeFragment.lostConnBottomSheetTag)
+        this@SignUpFragment3Talent.childFragmentManager.executePendingTransactions()
+        if(!this@SignUpFragment3Talent.findChildFragmentByTag(WelcomeFragment.lostConnBottomSheetTag)?.isAdded.orDefault())
+            show(this@SignUpFragment3Talent.childFragmentManager, WelcomeFragment.lostConnBottomSheetTag)
     }
 
-    private fun dismissLostConnDialog() = this@SignUpFragment3.findChildFragmentByTag(
+    private fun dismissLostConnDialog() = this@SignUpFragment3Talent.findChildFragmentByTag(
         WelcomeFragment.lostConnBottomSheetTag
     )?.asDialogFragment()?.run {
         dismiss()
