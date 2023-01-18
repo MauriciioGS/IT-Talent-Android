@@ -33,7 +33,7 @@ class RegisterSkillsFragment : BaseFrag<FragmentRegisterSkillsBinding>(R.layout.
 
     private fun initObservers() {
         signUpViewModel.stopButtonContinue()
-        signUpViewModel.userSignUp.observe(requireActivity()) {
+        signUpViewModel.userSignUp.observe(viewLifecycleOwner) {
             initUI(it?: return@observe)
         }
     }

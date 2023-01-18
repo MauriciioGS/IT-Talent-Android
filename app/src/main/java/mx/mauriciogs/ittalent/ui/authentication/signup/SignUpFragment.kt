@@ -32,7 +32,7 @@ class SignUpFragment : BaseFrag<FragmentSignUpBinding>(R.layout.fragment_sign_up
 
     private fun initObservers() {
         signUpViewModel.stopButtonContinue()
-        signUpViewModel.signUpUIModel.observe(requireActivity()) {
+        signUpViewModel.signUpUIModel.observe(viewLifecycleOwner) {
             signUpUi(it?: return@observe)
         }
     }

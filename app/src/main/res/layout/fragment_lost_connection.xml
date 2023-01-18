@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen16dp"
-            android:text="Se ha perdido la conexión"
+            android:text="@string/error_connection"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -27,10 +27,11 @@
         <TextView
             android:id="@+id/textView"
             style="@style/BodySecondary"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/dimen16dp"
-            android:text="Para continuar utilizando la APP se requiere conexión a internet."
+            android:layout_marginHorizontal="@dimen/dimen16dp"
+            android:text="@string/error_connection_desc"
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

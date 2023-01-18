@@ -35,8 +35,8 @@ class WelcomeFragment : BaseFrag<FragmentWelcomeBinding>(R.layout.fragment_welco
     }
 
     private fun initObserver() {
-        mainViewModel.isConnected.observe(requireActivity()) { isConnected -> if (!isConnected) openLostConnDialog() }
-        lostConnViewModel.isUiEnabled.observe(requireActivity()) { if (it) dismissLostConnDialog() }
+        mainViewModel.isConnected.observe(viewLifecycleOwner) { isConnected -> if (!isConnected) openLostConnDialog() }
+        lostConnViewModel.isUiEnabled.observe(viewLifecycleOwner) { if (it) dismissLostConnDialog() }
     }
 
     private fun initListeners() {

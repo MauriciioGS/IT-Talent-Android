@@ -18,6 +18,9 @@
     <string name="error_invalid_password">Ingresa una contraseña válida de al menos 6 caracteres.</string>
     <string name="error_invalid_passwords">Las contraseñas no coinciden.</string>
     <string name="error_invalid_name">Por favor ingresa tu nombre completo</string>
+    <string name="error_connection">Se ha perdido la conexión</string>
+    <string name="available_connection">Vuelve a estar coenctado</string>
+    <string name="error_connection_desc">Para continuar utilizando la APP se requiere conexión a internet.</string>
 
     <!--SignIn-->
     <string name="inicia_sesion">Continuar con correo y contraseña</string>

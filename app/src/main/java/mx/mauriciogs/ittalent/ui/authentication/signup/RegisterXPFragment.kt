@@ -31,7 +31,7 @@ class RegisterXPFragment : BaseFrag<FragmentRegisterXPBinding>(R.layout.fragment
     private fun initObservers() {
         signUpViewModel.stopExperienceSuccess()
         signUpViewModel.stopButtonContinue()
-        signUpViewModel.signUpUIModel.observe(requireActivity()) { signUpUi(it?: return@observe) }
+        signUpViewModel.signUpUIModel.observe(viewLifecycleOwner) { signUpUi(it?: return@observe) }
     }
 
     private fun signUpUi(signUpUIModel: SignUpUIModel) { if (signUpUIModel.successExperience) anotherXp() }
