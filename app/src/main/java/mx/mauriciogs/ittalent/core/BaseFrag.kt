@@ -1,4 +1,4 @@
-package mx.mauriciogs.ittalent.ui.global
+package mx.mauriciogs.ittalent.core
 
 import android.app.Dialog
 import android.os.Bundle

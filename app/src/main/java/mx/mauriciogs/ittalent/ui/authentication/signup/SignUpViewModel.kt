@@ -5,11 +5,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import mx.mauriciogs.ittalent.core.extensions.ENTERPRISE_R_UT
+import mx.mauriciogs.ittalent.core.extensions.TALENT_UT
+import mx.mauriciogs.ittalent.core.extensions.yes
 import mx.mauriciogs.ittalent.domain.authentication.Credentials
 import mx.mauriciogs.ittalent.ui.authentication.SignUpExceptionHandler
 import mx.mauriciogs.ittalent.ui.authentication.signup.util.Experience
 import mx.mauriciogs.ittalent.ui.authentication.signup.util.UserSignUpCredentials
-import mx.mauriciogs.ittalent.ui.global.extensions.*
 
 class SignUpViewModel: ViewModel() {
 
@@ -32,20 +34,14 @@ class SignUpViewModel: ViewModel() {
         _userSignUpCredentials.value = userSignUpCredentials
     }
 
-    fun setUser(user: Boolean) {
-        userT = user
-    }
-
     fun getUser() {
         _isTalent.value = userT
     }
 
-    fun setUserType(type: Int) {
-        when (type) {
-            Int.TALENT_UT() -> userSignUpCredentials.userType = Int.TALENT_UT()
-            Int.ENTERPRISE_R_UT() -> userSignUpCredentials.userType = Int.ENTERPRISE_R_UT()
-            Int.PROJECT_R_UT() -> userSignUpCredentials.userType = Int.PROJECT_R_UT()
-        }
+    fun setUserType(isTalent: Boolean) {
+        userSignUpCredentials.userType = if (isTalent) Int.TALENT_UT() else Int.ENTERPRISE_R_UT()
+        userT = isTalent
+        _isTalent.value = isTalent
     }
 
     fun setUserEmail(email: String) {
@@ -98,7 +94,17 @@ class SignUpViewModel: ViewModel() {
         userSignUpCredentials.resume = resume
         userSignUpCredentials.photoUri = photoUri
 
-        Log.d("USERCRED", "$userSignUpCredentials")
+        //Log.d("USERCRED", "$userSignUpCredentials")
+
+        if(userT) { /* SignUp firebase and save info to bdlocal */}
+        else emitUiState(enableContinueButton = true)
+    }
+
+    fun signUpRecruiter(enterprise: String, role: String) {
+        userSignUpCredentials.enterprise = enterprise
+        userSignUpCredentials.role = role
+
+        Log.d("RECRCRED", "$userSignUpCredentials")
     }
 
     class SignUpFragmentsVMFactory(): ViewModelProvider.Factory{

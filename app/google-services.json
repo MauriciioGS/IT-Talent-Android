@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "835767554010",
+    "project_id": "it-talent-c25d6",
+    "storage_bucket": "it-talent-c25d6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:835767554010:android:de170466f4ef5596087ae3",
+        "android_client_info": {
+          "package_name": "mx.mauriciogs.ittalent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "835767554010-4578rellqq89c1tlpper26u16euqsle4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mx.mauriciogs.ittalent",
+            "certificate_hash": "9d88a4b87220bdbf47a1294982d7ea8948bd4fae"
+          }
+        },
+        {
+          "client_id": "835767554010-h6tth81n6gks1v14kenpkbij646g72vv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBurl_2QrvJWvZLeK0Keh-lQJjClB3v3cM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "835767554010-h6tth81n6gks1v14kenpkbij646g72vv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

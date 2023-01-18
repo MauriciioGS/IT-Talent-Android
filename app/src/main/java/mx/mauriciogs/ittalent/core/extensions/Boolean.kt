@@ -1,4 +1,4 @@
-package mx.mauriciogs.ittalent.ui.global.extensions
+package mx.mauriciogs.ittalent.core.extensions
 
 fun Boolean.Companion.yes() = true
 fun Boolean.Companion.no() = false

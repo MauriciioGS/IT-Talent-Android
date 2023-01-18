@@ -2,8 +2,8 @@ package mx.mauriciogs.ittalent.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.ittalent.R
-import com.example.ittalent.databinding.ActivityMainBinding
+import mx.mauriciogs.ittalent.R
+import mx.mauriciogs.ittalent.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

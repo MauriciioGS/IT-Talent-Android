@@ -5,15 +5,12 @@ import android.widget.AutoCompleteTextView
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
-import com.example.ittalent.R
-import com.example.ittalent.databinding.FragmentRegisterProfileBinding
 import com.google.android.material.textfield.TextInputEditText
+import mx.mauriciogs.ittalent.R
+import mx.mauriciogs.ittalent.core.extensions.*
 import mx.mauriciogs.ittalent.ui.authentication.signup.util.UserSignUpCredentials
-import mx.mauriciogs.ittalent.ui.global.BaseFrag
-import mx.mauriciogs.ittalent.ui.global.extensions.empty
-import mx.mauriciogs.ittalent.ui.global.extensions.showError
-import mx.mauriciogs.ittalent.ui.global.extensions.showInfo
-import mx.mauriciogs.ittalent.ui.global.extensions.snackbar
+import mx.mauriciogs.ittalent.core.BaseFrag
+import mx.mauriciogs.ittalent.databinding.FragmentRegisterProfileBinding
 
 class RegisterProfileFragment : BaseFrag<FragmentRegisterProfileBinding>(R.layout.fragment_register_profile) {
     private lateinit var mBinding: FragmentRegisterProfileBinding
@@ -26,17 +23,20 @@ class RegisterProfileFragment : BaseFrag<FragmentRegisterProfileBinding>(R.layou
     }
 
     var photoUri = String.empty()
+    var isTalent = Boolean.yes()
 
     override fun FragmentRegisterProfileBinding.initialize() {
         mBinding = this
+        signUpViewModel.getUser()
         signUpViewModel.getUserSignUpCredentials()
         initObservers()
     }
 
     private fun initObservers() {
         signUpViewModel.stopButtonContinue()
+        signUpViewModel.isTalent.observe(viewLifecycleOwner) { isTalent = it }
         signUpViewModel.userSignUp.observe(viewLifecycleOwner) { initUI(it) }
-
+        signUpViewModel.signUpUIModel.observe(viewLifecycleOwner) { registerEnterprise(it) }
     }
 
     private fun initUI(userCredentials: UserSignUpCredentials?) {
@@ -44,6 +44,8 @@ class RegisterProfileFragment : BaseFrag<FragmentRegisterProfileBinding>(R.layou
             if (userCredentials != null) {
                 etName.setText(userCredentials.fullName)
                 etCorreo.setText(userCredentials.email)
+
+                if (!isTalent) btnSave.setText(R.string.btn_continue)
             }
 
             btnFoto.setOnClickListener {
@@ -96,5 +98,11 @@ class RegisterProfileFragment : BaseFrag<FragmentRegisterProfileBinding>(R.layou
     private fun emptyFieldList(dropMenu: AutoCompleteTextView, errorId: Int) {
         dropMenu.error = getString(errorId)
         snackbar(getString(errorId)).showError()
+    }
+
+    private fun registerEnterprise(signUpUIModel: SignUpUIModel) {
+        if (signUpUIModel.enableNextStep)
+            findNavControllerSafely()?.safeNavigate(RegisterProfileFragmentDirections
+                .actionRegisterProfileToRegisterFragmentEnterpriseRecruit())
     }
 }

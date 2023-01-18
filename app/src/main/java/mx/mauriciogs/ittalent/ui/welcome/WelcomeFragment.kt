@@ -1,18 +1,18 @@
-package mx.mauriciogs.ittalent.ui.authentication
+package mx.mauriciogs.ittalent.ui.welcome
 
 import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.ittalent.R
-import com.example.ittalent.databinding.FragmentWelcomeBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import mx.mauriciogs.ittalent.R
+import mx.mauriciogs.ittalent.core.extensions.*
 import mx.mauriciogs.ittalent.ui.authentication.adapters.VpWelcomeAdapter
 import mx.mauriciogs.ittalent.ui.connectivity.LostConnViewModel
 import mx.mauriciogs.ittalent.ui.connectivity.LostConnectionFragment
-import mx.mauriciogs.ittalent.ui.global.BaseFrag
-import mx.mauriciogs.ittalent.ui.global.extensions.*
+import mx.mauriciogs.ittalent.core.BaseFrag
+import mx.mauriciogs.ittalent.databinding.FragmentWelcomeBinding
 import mx.mauriciogs.ittalent.ui.main.MainViewModel
 
 class WelcomeFragment : BaseFrag<FragmentWelcomeBinding>(R.layout.fragment_welcome) {
@@ -76,7 +76,9 @@ class WelcomeFragment : BaseFrag<FragmentWelcomeBinding>(R.layout.fragment_welco
             show(this@WelcomeFragment.childFragmentManager, lostConnBottomSheetTag)
     }
 
-    private fun dismissLostConnDialog() = this@WelcomeFragment.findChildFragmentByTag(lostConnBottomSheetTag)?.asDialogFragment()?.run {
+    private fun dismissLostConnDialog() = this@WelcomeFragment.findChildFragmentByTag(
+        lostConnBottomSheetTag
+    )?.asDialogFragment()?.run {
         dismiss()
     }
 

@@ -82,7 +82,7 @@
                     style="@style/EditTextGeneral"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dimen32dp"
+                    android:layout_marginTop="@dimen/dimen16dp"
                     android:layout_marginHorizontal="@dimen/dimen16dp"
                     android:hint="@string/hint_name"
                     app:layout_constraintEnd_toEndOf="parent"

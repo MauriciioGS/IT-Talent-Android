@@ -1,15 +1,14 @@
 package mx.mauriciogs.ittalent.ui.authentication.signup
 
 import android.content.Context
-import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.activityViewModels
-import com.example.ittalent.R
-import com.example.ittalent.databinding.FragmentSignUp2Binding
+import mx.mauriciogs.ittalent.R
+import mx.mauriciogs.ittalent.core.extensions.*
 import mx.mauriciogs.ittalent.ui.authentication.SignInException
 import mx.mauriciogs.ittalent.ui.authentication.SignUpExeption
-import mx.mauriciogs.ittalent.ui.global.BaseFrag
-import mx.mauriciogs.ittalent.ui.global.extensions.*
+import mx.mauriciogs.ittalent.core.BaseFrag
+import mx.mauriciogs.ittalent.databinding.FragmentSignUp2Binding
 
 class SignUpFragment2 : BaseFrag<FragmentSignUp2Binding>(R.layout.fragment_sign_up2) {
 
@@ -62,7 +61,7 @@ class SignUpFragment2 : BaseFrag<FragmentSignUp2Binding>(R.layout.fragment_sign_
     private fun signUpUi(signUpUIModel: SignUpUIModel) = signUpUIModel.run{
         if (enableNextStep) {
             if (isTalent) findNavControllerSafely()?.safeNavigate(SignUpFragment2Directions.actionSignUpFragment2ToSignUpFragment3())
-            else findNavControllerSafely()?.safeNavigate(SignUpFragment2Directions.actionSignUpFragment2ToSignUpFragment3Recruiter())
+            else findNavControllerSafely()?.safeNavigate(SignUpFragment2Directions.actionSignUpFragment2ToFragmentRegisterProfile())
         }
         if (exception != null) showError(exception)
     }

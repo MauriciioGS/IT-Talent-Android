@@ -214,4 +214,13 @@
         <item>España</item>
     </string-array>
 
+    <string-array name="recruiters">
+        <item>Reclutamiento de Recursos Humanos</item>
+        <item>Reclutamiento de TI</item>
+        <item>Atracción de Talento</item>
+        <item>Gerencia de TI</item>
+        <item>Líder de proyecto</item>
+        <item>Líder de TI</item>
+    </string-array>
+
 </resources>

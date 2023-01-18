@@ -1,4 +1,4 @@
-package mx.mauriciogs.ittalent.ui.global.extensions
+package mx.mauriciogs.ittalent.core.extensions
 
 import java.util.regex.Pattern
 

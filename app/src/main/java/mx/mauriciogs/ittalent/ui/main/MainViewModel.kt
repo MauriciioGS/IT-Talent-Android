@@ -4,9 +4,10 @@ import android.app.Application
 import androidx.lifecycle.*
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import mx.mauriciogs.ittalent.core.extensions.no
+import mx.mauriciogs.ittalent.core.extensions.yes
 import mx.mauriciogs.ittalent.ui.connectivity.ConnectivityObserver
 import mx.mauriciogs.ittalent.ui.connectivity.NetworkConnecivityObserver
-import mx.mauriciogs.ittalent.ui.global.extensions.*
 
 class MainViewModel(private val application: Application): ViewModel() {
 

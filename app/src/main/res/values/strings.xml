@@ -103,7 +103,8 @@
     <string name="txt_buscas_talento">%1$s, buscas talento para:</string>
     <string name="txt_empresarec">Ingresa el nombre de la empresa para la que trabajas:</string>
     <string name="txt_empresaorg">Nombre de la empresa / organización</string>
-    <string name="txt_rolerec">Rol que desempeñas en esa empresa</string>
+    <string name="txt_rolerec">Rol que desempeñas</string>
+    <string name="txt_no_rolerec">Selecciona tu rol dentro de la empresa</string>
     <string name="txt_registrarempresa">Registrar una empresa</string>
 
 

@@ -1,16 +1,15 @@
 package mx.mauriciogs.ittalent.ui.authentication.signup
 
-import android.util.Log
 import androidx.fragment.app.activityViewModels
-import com.example.ittalent.R
-import com.example.ittalent.databinding.FragmentSignUpBinding
+import mx.mauriciogs.ittalent.R
 import mx.mauriciogs.ittalent.ui.authentication.SignInException
 import mx.mauriciogs.ittalent.ui.authentication.SignUpExceptionHandler
-import mx.mauriciogs.ittalent.ui.global.BaseFrag
-import mx.mauriciogs.ittalent.ui.global.extensions.findNavControllerSafely
-import mx.mauriciogs.ittalent.ui.global.extensions.safeNavigate
-import mx.mauriciogs.ittalent.ui.global.extensions.showError
-import mx.mauriciogs.ittalent.ui.global.extensions.snackbar
+import mx.mauriciogs.ittalent.core.BaseFrag
+import mx.mauriciogs.ittalent.core.extensions.findNavControllerSafely
+import mx.mauriciogs.ittalent.core.extensions.safeNavigate
+import mx.mauriciogs.ittalent.core.extensions.showError
+import mx.mauriciogs.ittalent.core.extensions.snackbar
+import mx.mauriciogs.ittalent.databinding.FragmentSignUpBinding
 
 class SignUpFragment : BaseFrag<FragmentSignUpBinding>(R.layout.fragment_sign_up) {
 
@@ -27,7 +26,7 @@ class SignUpFragment : BaseFrag<FragmentSignUpBinding>(R.layout.fragment_sign_up
 
     private fun saveUserType() {
         val user = arguments?.getBoolean(USER_KEY)
-        if (user != null) signUpViewModel.setUser(user)
+        if (user != null) signUpViewModel.setUserType(user)
     }
 
     private fun initObservers() {

@@ -1,9 +1,9 @@
 package mx.mauriciogs.ittalent.ui.authentication
 
 import androidx.annotation.StringRes
-import com.example.ittalent.R
+import mx.mauriciogs.ittalent.R
 import mx.mauriciogs.ittalent.domain.authentication.Credentials
-import mx.mauriciogs.ittalent.ui.global.extensions.isValidEmail
+import mx.mauriciogs.ittalent.core.extensions.isValidEmail
 
 class SignInExceptionHandler {
 

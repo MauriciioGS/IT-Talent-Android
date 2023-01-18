@@ -4,15 +4,17 @@ import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import com.example.ittalent.R
-import com.example.ittalent.databinding.FragmentSignUp3Binding
 import com.google.android.material.tabs.TabLayoutMediator
-import mx.mauriciogs.ittalent.ui.authentication.WelcomeFragment
+import mx.mauriciogs.ittalent.R
+import mx.mauriciogs.ittalent.core.extensions.asDialogFragment
+import mx.mauriciogs.ittalent.core.extensions.findChildFragmentByTag
+import mx.mauriciogs.ittalent.core.extensions.orDefault
+import mx.mauriciogs.ittalent.ui.welcome.WelcomeFragment
 import mx.mauriciogs.ittalent.ui.authentication.adapters.VpWelcomeAdapter
 import mx.mauriciogs.ittalent.ui.connectivity.LostConnViewModel
 import mx.mauriciogs.ittalent.ui.connectivity.LostConnectionFragment
-import mx.mauriciogs.ittalent.ui.global.BaseFrag
-import mx.mauriciogs.ittalent.ui.global.extensions.*
+import mx.mauriciogs.ittalent.core.BaseFrag
+import mx.mauriciogs.ittalent.databinding.FragmentSignUp3Binding
 import mx.mauriciogs.ittalent.ui.main.MainViewModel
 
 class SignUpFragment3Talent : BaseFrag<FragmentSignUp3Binding>(R.layout.fragment_sign_up3) {

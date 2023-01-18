@@ -1,4 +1,4 @@
-package mx.mauriciogs.ittalent.ui.global.extensions
+package mx.mauriciogs.ittalent.core.extensions
 
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment

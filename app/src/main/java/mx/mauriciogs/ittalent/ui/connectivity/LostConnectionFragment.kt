@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import com.example.ittalent.databinding.FragmentLostConnectionBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import mx.mauriciogs.ittalent.databinding.FragmentLostConnectionBinding
 import mx.mauriciogs.ittalent.ui.main.MainViewModel
 
 class LostConnectionFragment : BottomSheetDialogFragment() {

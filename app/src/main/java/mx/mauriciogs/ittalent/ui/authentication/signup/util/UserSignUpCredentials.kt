@@ -1,8 +1,8 @@
 package mx.mauriciogs.ittalent.ui.authentication.signup.util
 
-import mx.mauriciogs.ittalent.ui.global.extensions.default
-import mx.mauriciogs.ittalent.ui.global.extensions.empty
-import mx.mauriciogs.ittalent.ui.global.extensions.no
+import mx.mauriciogs.ittalent.core.extensions.default
+import mx.mauriciogs.ittalent.core.extensions.empty
+import mx.mauriciogs.ittalent.core.extensions.no
 
 data class UserSignUpCredentials(
     // Talent
@@ -22,7 +22,8 @@ data class UserSignUpCredentials(
     var experiences: MutableList<Experience> = mutableListOf(),
 
     // Recruit
-    var enterprise: Enterprise? = null,
+    var enterprise: String = String.empty(),
+    //var enterprise: Enterprise? = null,
     var role: String = String.empty(),
 
     var store: String = String.empty()) {

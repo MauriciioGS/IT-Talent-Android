@@ -1,10 +1,10 @@
-package mx.mauriciogs.ittalent.ui.authentication
+package mx.mauriciogs.ittalent.ui.welcome
 
-import com.example.ittalent.R
-import com.example.ittalent.databinding.CardUserTypeFragmentBinding
-import mx.mauriciogs.ittalent.ui.authentication.WelcomeFragment.Companion.RECRUIT_CARD
-import mx.mauriciogs.ittalent.ui.authentication.WelcomeFragment.Companion.TALENT_CARD
-import mx.mauriciogs.ittalent.ui.global.BaseFrag
+import mx.mauriciogs.ittalent.R
+import mx.mauriciogs.ittalent.ui.welcome.WelcomeFragment.Companion.RECRUIT_CARD
+import mx.mauriciogs.ittalent.ui.welcome.WelcomeFragment.Companion.TALENT_CARD
+import mx.mauriciogs.ittalent.core.BaseFrag
+import mx.mauriciogs.ittalent.databinding.CardUserTypeFragmentBinding
 
 class CardUserType(private val userType: Int) : BaseFrag<CardUserTypeFragmentBinding>(R.layout.card_user_type_fragment) {
 

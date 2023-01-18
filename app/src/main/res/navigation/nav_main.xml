@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/welcomeFragment"
-        android:name="mx.mauriciogs.ittalent.ui.authentication.WelcomeFragment"
+        android:name="mx.mauriciogs.ittalent.ui.welcome.WelcomeFragment"
         android:label="fragment_welcome"
         tools:layout="@layout/fragment_welcome" >
         <action
@@ -46,8 +46,8 @@
             android:id="@+id/action_signUpFragment2_to_signUpFragment3"
             app:destination="@id/signUpFragment3" />
         <action
-            android:id="@+id/action_signUpFragment2_to_signUpFragment3Recruiter"
-            app:destination="@id/signUpFragment3Recruiter" />
+            android:id="@+id/action_signUpFragment2_to_FragmentRegisterProfile"
+            app:destination="@id/registerProfile" />
     </fragment>
 
     <fragment
@@ -56,8 +56,17 @@
         android:label="SignUpFragment3"
         tools:layout="@layout/fragment_sign_up3"/>
     <fragment
-        android:id="@+id/signUpFragment3Recruiter"
-        android:name="mx.mauriciogs.ittalent.ui.authentication.signup.SignUpFragment3Recruiter"
+        android:id="@+id/registerProfile"
+        android:name="mx.mauriciogs.ittalent.ui.authentication.signup.RegisterProfileFragment"
         android:label="SignUpFragment3Recruiter"
-        tools:layout="@layout/fragment_sign_up_fragment3_recruiter"/>
+        tools:layout="@layout/fragment_register_profile">
+        <action
+            android:id="@+id/action_registerProfile_to_registerFragmentEnterpriseRecruit"
+            app:destination="@id/registerFragmentEnterpriseRecruit" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragmentEnterpriseRecruit"
+        android:name="mx.mauriciogs.ittalent.ui.authentication.signup.RegisterFragmentEnterpriseRecruit"
+        android:label="RegisterFragmentEnterpriseRecruit"
+        tools:layout="@layout/fragment_register_enterprise"/>
 </navigation>

@@ -1,15 +1,14 @@
 package mx.mauriciogs.ittalent.ui.authentication.signup
 
-import android.util.Log
 import android.widget.AutoCompleteTextView
 import androidx.fragment.app.activityViewModels
-import com.example.ittalent.R
-import com.example.ittalent.databinding.FragmentRegisterXPBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
+import mx.mauriciogs.ittalent.R
+import mx.mauriciogs.ittalent.core.extensions.*
 import mx.mauriciogs.ittalent.ui.authentication.signup.util.Experience
-import mx.mauriciogs.ittalent.ui.global.BaseFrag
-import mx.mauriciogs.ittalent.ui.global.extensions.*
+import mx.mauriciogs.ittalent.core.BaseFrag
+import mx.mauriciogs.ittalent.databinding.FragmentRegisterXPBinding
 import org.joda.time.Years
 
 class RegisterXPFragment : BaseFrag<FragmentRegisterXPBinding>(R.layout.fragment_register_x_p) {

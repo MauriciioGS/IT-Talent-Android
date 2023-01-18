@@ -1,18 +1,19 @@
 package mx.mauriciogs.ittalent.ui.authentication.signup
 
 import android.content.Context.INPUT_METHOD_SERVICE
-import android.util.Log
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import com.example.ittalent.R
-import com.example.ittalent.databinding.FragmentRegisterSkillsBinding
 import com.google.android.material.chip.Chip
+import mx.mauriciogs.ittalent.R
+import mx.mauriciogs.ittalent.core.extensions.empty
+import mx.mauriciogs.ittalent.core.extensions.showError
+import mx.mauriciogs.ittalent.core.extensions.snackbar
 import mx.mauriciogs.ittalent.ui.authentication.signup.util.UserSignUpCredentials
-import mx.mauriciogs.ittalent.ui.global.BaseFrag
-import mx.mauriciogs.ittalent.ui.global.extensions.*
+import mx.mauriciogs.ittalent.core.BaseFrag
+import mx.mauriciogs.ittalent.databinding.FragmentRegisterSkillsBinding
 
 
 class RegisterSkillsFragment : BaseFrag<FragmentRegisterSkillsBinding>(R.layout.fragment_register_skills) {

@@ -76,17 +76,18 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilCargo"
-                style="@style/EditTextGeneral"
+                style="@style/DropdownMenuOutline"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen6dp"
                 android:hint="@string/txt_rolerec">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etCargo"
+                <AutoCompleteTextView
+                    android:id="@+id/dropdownMenuRol"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text" />
+                    android:inputType="none"
+                    app:simpleItems="@array/recruiters" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
