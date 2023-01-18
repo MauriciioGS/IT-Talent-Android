@@ -1,13 +1,13 @@
-package com.example.ittalent
+package mx.mauriciogs.ittalent.ui.authentication.signup
 
 import android.net.Uri
 import android.widget.AutoCompleteTextView
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
+import com.example.ittalent.R
 import com.example.ittalent.databinding.FragmentRegisterProfileBinding
 import com.google.android.material.textfield.TextInputEditText
-import mx.mauriciogs.ittalent.ui.authentication.signup.SignUpViewModel
 import mx.mauriciogs.ittalent.ui.authentication.signup.util.UserSignUpCredentials
 import mx.mauriciogs.ittalent.ui.global.BaseFrag
 import mx.mauriciogs.ittalent.ui.global.extensions.empty
@@ -58,11 +58,15 @@ class RegisterProfileFragment : BaseFrag<FragmentRegisterProfileBinding>(R.layou
         with(mBinding) {
             when {
                 etName.text.toString().isEmpty() -> emptyField(etName, R.string.txt_name)
-                dropdownMenuPais.text.toString().isEmpty() -> emptyFieldList(dropdownMenuPais, R.string.txt_require_pais)
+                dropdownMenuPais.text.toString().isEmpty() -> emptyFieldList(dropdownMenuPais,
+                    R.string.txt_require_pais
+                )
                 etCiudad.text.toString().isEmpty() -> emptyField(etCiudad, R.string.txt_ciudad_p)
                 etEdad.text.toString().isEmpty() -> emptyField(etName, R.string.txt_require_edad)
                 etEdad.text.toString().toInt() < 18 -> snackbar(R.string.txt_mayor_edad).showError()
-                etPhoNum.text.toString().isEmpty() || etPhoNum.text.toString().length < 10 -> emptyField(etPhoNum, R.string.txt_requite_phonenum)
+                etPhoNum.text.toString().isEmpty() || etPhoNum.text.toString().length < 10 -> emptyField(etPhoNum,
+                    R.string.txt_requite_phonenum
+                )
                 etAbout.text.toString().isEmpty() -> emptyField(etAbout, R.string.txt_require_desc)
                 photoUri.isEmpty() -> snackbar(R.string.txt_no_foto).showError()
                 else -> {

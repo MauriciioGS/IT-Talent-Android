@@ -4,7 +4,6 @@ import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.activityViewModels
 import com.example.ittalent.R
-import com.example.ittalent.RegisterProfileFragment
 import com.example.ittalent.databinding.FragmentSignUp3Binding
 import com.google.android.material.tabs.TabLayoutMediator
 import mx.mauriciogs.ittalent.ui.authentication.adapters.VpWelcomeAdapter

@@ -3,19 +3,14 @@ package mx.mauriciogs.ittalent.ui.authentication
 import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.ittalent.R
 import com.example.ittalent.databinding.FragmentWelcomeBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 import mx.mauriciogs.ittalent.ui.authentication.adapters.VpWelcomeAdapter
-import mx.mauriciogs.ittalent.ui.connectivity.ConnectivityObserver
-import mx.mauriciogs.ittalent.ui.connectivity.NetworkConnecivityObserver
+import mx.mauriciogs.ittalent.ui.connectivity.LostConnViewModel
+import mx.mauriciogs.ittalent.ui.connectivity.LostConnectionFragment
 import mx.mauriciogs.ittalent.ui.global.BaseFrag
 import mx.mauriciogs.ittalent.ui.global.extensions.*
 import mx.mauriciogs.ittalent.ui.main.MainViewModel
@@ -29,6 +24,8 @@ class WelcomeFragment : BaseFrag<FragmentWelcomeBinding>(R.layout.fragment_welco
         MainViewModel.MainVMFactory(requireActivity().application)
     }
 
+    private val lostConnViewModel : LostConnViewModel by activityViewModels()
+
     override fun FragmentWelcomeBinding.initialize() {
         mBinding = this
         mainViewModel.monitorStateConnection()
@@ -38,12 +35,8 @@ class WelcomeFragment : BaseFrag<FragmentWelcomeBinding>(R.layout.fragment_welco
     }
 
     private fun initObserver() {
-        mainViewModel.isConnected.observe(requireActivity()) { isConnected ->
-            if (isConnected)
-                snackbar("Conecatdo").showInfo()
-            else
-                snackbar("No conectado").showError()
-        }
+        mainViewModel.isConnected.observe(requireActivity()) { isConnected -> if (!isConnected) openLostConnDialog() }
+        lostConnViewModel.isUiEnabled.observe(requireActivity()) { if (it) dismissLostConnDialog() }
     }
 
     private fun initListeners() {
@@ -77,9 +70,22 @@ class WelcomeFragment : BaseFrag<FragmentWelcomeBinding>(R.layout.fragment_welco
         }
     }
 
+    private fun openLostConnDialog() = LostConnectionFragment.newInstance().run {
+        this@WelcomeFragment.childFragmentManager.executePendingTransactions()
+        if(!this@WelcomeFragment.findChildFragmentByTag(lostConnBottomSheetTag)?.isAdded.orDefault())
+            show(this@WelcomeFragment.childFragmentManager, lostConnBottomSheetTag)
+    }
+
+    private fun dismissLostConnDialog() = this@WelcomeFragment.findChildFragmentByTag(lostConnBottomSheetTag)?.asDialogFragment()?.run {
+        dismiss()
+    }
+
     companion object {
 
         const val TALENT_CARD = 0
         const val RECRUIT_CARD = 1
+
+        val lostConnBottomSheetTag: String = LostConnectionFragment::class.java.simpleName
+
     }
 }

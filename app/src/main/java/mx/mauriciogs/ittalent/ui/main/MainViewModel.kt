@@ -12,7 +12,6 @@ class MainViewModel(private val application: Application): ViewModel() {
 
     private lateinit var connectivityObserver: ConnectivityObserver
 
-
     private var _isConnected = MutableLiveData<Boolean>()
     val isConnected : LiveData<Boolean>
         get() = _isConnected
