@@ -1,26 +1,49 @@
 package mx.mauriciogs.ittalent.ui.authentication
 
 import androidx.core.os.bundleOf
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.ittalent.R
 import com.example.ittalent.databinding.FragmentWelcomeBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import mx.mauriciogs.ittalent.ui.authentication.adapters.VpWelcomeAdapter
+import mx.mauriciogs.ittalent.ui.connectivity.ConnectivityObserver
+import mx.mauriciogs.ittalent.ui.connectivity.NetworkConnecivityObserver
 import mx.mauriciogs.ittalent.ui.global.BaseFrag
-import mx.mauriciogs.ittalent.ui.global.extensions.findNavControllerSafely
-import mx.mauriciogs.ittalent.ui.global.extensions.safeNavigateBundle
-import mx.mauriciogs.ittalent.ui.global.extensions.yes
+import mx.mauriciogs.ittalent.ui.global.extensions.*
+import mx.mauriciogs.ittalent.ui.main.MainViewModel
 
 class WelcomeFragment : BaseFrag<FragmentWelcomeBinding>(R.layout.fragment_welcome) {
 
     private lateinit var mBinding: FragmentWelcomeBinding
     private var user: Boolean = Boolean.yes()
 
+    private val mainViewModel : MainViewModel by viewModels() {
+        MainViewModel.MainVMFactory(requireActivity().application)
+    }
+
     override fun FragmentWelcomeBinding.initialize() {
         mBinding = this
+        mainViewModel.monitorStateConnection()
+        initObserver()
         initTab()
         initListeners()
+    }
+
+    private fun initObserver() {
+        mainViewModel.isConnected.observe(requireActivity()) { isConnected ->
+            if (isConnected)
+                snackbar("Conecatdo").showInfo()
+            else
+                snackbar("No conectado").showError()
+        }
     }
 
     private fun initListeners() {

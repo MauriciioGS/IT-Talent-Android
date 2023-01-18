@@ -34,6 +34,7 @@ class RegisterProfileFragment : BaseFrag<FragmentRegisterProfileBinding>(R.layou
     }
 
     private fun initObservers() {
+        signUpViewModel.stopButtonContinue()
         signUpViewModel.userSignUp.observe(requireActivity()) { initUI(it) }
 
     }

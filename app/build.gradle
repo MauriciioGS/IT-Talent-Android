@@ -70,7 +70,7 @@ dependencies {
 
     /*Images*/
     implementation 'de.hdodenhof:circleimageview:3.1.0'
-
+    /* TIME */
     implementation 'net.danlew:android.joda:2.10.9.1'
 
 
