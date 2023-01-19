@@ -15,6 +15,7 @@
     <color name="textBold">#FF012257</color>
     <color name="background">#FFF2F4F9</color>
     <color name="main">#FFC9EDF9</color>
+    <color name="main_transp">#54C9EDF9</color>
     <color name="error">#FFD31E3D</color>
     <color name="success">#FF20B245</color>
     <color name="info">#FF1264EB</color>

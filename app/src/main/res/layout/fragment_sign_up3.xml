@@ -13,19 +13,6 @@
         android:background="@color/background"
         tools:context="mx.mauriciogs.ittalent.ui.authentication.signup.SignUpFragment3Talent">
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/loadingAnim"
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="225dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivHeader"
-            app:lottie_rawRes="@raw/loading_anim"
-            app:lottie_loop="true"
-            app:lottie_autoPlay="true"/>
-
         <ImageView
             android:id="@+id/ivHeader"
             android:layout_width="150dp"

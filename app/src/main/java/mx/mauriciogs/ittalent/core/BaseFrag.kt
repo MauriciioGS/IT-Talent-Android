@@ -10,11 +10,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import mx.mauriciogs.ittalent.core.extensions.loadingDialog
 import mx.mauriciogs.ittalent.ui.main.MainActivity
 
+interface BaseListView {
+    fun showProgressDialog()
+    fun hideProgressDialog()
+}
+
 open class BaseFrag <T : ViewDataBinding>(@LayoutRes private val layoutResId : Int): Fragment()
-    //, BaseListView {
-{
+    , BaseListView {
+
     private var _binding: T? = null
     private val binding: T get() = _binding!!
     private var progressDialog : Dialog? = null
@@ -35,7 +41,7 @@ open class BaseFrag <T : ViewDataBinding>(@LayoutRes private val layoutResId : I
         return binding.root
     }
 
-    /*override fun showAlert() {
+    override fun showProgressDialog() {
         try {
             progressDialog = loadingDialog()
         }catch (e :Exception){
@@ -43,7 +49,7 @@ open class BaseFrag <T : ViewDataBinding>(@LayoutRes private val layoutResId : I
         }
     }
 
-    override fun hideAlert() {
+    override fun hideProgressDialog() {
         try {
             progressDialog?.let {
                 if(it.isShowing)
@@ -52,7 +58,7 @@ open class BaseFrag <T : ViewDataBinding>(@LayoutRes private val layoutResId : I
         }catch (e: Exception){
             e.printStackTrace()
         }
-    }*/
+    }
 
     override fun onDestroyView() {
         _binding = null

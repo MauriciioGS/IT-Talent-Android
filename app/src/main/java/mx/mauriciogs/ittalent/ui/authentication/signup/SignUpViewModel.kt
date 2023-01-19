@@ -2,7 +2,6 @@ package mx.mauriciogs.ittalent.ui.authentication.signup
 
 import android.util.Log
 import androidx.lifecycle.*
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -83,12 +82,6 @@ class SignUpViewModel: ViewModel() {
         emitUiState(enableContinueButton = enableContinueButton)
     }
 
-    private fun emitUiState(showProgress: Boolean = false, exception: Exception? = null, enableContinueButton: Boolean = false,
-                            successExperience: Boolean = false, showSuccess: Boolean? = null) {
-        val signUpUiModel = SignUpUIModel(showProgress, exception, enableNextStep = enableContinueButton, successExperience, showSuccess)
-        _signUpUIModel.value = signUpUiModel
-    }
-
     fun signUpProfile(name: String, country: String, city: String, age: Int, phoneNum: String, resume: String, photoUri: String) {
         userSignUpCredentials.fullName = name
         userSignUpCredentials.country = country
@@ -100,28 +93,33 @@ class SignUpViewModel: ViewModel() {
 
         //Log.d("USERCRED", "$userSignUpCredentials")
 
-        if(userT) {
-            emitUiState(showProgress = true)
-            signUpEmailPass()
-        }
+        if(userT) signUpEmailPass()
         else emitUiState(enableContinueButton = true)
-    }
-
-    private fun signUpEmailPass() {
-        viewModelScope.launch(Dispatchers.IO) {
-            val result = createAccountUseCase.signInEmailPass(userSignUpCredentials)
-            withContext(Dispatchers.Main) {
-                if (result) Log.d("LOGIN","Usuario loggeado")
-                else Log.d("LOGIN","Algo paso")
-            }
-        }
     }
 
     fun signUpRecruiter(enterprise: String, role: String) {
         userSignUpCredentials.enterprise = enterprise
         userSignUpCredentials.role = role
 
-        Log.d("RECRCRED", "$userSignUpCredentials")
+        signUpEmailPass()
+    }
+
+    private fun signUpEmailPass() {
+        emitUiState(showProgress = true)
+        viewModelScope.launch(Dispatchers.IO) {
+            val result = createAccountUseCase.signInEmailPass(userSignUpCredentials)
+            withContext(Dispatchers.Main) {
+                if (result) Log.d("LOGIN","Usuario loggeado")
+                else Log.d("LOGIN","Algo paso")
+                emitUiState(showProgress = false)
+            }
+        }
+    }
+
+    private fun emitUiState(showProgress: Boolean = false, exception: Exception? = null, enableContinueButton: Boolean = false,
+                            successExperience: Boolean = false, showSuccess: Boolean? = null) {
+        val signUpUiModel = SignUpUIModel(showProgress, exception, enableNextStep = enableContinueButton, successExperience, showSuccess)
+        _signUpUIModel.value = signUpUiModel
     }
 
     class SignUpFragmentsVMFactory(): ViewModelProvider.Factory{

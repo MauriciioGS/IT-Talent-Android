@@ -41,6 +41,7 @@ class SignUpFragment3Talent : BaseFrag<FragmentSignUp3Binding>(R.layout.fragment
         lostConnViewModel.isUiEnabled.observe(viewLifecycleOwner) { if (it) dismissLostConnDialog() }
 
         signUpViewModel.signUpUIModel.observe(viewLifecycleOwner) {
+            if (it.showProgress) showProgressDialog() else hideProgressDialog()
             if (it.enableNextStep) {
                 Toast.makeText(requireActivity(), "Datos almacenados", Toast.LENGTH_SHORT).show()
                 mBinding.viewPager2.currentItem = mBinding.viewPager2.currentItem + 1

@@ -174,5 +174,11 @@
         <item name="android:textSize">@dimen/dimen14dp</item>
         <item name="android:textColor">@color/textBold</item>
     </style>
+
+    <style name="FullScreenDialog">
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
     
 </resources>

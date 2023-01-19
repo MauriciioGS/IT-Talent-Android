@@ -18,6 +18,14 @@ class RegisterFragmentEnterpriseRecruit : BaseFrag<FragmentRegisterEnterpriseBin
     override fun FragmentRegisterEnterpriseBinding.initialize() {
         mBinding = this
         initUI()
+        initObservers()
+
+    }
+
+    private fun initObservers() {
+        signUpViewModel.signUpUIModel.observe(viewLifecycleOwner) {
+            if (it.showProgress) showProgressDialog() else hideProgressDialog()
+        }
     }
 
     private fun initUI() {
