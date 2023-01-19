@@ -1,19 +1,23 @@
 package mx.mauriciogs.ittalent.ui.authentication.signup
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import mx.mauriciogs.ittalent.core.extensions.ENTERPRISE_R_UT
 import mx.mauriciogs.ittalent.core.extensions.TALENT_UT
 import mx.mauriciogs.ittalent.core.extensions.yes
+import mx.mauriciogs.ittalent.domain.authentication.CreateAccountUseCase
 import mx.mauriciogs.ittalent.domain.authentication.Credentials
 import mx.mauriciogs.ittalent.ui.authentication.SignUpExceptionHandler
 import mx.mauriciogs.ittalent.ui.authentication.signup.util.Experience
 import mx.mauriciogs.ittalent.ui.authentication.signup.util.UserSignUpCredentials
 
 class SignUpViewModel: ViewModel() {
+
+    private val createAccountUseCase = CreateAccountUseCase()
 
     private val userSignUpCredentials = UserSignUpCredentials.empty()
     private var userT = Boolean.yes()
@@ -96,8 +100,21 @@ class SignUpViewModel: ViewModel() {
 
         //Log.d("USERCRED", "$userSignUpCredentials")
 
-        if(userT) { /* SignUp firebase and save info to bdlocal */}
+        if(userT) {
+            emitUiState(showProgress = true)
+            signUpEmailPass()
+        }
         else emitUiState(enableContinueButton = true)
+    }
+
+    private fun signUpEmailPass() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val result = createAccountUseCase.signInEmailPass(userSignUpCredentials)
+            withContext(Dispatchers.Main) {
+                if (result) Log.d("LOGIN","Usuario loggeado")
+                else Log.d("LOGIN","Algo paso")
+            }
+        }
     }
 
     fun signUpRecruiter(enterprise: String, role: String) {
