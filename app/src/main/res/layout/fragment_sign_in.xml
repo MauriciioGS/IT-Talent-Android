@@ -24,7 +24,7 @@
             tools:ignore="ContentDescription" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnSignUp"
             style="@style/TertiaryPrimaryButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

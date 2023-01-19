@@ -1,6 +1,5 @@
 package mx.mauriciogs.ittalent.domain.authentication
 
-import mx.mauriciogs.ittalent.core.extensions.empty
 import mx.mauriciogs.ittalent.core.extensions.default
 import mx.mauriciogs.ittalent.core.extensions.empty
 import mx.mauriciogs.ittalent.core.extensions.no

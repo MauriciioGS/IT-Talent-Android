@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_main"
-    app:startDestination="@id/welcomeFragment">
+    app:startDestination="@id/signInFragment">
 
     <fragment
         android:id="@+id/welcomeFragment"
@@ -22,7 +22,11 @@
         android:id="@+id/signInFragment"
         android:name="mx.mauriciogs.ittalent.ui.authentication.signin.SignInFragment"
         android:label="SignInFragment"
-        tools:layout="@layout/fragment_sign_in"/>
+        tools:layout="@layout/fragment_sign_in">
+        <action
+            android:id="@+id/action_signInFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/signUpFragment"
@@ -32,9 +36,6 @@
         <action
             android:id="@+id/action_signUpFragment_to_signUpFragment2"
             app:destination="@id/signUpFragment2" />
-        <action
-            android:id="@+id/action_signUpFragment_to_signInFragment"
-            app:destination="@id/signInFragment" />
     </fragment>
 
     <fragment
@@ -70,5 +71,6 @@
         android:label="RegisterFragmentEnterpriseRecruit"
         tools:layout="@layout/fragment_register_enterprise"/>
 
-    <action android:id="@+id/action_global_signInFragment" app:destination="@id/signInFragment"/>
+    <action android:id="@+id/action_global_signInFragment"
+        app:destination="@id/signInFragment" />
 </navigation>

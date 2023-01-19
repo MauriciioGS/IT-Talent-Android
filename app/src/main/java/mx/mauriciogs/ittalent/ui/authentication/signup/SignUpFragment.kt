@@ -52,9 +52,6 @@ class SignUpFragment : BaseFrag<FragmentSignUpBinding>(R.layout.fragment_sign_up
                 if (invalidEmail) showError(exception)
                 else signUpViewModel.setUserEmail(email)
             }
-            btnSignIn.setOnClickListener {
-                findNavControllerSafely()?.navigate(SignUpFragmentDirections.actionSignUpFragmentToSignInFragment())
-            }
         }
     }
 
