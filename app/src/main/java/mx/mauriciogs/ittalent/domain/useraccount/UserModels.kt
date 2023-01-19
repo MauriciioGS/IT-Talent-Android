@@ -1,5 +1,7 @@
 package mx.mauriciogs.ittalent.domain.useraccount
 
+import mx.mauriciogs.ittalent.data.useraccount.local.entities.UserProfileEntity
+
 data class UserProfile(
     // Talent
     var userType: Int? = null,
@@ -9,10 +11,10 @@ data class UserProfile(
     var country: String? = null,
     var city: String? = null,
     var age: Int? = null,
-    var phoneNumber: String? = null,
+    var phoneNum: String? = null,
     var resume: String? = null,
     var profRole: String? = null,
-    var photoUri: String? = null,
+    var photoUrl: String? = null,
     var xpLevel: String? = null,
     var skills: List<String>? = null,
     var experiences: List<Experience>? = null,
@@ -33,4 +35,21 @@ data class Experience(
     var yearsXp: Int? = null,
     var nowadays: Boolean? = null,
     var achievements: String ?= null
+)
+
+fun UserProfile.toUserEntity() = UserProfileEntity(
+    userType = userType!!,
+    email = email!!,
+    password = password!!,
+    fullName = fullName!!,
+    country = country!!,
+    city = city!!,
+    age = age!!,
+    phoneNumber = phoneNum!!,
+    resume = resume!!,
+    profRole = profRole!!,
+    photoUri = photoUrl!!,
+    xpLevel = xpLevel!!,
+    enterprise = enterprise!!,
+    role = role!!
 )

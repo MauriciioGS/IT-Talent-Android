@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.delay
-import mx.mauriciogs.ittalent.ui.main.MainActivity
+import mx.mauriciogs.ittalent.ui.init.InitActivity
 
 class LaunchActivity : AppCompatActivity() {
 
@@ -14,7 +14,7 @@ class LaunchActivity : AppCompatActivity() {
 
         lifecycleScope.launchWhenStarted {
             delay(1200)
-            startActivity(Intent(this@LaunchActivity, MainActivity::class.java))
+            startActivity(Intent(this@LaunchActivity, InitActivity::class.java))
         }
     }
 

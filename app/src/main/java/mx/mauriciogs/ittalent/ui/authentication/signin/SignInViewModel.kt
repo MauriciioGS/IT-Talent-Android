@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -14,11 +15,12 @@ import mx.mauriciogs.ittalent.domain.authentication.GetProfileUseCase
 import mx.mauriciogs.ittalent.domain.authentication.SignInUseCase
 import mx.mauriciogs.ittalent.domain.useraccount.UserProfile
 import mx.mauriciogs.ittalent.ui.authentication.SignInExceptionHandler
+import javax.inject.Inject
 
-class SignInViewModel: ViewModel() {
+@HiltViewModel
+class SignInViewModel @Inject constructor(private val getProfileUseCase: GetProfileUseCase) : ViewModel() {
 
     private val signInUseCase = SignInUseCase()
-    private val getProfileUseCase = GetProfileUseCase()
 
     private val signInExceptionHandler = SignInExceptionHandler()
 
@@ -42,18 +44,25 @@ class SignInViewModel: ViewModel() {
 
     private suspend fun getProfile(userCredential: Credentials) {
         Log.d("LOGIN", "Logueado, a obtener perfil C:")
-        when(val result = getProfileUseCase.getProfile(userCredential)) {
-            is AuthResult.Success -> { signInSuccess(result.data.user) }
+        when(val result = getProfileUseCase.getProfileFirebase(userCredential)) {
+            is AuthResult.Success -> { signInSuccess(result.data.user, userCredential.password) }
             is AuthResult.Error -> { signInError(result) }
         }
     }
 
-    private fun signInSuccess(user: UserProfile?) {
-
+    private suspend fun signInSuccess(user: UserProfile?, password: String) {
         if (user != null) {
-            // Actualizar los datos locales del usuario po rsi hay cambios
-            Log.d("LOGIN", "Obttenido: ${user.fullName}")
+            user.password = password
+            when(val result = getProfileUseCase.updateUserProfile(user)) {
+                is AuthResult.Success -> logInUser(user)
+                is AuthResult.Error -> signInError(result)
+            }
         }
+    }
+
+    private suspend fun logInUser(user: UserProfile) = withContext(Dispatchers.Main) {
+        Log.d("LOGIN", "Actualizado local y obtuve: $user")
+        emitUiState(showProgress = false, signInSuccess = user)
     }
 
 
@@ -63,7 +72,7 @@ class SignInViewModel: ViewModel() {
         emitUiState(showProgress = false, exception = result.exception)
     }
 
-    private fun emitUiState(showProgress: Boolean = false, exception: Exception? = null, signInSuccess: Boolean? = null) {
+    private fun emitUiState(showProgress: Boolean = false, exception: Exception? = null, signInSuccess: UserProfile? = null) {
         val signInUiModel = SignInUIModel(showProgress, exception, signInSuccess)
         _signInUiModelState.value = signInUiModel
     }

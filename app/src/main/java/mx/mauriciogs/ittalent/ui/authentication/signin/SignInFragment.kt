@@ -9,10 +9,9 @@ import mx.mauriciogs.ittalent.core.BaseFrag
 import mx.mauriciogs.ittalent.core.extensions.*
 import mx.mauriciogs.ittalent.databinding.FragmentSignInBinding
 import mx.mauriciogs.ittalent.domain.authentication.Credentials
-import mx.mauriciogs.ittalent.ui.authentication.signup.SignUpViewModel
 import mx.mauriciogs.ittalent.ui.connectivity.LostConnViewModel
 import mx.mauriciogs.ittalent.ui.connectivity.LostConnectionFragment
-import mx.mauriciogs.ittalent.ui.main.MainViewModel
+import mx.mauriciogs.ittalent.ui.init.InitViewModel
 import mx.mauriciogs.ittalent.ui.welcome.WelcomeFragment
 
 class SignInFragment: BaseFrag<FragmentSignInBinding>(R.layout.fragment_sign_in) {
@@ -20,24 +19,31 @@ class SignInFragment: BaseFrag<FragmentSignInBinding>(R.layout.fragment_sign_in)
     private lateinit var mBinding : FragmentSignInBinding
 
     private val signInViewModel : SignInViewModel by activityViewModels()
-    private val mainViewModel : MainViewModel by viewModels() {
-        MainViewModel.MainVMFactory(requireActivity().application)
+    private val initViewModel : InitViewModel by viewModels() {
+        InitViewModel.MainVMFactory(requireActivity().application)
     }
     private val lostConnViewModel : LostConnViewModel by activityViewModels()
 
     override fun FragmentSignInBinding.initialize() {
         mBinding = this
-        mainViewModel.monitorStateConnection()
+        initViewModel.monitorStateConnection()
         initObservers()
         initListeners()
     }
 
     private fun initObservers() {
-        mainViewModel.isConnected.observe(viewLifecycleOwner) { isConnected -> if (!isConnected) openLostConnDialog() }
+        initViewModel.isConnected.observe(viewLifecycleOwner) { isConnected -> if (!isConnected) openLostConnDialog() }
         lostConnViewModel.isUiEnabled.observe(viewLifecycleOwner) { if (it) dismissLostConnDialog() }
         signInViewModel.signInUiModelState.observe(viewLifecycleOwner) {
             if (it.showProgress) showProgressDialog() else hideProgressDialog()
             if (it.exception != null) snackbar(it.exception.message).showError()
+            if (it.singInSuccess != null) showLogin(it.singInSuccess.userType)
+        }
+    }
+
+    private fun showLogin(userType: Int?) {
+        if (userType != null) {
+
         }
     }
 

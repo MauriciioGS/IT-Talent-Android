@@ -8,4 +8,9 @@ class UserRepositoryLocal @Inject constructor(private val userLocalDataSrc: User
     suspend fun insertUserProfile(userProfileEntity: UserProfileEntity) =
             userLocalDataSrc.insertUserProfile(userProfileEntity)
 
+    suspend fun updateUserProfile(userProfileEntity: UserProfileEntity) =
+            userLocalDataSrc.updateUserProfile(userProfileEntity)
+
+    suspend fun getUserProfile() = userLocalDataSrc.getUserProfile()
+
 }

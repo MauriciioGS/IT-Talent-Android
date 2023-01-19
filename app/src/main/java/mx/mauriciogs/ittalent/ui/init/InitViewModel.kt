@@ -1,4 +1,4 @@
-package mx.mauriciogs.ittalent.ui.main
+package mx.mauriciogs.ittalent.ui.init
 
 import android.app.Application
 import androidx.lifecycle.*
@@ -9,7 +9,7 @@ import mx.mauriciogs.ittalent.core.extensions.yes
 import mx.mauriciogs.ittalent.ui.connectivity.ConnectivityObserver
 import mx.mauriciogs.ittalent.ui.connectivity.NetworkConnecivityObserver
 
-class MainViewModel(private val application: Application): ViewModel() {
+class InitViewModel(private val application: Application): ViewModel() {
 
     private lateinit var connectivityObserver: ConnectivityObserver
 
@@ -36,9 +36,9 @@ class MainViewModel(private val application: Application): ViewModel() {
 
     class MainVMFactory(val app: Application): ViewModelProvider.Factory{
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if(modelClass.isAssignableFrom(MainViewModel::class.java)){
+            if(modelClass.isAssignableFrom(InitViewModel::class.java)){
                 @Suppress("UNCHECKED_CAST")
-                return MainViewModel(app) as T
+                return InitViewModel(app) as T
             }
             throw  java.lang.IllegalArgumentException("Clase ViewModel desconocida")
         }

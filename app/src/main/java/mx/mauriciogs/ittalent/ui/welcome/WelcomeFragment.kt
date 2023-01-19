@@ -13,29 +13,29 @@ import mx.mauriciogs.ittalent.ui.connectivity.LostConnViewModel
 import mx.mauriciogs.ittalent.ui.connectivity.LostConnectionFragment
 import mx.mauriciogs.ittalent.core.BaseFrag
 import mx.mauriciogs.ittalent.databinding.FragmentWelcomeBinding
-import mx.mauriciogs.ittalent.ui.main.MainViewModel
+import mx.mauriciogs.ittalent.ui.init.InitViewModel
 
 class WelcomeFragment : BaseFrag<FragmentWelcomeBinding>(R.layout.fragment_welcome) {
 
     private lateinit var mBinding: FragmentWelcomeBinding
     private var user: Boolean = Boolean.yes()
 
-    private val mainViewModel : MainViewModel by viewModels() {
-        MainViewModel.MainVMFactory(requireActivity().application)
+    private val initViewModel : InitViewModel by viewModels() {
+        InitViewModel.MainVMFactory(requireActivity().application)
     }
 
     private val lostConnViewModel : LostConnViewModel by activityViewModels()
 
     override fun FragmentWelcomeBinding.initialize() {
         mBinding = this
-        mainViewModel.monitorStateConnection()
+        initViewModel.monitorStateConnection()
         initObserver()
         initTab()
         initListeners()
     }
 
     private fun initObserver() {
-        mainViewModel.isConnected.observe(viewLifecycleOwner) { isConnected -> if (!isConnected) openLostConnDialog() }
+        initViewModel.isConnected.observe(viewLifecycleOwner) { isConnected -> if (!isConnected) openLostConnDialog() }
         lostConnViewModel.isUiEnabled.observe(viewLifecycleOwner) { if (it) dismissLostConnDialog() }
     }
 

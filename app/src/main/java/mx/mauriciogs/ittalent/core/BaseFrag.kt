@@ -11,7 +11,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import mx.mauriciogs.ittalent.core.extensions.loadingDialog
-import mx.mauriciogs.ittalent.ui.main.MainActivity
+import mx.mauriciogs.ittalent.ui.init.InitActivity
 
 interface BaseListView {
     fun showProgressDialog()
@@ -27,7 +27,7 @@ open class BaseFrag <T : ViewDataBinding>(@LayoutRes private val layoutResId : I
     protected var errorDialog : Dialog? = null
 
     val activityInit: AppCompatActivity by lazy {
-        requireActivity() as MainActivity
+        requireActivity() as InitActivity
     }
 
     open fun T.initialize(){}
@@ -53,7 +53,7 @@ open class BaseFrag <T : ViewDataBinding>(@LayoutRes private val layoutResId : I
         try {
             progressDialog?.let {
                 if(it.isShowing)
-                    it.cancel()
+                    it.dismiss()
             }
         }catch (e: Exception){
             e.printStackTrace()

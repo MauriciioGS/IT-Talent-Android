@@ -15,14 +15,14 @@ import mx.mauriciogs.ittalent.ui.connectivity.LostConnectionFragment
 import mx.mauriciogs.ittalent.core.BaseFrag
 import mx.mauriciogs.ittalent.core.extensions.*
 import mx.mauriciogs.ittalent.databinding.FragmentSignUp3Binding
-import mx.mauriciogs.ittalent.ui.main.MainViewModel
+import mx.mauriciogs.ittalent.ui.init.InitViewModel
 
 @AndroidEntryPoint
 class SignUpFragment3Talent : BaseFrag<FragmentSignUp3Binding>(R.layout.fragment_sign_up3) {
 
     private val signUpViewModel: SignUpViewModel by activityViewModels()
-    private val mainViewModel : MainViewModel by viewModels() {
-        MainViewModel.MainVMFactory(requireActivity().application)
+    private val initViewModel : InitViewModel by viewModels() {
+        InitViewModel.MainVMFactory(requireActivity().application)
     }
     private val lostConnViewModel : LostConnViewModel by activityViewModels()
 
@@ -30,7 +30,7 @@ class SignUpFragment3Talent : BaseFrag<FragmentSignUp3Binding>(R.layout.fragment
 
     override fun FragmentSignUp3Binding.initialize() {
         mBinding = this
-        mainViewModel.monitorStateConnection()
+        initViewModel.monitorStateConnection()
         initObserver()
         initTab()
     }
@@ -38,7 +38,7 @@ class SignUpFragment3Talent : BaseFrag<FragmentSignUp3Binding>(R.layout.fragment
     private fun initObserver() {
         signUpViewModel.stopButtonContinue()
 
-        mainViewModel.isConnected.observe(viewLifecycleOwner) { isConnected -> if (!isConnected) openLostConnDialog() }
+        initViewModel.isConnected.observe(viewLifecycleOwner) { isConnected -> if (!isConnected) openLostConnDialog() }
         lostConnViewModel.isUiEnabled.observe(viewLifecycleOwner) { if (it) dismissLostConnDialog() }
 
         signUpViewModel.signUpUIModel.observe(viewLifecycleOwner) {

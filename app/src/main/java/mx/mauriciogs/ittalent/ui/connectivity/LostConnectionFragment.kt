@@ -9,14 +9,14 @@ import androidx.fragment.app.viewModels
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import mx.mauriciogs.ittalent.databinding.FragmentLostConnectionBinding
-import mx.mauriciogs.ittalent.ui.main.MainViewModel
+import mx.mauriciogs.ittalent.ui.init.InitViewModel
 
 class LostConnectionFragment : BottomSheetDialogFragment() {
 
     private val lostConnViewModel : LostConnViewModel by activityViewModels()
 
-    private val mainViewModel : MainViewModel by viewModels() {
-        MainViewModel.MainVMFactory(requireActivity().application)
+    private val initViewModel : InitViewModel by viewModels() {
+        InitViewModel.MainVMFactory(requireActivity().application)
     }
 
     override fun onCreateView(
@@ -37,12 +37,12 @@ class LostConnectionFragment : BottomSheetDialogFragment() {
                 sh.parent.parent.requestLayout()
             }
         }
-        mainViewModel.monitorStateConnection()
+        initViewModel.monitorStateConnection()
         initObserver()
     }
 
     private fun initObserver() {
-        mainViewModel.isConnected.observe(requireActivity()) { isConnected ->
+        initViewModel.isConnected.observe(requireActivity()) { isConnected ->
             if (isConnected) lostConnViewModel.continueUI()
         }
     }
