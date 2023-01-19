@@ -9,3 +9,8 @@ fun <T : Any> AuthResult<T>.error(message: String? = null) = (this as? AuthResul
 fun <T : Any> AuthResult<T>.error(exception: Exception) = (this as? AuthResult.Error)?.exception ?: exception
 
 fun <T : Any> AuthResult<T>.success() = (this as? AuthResult.Success)?.data
+
+sealed class CreateAccountResult<out T : Any> {
+    data class Success<out T : Any>(val data: T) : CreateAccountResult<T>()
+    data class Error(val exception: Exception) : CreateAccountResult<Nothing>()
+}

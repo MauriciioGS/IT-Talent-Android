@@ -11,9 +11,9 @@ import mx.mauriciogs.ittalent.R
 import mx.mauriciogs.ittalent.core.extensions.empty
 import mx.mauriciogs.ittalent.core.extensions.showError
 import mx.mauriciogs.ittalent.core.extensions.snackbar
-import mx.mauriciogs.ittalent.ui.authentication.signup.util.UserSignUpCredentials
 import mx.mauriciogs.ittalent.core.BaseFrag
 import mx.mauriciogs.ittalent.databinding.FragmentRegisterSkillsBinding
+import mx.mauriciogs.ittalent.domain.authentication.UserSignUpCredentials
 
 
 class RegisterSkillsFragment : BaseFrag<FragmentRegisterSkillsBinding>(R.layout.fragment_register_skills) {

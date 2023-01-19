@@ -8,11 +8,12 @@ import kotlinx.coroutines.withContext
 import mx.mauriciogs.ittalent.core.extensions.ENTERPRISE_R_UT
 import mx.mauriciogs.ittalent.core.extensions.TALENT_UT
 import mx.mauriciogs.ittalent.core.extensions.yes
+import mx.mauriciogs.ittalent.data.auth.model.CreateAccountResult
 import mx.mauriciogs.ittalent.domain.authentication.CreateAccountUseCase
 import mx.mauriciogs.ittalent.domain.authentication.Credentials
+import mx.mauriciogs.ittalent.domain.authentication.Experience
+import mx.mauriciogs.ittalent.domain.authentication.UserSignUpCredentials
 import mx.mauriciogs.ittalent.ui.authentication.SignUpExceptionHandler
-import mx.mauriciogs.ittalent.ui.authentication.signup.util.Experience
-import mx.mauriciogs.ittalent.ui.authentication.signup.util.UserSignUpCredentials
 
 class SignUpViewModel: ViewModel() {
 
@@ -109,8 +110,14 @@ class SignUpViewModel: ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             val result = createAccountUseCase.signInEmailPass(userSignUpCredentials)
             withContext(Dispatchers.Main) {
-                if (result) Log.d("LOGIN","Usuario loggeado")
-                else Log.d("LOGIN","Algo paso")
+                when (result) {
+                    is CreateAccountResult.Success ->{
+                        Log.d("LOGIN","Usuario loggeado y se creo en firestore")
+                    }
+                    is CreateAccountResult.Error -> {
+                        result.exception.message?.let { Log.d("LOGIN", it) }
+                    }
+                }
                 emitUiState(showProgress = false)
             }
         }

@@ -8,9 +8,9 @@ import androidx.fragment.app.activityViewModels
 import com.google.android.material.textfield.TextInputEditText
 import mx.mauriciogs.ittalent.R
 import mx.mauriciogs.ittalent.core.extensions.*
-import mx.mauriciogs.ittalent.ui.authentication.signup.util.UserSignUpCredentials
 import mx.mauriciogs.ittalent.core.BaseFrag
 import mx.mauriciogs.ittalent.databinding.FragmentRegisterProfileBinding
+import mx.mauriciogs.ittalent.domain.authentication.UserSignUpCredentials
 
 class RegisterProfileFragment : BaseFrag<FragmentRegisterProfileBinding>(R.layout.fragment_register_profile) {
     private lateinit var mBinding: FragmentRegisterProfileBinding
