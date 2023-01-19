@@ -1,6 +1,7 @@
 package mx.mauriciogs.ittalent.ui.authentication.signup
 
 import androidx.fragment.app.activityViewModels
+import dagger.hilt.android.AndroidEntryPoint
 import mx.mauriciogs.ittalent.R
 import mx.mauriciogs.ittalent.ui.authentication.SignInException
 import mx.mauriciogs.ittalent.ui.authentication.SignUpExceptionHandler
@@ -11,6 +12,7 @@ import mx.mauriciogs.ittalent.core.extensions.showError
 import mx.mauriciogs.ittalent.core.extensions.snackbar
 import mx.mauriciogs.ittalent.databinding.FragmentSignUpBinding
 
+@AndroidEntryPoint
 class SignUpFragment : BaseFrag<FragmentSignUpBinding>(R.layout.fragment_sign_up) {
 
     private lateinit var mBinding: FragmentSignUpBinding

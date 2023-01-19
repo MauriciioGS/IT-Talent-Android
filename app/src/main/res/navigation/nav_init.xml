@@ -69,4 +69,6 @@
         android:name="mx.mauriciogs.ittalent.ui.authentication.signup.RegisterFragmentEnterpriseRecruit"
         android:label="RegisterFragmentEnterpriseRecruit"
         tools:layout="@layout/fragment_register_enterprise"/>
+
+    <action android:id="@+id/action_global_signInFragment" app:destination="@id/signInFragment"/>
 </navigation>

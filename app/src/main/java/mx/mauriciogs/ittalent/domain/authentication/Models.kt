@@ -4,6 +4,7 @@ import mx.mauriciogs.ittalent.core.extensions.empty
 import mx.mauriciogs.ittalent.core.extensions.default
 import mx.mauriciogs.ittalent.core.extensions.empty
 import mx.mauriciogs.ittalent.core.extensions.no
+import mx.mauriciogs.ittalent.data.useraccount.local.entities.UserProfileEntity
 
 data class Credentials(val email: String,
                        val password: String = String.empty(),
@@ -57,4 +58,20 @@ data class Experience(
     var yearsXp: Int = Int.default(),
     var nowadays: Boolean = Boolean.no(),
     var achievements: String = String.empty()
+)
+fun UserSignUpCredentials.toUserEntity() = UserProfileEntity(
+    userType = userType,
+    email = email,
+    password = password,
+    fullName = fullName,
+    country = country,
+    city = city,
+    age = age,
+    phoneNumber = phoneNumber,
+    resume = resume,
+    profRole = profRole,
+    photoUri = photoUri,
+    xpLevel = xpLevel,
+    enterprise = enterprise,
+    role = role
 )

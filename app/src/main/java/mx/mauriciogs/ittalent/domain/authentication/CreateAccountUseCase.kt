@@ -4,8 +4,10 @@ import mx.mauriciogs.ittalent.data.auth.SignUpRepository
 import mx.mauriciogs.ittalent.data.auth.exceptions.AuthException
 import mx.mauriciogs.ittalent.data.auth.model.AuthResult
 import mx.mauriciogs.ittalent.data.auth.model.CreateAccountResult
+import mx.mauriciogs.ittalent.data.useraccount.local.UserRepositoryLocal
+import javax.inject.Inject
 
-class CreateAccountUseCase {
+class CreateAccountUseCase @Inject constructor(private val userLocalRepository: UserRepositoryLocal) {
 
     private val authenticationRepository = SignUpRepository()
 
@@ -15,10 +17,12 @@ class CreateAccountUseCase {
                 CreateAccountResult.Error(AuthException.AlreadyRegistered)
             }
             is AuthResult.Success -> {
-                if (authenticationRepository.createUserAccount(userSignUpCredentials))
+                val isAuth = authenticationRepository.createUserAccount(userSignUpCredentials)
+                if (isAuth){
+                    userLocalRepository.insertUserProfile(userSignUpCredentials.toUserEntity())
                     CreateAccountResult.Success(result.data.isSuccessfull)
-                else
-                    CreateAccountResult.Error(AuthException.FailureToCreateAccount)
+                }
+                else CreateAccountResult.Error(AuthException.FailureToCreateAccount)
             }
         }
     }

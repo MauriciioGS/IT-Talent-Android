@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.chip.Chip
+import dagger.hilt.android.AndroidEntryPoint
 import mx.mauriciogs.ittalent.R
 import mx.mauriciogs.ittalent.core.extensions.empty
 import mx.mauriciogs.ittalent.core.extensions.showError
@@ -15,7 +16,7 @@ import mx.mauriciogs.ittalent.core.BaseFrag
 import mx.mauriciogs.ittalent.databinding.FragmentRegisterSkillsBinding
 import mx.mauriciogs.ittalent.domain.authentication.UserSignUpCredentials
 
-
+@AndroidEntryPoint
 class RegisterSkillsFragment : BaseFrag<FragmentRegisterSkillsBinding>(R.layout.fragment_register_skills) {
 
     private lateinit var mBinding: FragmentRegisterSkillsBinding

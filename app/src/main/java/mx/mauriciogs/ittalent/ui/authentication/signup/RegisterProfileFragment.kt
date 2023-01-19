@@ -6,12 +6,14 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.textfield.TextInputEditText
+import dagger.hilt.android.AndroidEntryPoint
 import mx.mauriciogs.ittalent.R
 import mx.mauriciogs.ittalent.core.extensions.*
 import mx.mauriciogs.ittalent.core.BaseFrag
 import mx.mauriciogs.ittalent.databinding.FragmentRegisterProfileBinding
 import mx.mauriciogs.ittalent.domain.authentication.UserSignUpCredentials
 
+@AndroidEntryPoint
 class RegisterProfileFragment : BaseFrag<FragmentRegisterProfileBinding>(R.layout.fragment_register_profile) {
     private lateinit var mBinding: FragmentRegisterProfileBinding
 

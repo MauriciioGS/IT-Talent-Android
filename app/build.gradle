@@ -5,6 +5,9 @@ plugins {
     id 'kotlin-kapt'
     id 'androidx.navigation.safeargs'
     id 'com.google.gms.google-services'
+    id 'kotlin-parcelize'
+    id 'com.google.dagger.hilt.android'
+
 }
 
 android {
@@ -80,8 +83,22 @@ dependencies {
     def lottieVersion = "5.2.0"
     implementation "com.airbnb.android:lottie:$lottieVersion"
 
+    /* Firebase Auth, Analytics and Firestore DB */
     implementation platform('com.google.firebase:firebase-bom:31.1.1')
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-auth-ktx:21.1.0'
     implementation 'com.google.firebase:firebase-firestore-ktx:24.4.1'
+
+    // Room Database
+    implementation "androidx.room:room-runtime:2.5.0"
+    implementation 'androidx.room:room-ktx:2.5.0'
+    kapt 'androidx.room:room-compiler:2.5.0'
+
+    /** - - - Dagger Hilt - - - */
+    implementation 'com.google.dagger:hilt-android:2.43.2'
+    kapt 'com.google.dagger:hilt-compiler:2.43.2'
+}
+
+hilt {
+    enableAggregatingTask = true
 }

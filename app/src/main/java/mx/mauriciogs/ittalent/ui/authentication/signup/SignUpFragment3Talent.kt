@@ -1,22 +1,23 @@
 package mx.mauriciogs.ittalent.ui.authentication.signup
 
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 import mx.mauriciogs.ittalent.R
-import mx.mauriciogs.ittalent.core.extensions.asDialogFragment
-import mx.mauriciogs.ittalent.core.extensions.findChildFragmentByTag
-import mx.mauriciogs.ittalent.core.extensions.orDefault
 import mx.mauriciogs.ittalent.ui.welcome.WelcomeFragment
 import mx.mauriciogs.ittalent.ui.authentication.adapters.VpWelcomeAdapter
 import mx.mauriciogs.ittalent.ui.connectivity.LostConnViewModel
 import mx.mauriciogs.ittalent.ui.connectivity.LostConnectionFragment
 import mx.mauriciogs.ittalent.core.BaseFrag
+import mx.mauriciogs.ittalent.core.extensions.*
 import mx.mauriciogs.ittalent.databinding.FragmentSignUp3Binding
 import mx.mauriciogs.ittalent.ui.main.MainViewModel
 
+@AndroidEntryPoint
 class SignUpFragment3Talent : BaseFrag<FragmentSignUp3Binding>(R.layout.fragment_sign_up3) {
 
     private val signUpViewModel: SignUpViewModel by activityViewModels()
@@ -46,7 +47,19 @@ class SignUpFragment3Talent : BaseFrag<FragmentSignUp3Binding>(R.layout.fragment
                 Toast.makeText(requireActivity(), "Datos almacenados", Toast.LENGTH_SHORT).show()
                 mBinding.viewPager2.currentItem = mBinding.viewPager2.currentItem + 1
             }
+            if (it.exception != null) showError(it.exception)
+            if (it.success != null) showSignInSuccess()
         }
+    }
+
+    private fun showSignInSuccess() {
+        //findNavControllerSafely()?.safeNavigate()
+        Log.d("LOGIN","Usuario loggeado y se creo en firestore")
+    }
+
+    private fun showError(exception: Exception) {
+        snackbar(exception.message).showError()
+        findNavControllerSafely()?.safeNavigate(SignUpFragment3TalentDirections.actionGlobalSignInFragment())
     }
 
     private fun initTab() {

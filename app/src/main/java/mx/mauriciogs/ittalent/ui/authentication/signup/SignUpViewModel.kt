@@ -2,6 +2,7 @@ package mx.mauriciogs.ittalent.ui.authentication.signup
 
 import android.util.Log
 import androidx.lifecycle.*
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -14,10 +15,10 @@ import mx.mauriciogs.ittalent.domain.authentication.Credentials
 import mx.mauriciogs.ittalent.domain.authentication.Experience
 import mx.mauriciogs.ittalent.domain.authentication.UserSignUpCredentials
 import mx.mauriciogs.ittalent.ui.authentication.SignUpExceptionHandler
+import javax.inject.Inject
 
-class SignUpViewModel: ViewModel() {
-
-    private val createAccountUseCase = CreateAccountUseCase()
+@HiltViewModel
+class SignUpViewModel @Inject constructor(private val createAccountUseCase: CreateAccountUseCase) : ViewModel() {
 
     private val userSignUpCredentials = UserSignUpCredentials.empty()
     private var userT = Boolean.yes()
@@ -112,15 +113,23 @@ class SignUpViewModel: ViewModel() {
             withContext(Dispatchers.Main) {
                 when (result) {
                     is CreateAccountResult.Success ->{
-                        Log.d("LOGIN","Usuario loggeado y se creo en firestore")
+                        signInSuccess(result)
                     }
                     is CreateAccountResult.Error -> {
-                        result.exception.message?.let { Log.d("LOGIN", it) }
+                        signInError(result.exception)
                     }
                 }
-                emitUiState(showProgress = false)
             }
         }
+    }
+
+    private fun signInSuccess(result: CreateAccountResult.Success<Boolean>) {
+        emitUiState(showProgress = false, showSuccess=true)
+    }
+
+    private fun signInError(exception: Exception) {
+        exception.printStackTrace()
+        emitUiState(showProgress = false, exception = exception)
     }
 
     private fun emitUiState(showProgress: Boolean = false, exception: Exception? = null, enableContinueButton: Boolean = false,
@@ -129,13 +138,4 @@ class SignUpViewModel: ViewModel() {
         _signUpUIModel.value = signUpUiModel
     }
 
-    class SignUpFragmentsVMFactory(): ViewModelProvider.Factory{
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if(modelClass.isAssignableFrom(SignUpViewModel::class.java)){
-                @Suppress("UNCHECKED_CAST")
-                return SignUpViewModel() as T
-            }
-            throw  java.lang.IllegalArgumentException("Clase ViewModel desconocida")
-        }
-    }
 }

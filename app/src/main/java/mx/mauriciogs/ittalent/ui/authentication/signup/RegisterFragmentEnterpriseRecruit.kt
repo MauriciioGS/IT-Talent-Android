@@ -3,12 +3,14 @@ package mx.mauriciogs.ittalent.ui.authentication.signup
 import android.widget.AutoCompleteTextView
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.textfield.TextInputEditText
+import dagger.hilt.android.AndroidEntryPoint
 import mx.mauriciogs.ittalent.R
 import mx.mauriciogs.ittalent.core.BaseFrag
 import mx.mauriciogs.ittalent.core.extensions.showError
 import mx.mauriciogs.ittalent.core.extensions.snackbar
 import mx.mauriciogs.ittalent.databinding.FragmentRegisterEnterpriseBinding
 
+@AndroidEntryPoint
 class RegisterFragmentEnterpriseRecruit : BaseFrag<FragmentRegisterEnterpriseBinding>(R.layout.fragment_register_enterprise) {
 
     private lateinit var mBinding: FragmentRegisterEnterpriseBinding
