@@ -13,7 +13,7 @@ import mx.mauriciogs.ittalent.databinding.ActivityMainBinding
 @AndroidEntryPoint
 class MainActivity: AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
     private lateinit var bottomNav: BottomNavigationView
     private val navHost : NavHostFragment by lazy {

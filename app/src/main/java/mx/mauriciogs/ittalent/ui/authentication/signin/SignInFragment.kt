@@ -45,9 +45,10 @@ class SignInFragment: BaseFrag<FragmentSignInBinding>(R.layout.fragment_sign_in)
 
     private fun showLogin(userType: Int?) {
         if (userType != null) {
-            startActivity(Intent(requireActivity(), MainActivity::class.java)).apply {
-                requireActivity().finish()
+            val intent = Intent(requireActivity(), MainActivity::class.java).apply {
+                putExtra("userType", userType)
             }
+            startActivity(intent).apply { requireActivity().finish() }
         }
     }
 
