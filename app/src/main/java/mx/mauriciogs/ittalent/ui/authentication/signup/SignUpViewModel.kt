@@ -103,6 +103,8 @@ class SignUpViewModel @Inject constructor(private val createAccountUseCase: Crea
         userSignUpCredentials.enterprise = enterprise
         userSignUpCredentials.role = role
 
+        userSignUpCredentials.skills = listOf("")
+
         signUpEmailPass()
     }
 
@@ -113,7 +115,7 @@ class SignUpViewModel @Inject constructor(private val createAccountUseCase: Crea
             withContext(Dispatchers.Main) {
                 when (result) {
                     is CreateAccountResult.Success ->{
-                        signInSuccess(result)
+                        signInSuccess(result.data)
                     }
                     is CreateAccountResult.Error -> {
                         signInError(result.exception)
@@ -123,8 +125,8 @@ class SignUpViewModel @Inject constructor(private val createAccountUseCase: Crea
         }
     }
 
-    private fun signInSuccess(result: CreateAccountResult.Success<Boolean>) {
-        emitUiState(showProgress = false, showSuccess=true)
+    private fun signInSuccess(result: Int) {
+        emitUiState(showProgress = false, showSuccess=result)
     }
 
     private fun signInError(exception: Exception) {
@@ -133,7 +135,7 @@ class SignUpViewModel @Inject constructor(private val createAccountUseCase: Crea
     }
 
     private fun emitUiState(showProgress: Boolean = false, exception: Exception? = null, enableContinueButton: Boolean = false,
-                            successExperience: Boolean = false, showSuccess: Boolean? = null) {
+                            successExperience: Boolean = false, showSuccess: Int? = null) {
         val signUpUiModel = SignUpUIModel(showProgress, exception, enableNextStep = enableContinueButton, successExperience, showSuccess)
         _signUpUIModel.value = signUpUiModel
     }

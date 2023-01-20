@@ -1,5 +1,6 @@
 package mx.mauriciogs.ittalent.ui.authentication.signup
 
+import android.content.Intent
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
@@ -16,6 +17,7 @@ import mx.mauriciogs.ittalent.core.BaseFrag
 import mx.mauriciogs.ittalent.core.extensions.*
 import mx.mauriciogs.ittalent.databinding.FragmentSignUp3Binding
 import mx.mauriciogs.ittalent.ui.init.InitViewModel
+import mx.mauriciogs.ittalent.ui.main.MainActivity
 
 @AndroidEntryPoint
 class SignUpFragment3Talent : BaseFrag<FragmentSignUp3Binding>(R.layout.fragment_sign_up3) {
@@ -48,18 +50,8 @@ class SignUpFragment3Talent : BaseFrag<FragmentSignUp3Binding>(R.layout.fragment
                 mBinding.viewPager2.currentItem = mBinding.viewPager2.currentItem + 1
             }
             if (it.exception != null) showError(it.exception)
-            if (it.success != null) showSignInSuccess()
+            if (it.success != null) showSignInSuccess(it.success)
         }
-    }
-
-    private fun showSignInSuccess() {
-        //findNavControllerSafely()?.safeNavigate()
-        Log.d("LOGIN","Usuario loggeado y se creo en firestore")
-    }
-
-    private fun showError(exception: Exception) {
-        snackbar(exception.message).showError()
-        findNavControllerSafely()?.safeNavigate(SignUpFragment3TalentDirections.actionGlobalSignInFragment())
     }
 
     private fun initTab() {
@@ -80,6 +72,19 @@ class SignUpFragment3Talent : BaseFrag<FragmentSignUp3Binding>(R.layout.fragment
                 tab.icon = icons[position]
             }.attach()
         }
+    }
+
+    private fun showSignInSuccess(userType: Int) {
+        Log.d("LOGIN","Usuario loggeado y se creo en firestore")
+        val intent = Intent(requireActivity(), MainActivity::class.java).apply {
+            putExtra("userType", userType)
+        }
+        startActivity(intent).apply { requireActivity().finish() }
+    }
+
+    private fun showError(exception: Exception) {
+        snackbar(exception.message).showError()
+        findNavControllerSafely()?.safeNavigate(SignUpFragment3TalentDirections.actionGlobalSignInFragment())
     }
 
     private fun openLostConnDialog() = LostConnectionFragment.newInstance().run {

@@ -11,7 +11,7 @@ class CreateAccountUseCase @Inject constructor(private val userLocalRepository: 
 
     private val authenticationRepository = SignUpRepository()
 
-    suspend fun signInEmailPass(userSignUpCredentials: UserSignUpCredentials): CreateAccountResult<Boolean> {
+    suspend fun signInEmailPass(userSignUpCredentials: UserSignUpCredentials): CreateAccountResult<Int> {
         return when (val result = authenticationRepository.signUpEmailPass(userSignUpCredentials)) {
             is AuthResult.Error -> {
                 CreateAccountResult.Error(AuthException.AlreadyRegistered)
@@ -20,7 +20,7 @@ class CreateAccountUseCase @Inject constructor(private val userLocalRepository: 
                 val isAuth = authenticationRepository.createUserAccount(userSignUpCredentials)
                 if (isAuth){
                     userLocalRepository.insertUserProfile(userSignUpCredentials.toUserEntity())
-                    CreateAccountResult.Success(result.data.isSuccessfull)
+                    CreateAccountResult.Success(result.data.userType)
                 }
                 else CreateAccountResult.Error(AuthException.FailureToCreateAccount)
             }

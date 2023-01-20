@@ -18,7 +18,7 @@ class SignUpRepository {
                 val result = FirebaseClient.auth
                     .createUserWithEmailAndPassword(userSignUpCredentials.email, userSignUpCredentials.password)
                     .await()
-                AuthResult.Success(SignUpResponse(Boolean.yes(), result.user!!))
+                AuthResult.Success(SignUpResponse(Boolean.yes(), userSignUpCredentials.userType))
             } catch (exception: Exception) {
                 exception.printStackTrace()
                 AuthResult.Error(exception)

@@ -37,7 +37,7 @@ class JobsFragment: BaseFrag<FragmentJobsBinding>(R.layout.fragment_jobs) {
                     }
                 }
                 Int.ENTERPRISE_R_UT() -> {
-                    toolbar.visibility = View.VISIBLE
+
                 }
                 else -> {}
             }

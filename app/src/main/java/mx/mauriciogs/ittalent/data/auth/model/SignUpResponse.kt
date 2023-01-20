@@ -1,10 +1,9 @@
 package mx.mauriciogs.ittalent.data.auth.model
 
-import com.google.firebase.auth.FirebaseUser
 import mx.mauriciogs.ittalent.core.extensions.no
 
 data class SignUpResponse (
     val isSuccessfull: Boolean = Boolean.no(),
-    val user: FirebaseUser,
+    val userType: Int,
     val authProvider: ProviderType? = null
 )
