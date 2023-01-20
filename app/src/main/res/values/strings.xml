@@ -108,4 +108,10 @@
     <string name="txt_registrarempresa">Registrar una empresa</string>
 
 
+    <string name="header_jobs_rec">Empleos publicados</string>
+    <string name="subheader_jobs_rec">Activos</string>
+    <string name="subheader_jobs_rec2">Pasados</string>
+    <string name="btn_openall">Ver todo</string>
+
+
 </resources>

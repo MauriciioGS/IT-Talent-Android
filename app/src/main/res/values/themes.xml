@@ -152,6 +152,16 @@
         <item name="chipCornerRadius">@dimen/dimen10dp</item>
     </style>
 
+    <!--Chips-->
+    <style name="MyChipOutlined" parent="@style/Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/primary</item>
+        <item name="android:textAppearance">@style/SubtitleSecondary</item>
+        <item name="android:textColor">@color/main</item>
+        <item name="chipStrokeColor">@color/main</item>
+        <item name="chipStrokeWidth">@dimen/dimen1dp</item>
+        <item name="chipCornerRadius">@dimen/dimen10dp</item>
+    </style>
+
     <!--Texts-->
     <style name="ItemActive" parent="TextAppearance.AppCompat">
         <item name="fontFamily">@font/montserratregular</item>
@@ -173,6 +183,19 @@
         <item name="android:textColor">@color/textBold</item>
     </style>
 
+    <style name="H6Secondary" parent="TextAppearance.AppCompat">
+        <item name="fontFamily">@font/montserratsemibold</item>
+        <item name="android:textSize">@dimen/dimen18dp</item>
+        <item name="android:textColor">@color/textBold</item>
+    </style>
+
+    <!--Texts-->
+    <style name="H5Primary" parent="TextAppearance.AppCompat">
+        <item name="fontFamily">@font/nunitosasnssemibold</item>
+        <item name="android:textSize">@dimen/dimen24dp</item>
+        <item name="android:textColor">@color/textBold</item>
+    </style>
+
     <style name="BodySecondary" parent="TextAppearance.AppCompat">
         <item name="fontFamily">@font/montserratregular</item>
         <item name="android:textSize">@dimen/dimen16dp</item>
@@ -181,6 +204,16 @@
     <style name="Body2Secondary" parent="TextAppearance.AppCompat">
         <item name="fontFamily">@font/montserratregular</item>
         <item name="android:textSize">@dimen/dimen14dp</item>
+    </style>
+
+    <style name="Body3Secondary" parent="TextAppearance.AppCompat">
+        <item name="fontFamily">@font/montserratregular</item>
+        <item name="android:textSize">@dimen/dimen11dp</item>
+    </style>
+
+    <style name="Body3Primary" parent="TextAppearance.AppCompat">
+        <item name="fontFamily">@font/nunitosanseegular</item>
+        <item name="android:textSize">@dimen/dimen12dp</item>
     </style>
 
     <style name="SubtitleSecondary" parent="TextAppearance.AppCompat">

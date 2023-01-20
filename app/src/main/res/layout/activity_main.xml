@@ -30,13 +30,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <com.google.android.material.appbar.CollapsingToolbarLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/appbar_bg"
-                    app:contentScrim="@color/primary"
-                    app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
-
                     <androidx.appcompat.widget.Toolbar
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/dimen60dp"
@@ -83,8 +76,6 @@
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                     </androidx.appcompat.widget.Toolbar>
-
-                </com.google.android.material.appbar.CollapsingToolbarLayout>
 
             </com.google.android.material.appbar.AppBarLayout>
 
