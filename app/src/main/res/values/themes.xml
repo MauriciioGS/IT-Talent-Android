@@ -153,6 +153,20 @@
     </style>
 
     <!--Texts-->
+    <style name="ItemActive" parent="TextAppearance.AppCompat">
+        <item name="fontFamily">@font/montserratregular</item>
+        <item name="android:textSize">@dimen/dimen12dp</item>
+        <item name="itemTextColor">@color/white</item>
+    </style>
+
+    <!--Texts-->
+    <style name="ItemInactive" parent="TextAppearance.AppCompat">
+        <item name="fontFamily">@font/montserratregular</item>
+        <item name="android:textSize">@dimen/dimen12dp</item>
+        <item name="itemTextColor">@color/disable</item>
+    </style>
+
+    <!--Texts-->
     <style name="H6Primary" parent="TextAppearance.AppCompat">
         <item name="fontFamily">@font/nunitosasnssemibold</item>
         <item name="android:textSize">@dimen/dimen20dp</item>

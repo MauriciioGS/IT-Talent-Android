@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import mx.mauriciogs.ittalent.R
@@ -23,7 +24,16 @@ class MainActivity: AppCompatActivity() {
         setTheme(R.style.Theme_ITTalent)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         supportActionBar?.hide()
+        initUI()
+    }
+
+    private fun initUI() {
+        with(binding) {
+            navController = navHost.navController
+            bottomNav.itemIconTintList = null
+            bottomNav.itemActiveIndicatorColor = null
+            bottomNav.setupWithNavController(navController)
+        }
     }
 }

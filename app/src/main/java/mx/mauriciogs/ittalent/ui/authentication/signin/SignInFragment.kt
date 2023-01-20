@@ -1,6 +1,7 @@
 package mx.mauriciogs.ittalent.ui.authentication.signin
 
 import android.content.Context
+import android.content.Intent
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -12,6 +13,7 @@ import mx.mauriciogs.ittalent.domain.authentication.Credentials
 import mx.mauriciogs.ittalent.ui.connectivity.LostConnViewModel
 import mx.mauriciogs.ittalent.ui.connectivity.LostConnectionFragment
 import mx.mauriciogs.ittalent.ui.init.InitViewModel
+import mx.mauriciogs.ittalent.ui.main.MainActivity
 import mx.mauriciogs.ittalent.ui.welcome.WelcomeFragment
 
 class SignInFragment: BaseFrag<FragmentSignInBinding>(R.layout.fragment_sign_in) {
@@ -43,7 +45,9 @@ class SignInFragment: BaseFrag<FragmentSignInBinding>(R.layout.fragment_sign_in)
 
     private fun showLogin(userType: Int?) {
         if (userType != null) {
-
+            startActivity(Intent(requireActivity(), MainActivity::class.java)).apply {
+                requireActivity().finish()
+            }
         }
     }
 

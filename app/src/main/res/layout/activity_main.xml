@@ -33,19 +33,23 @@
                 <com.google.android.material.appbar.CollapsingToolbarLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/appbar_bg"
                     app:contentScrim="@color/primary"
                     app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
 
                     <androidx.appcompat.widget.Toolbar
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="@dimen/dimen60dp"
+                        android:background="@drawable/appbar_bg"
                         android:elevation="@dimen/dimen12dp"
                         android:theme="?actionBarTheme"
                         app:layout_collapseMode="pin">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="@dimen/dimen3dp"
+                            android:layout_marginEnd="@dimen/dimen10dp">
 
                             <ImageView
                                 android:id="@+id/imageView"
@@ -68,7 +72,7 @@
                             <ImageButton
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginEnd="@dimen/dimen16dp"
+                                android:layout_marginEnd="@dimen/dimen6dp"
                                 android:backgroundTint="@color/primary"
                                 android:src="@drawable/ic_baseline_notifications_24"
                                 app:layout_constraintBottom_toBottomOf="parent"
@@ -108,6 +112,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bottom_nav_bg"
+            app:labelVisibilityMode="auto"
+            app:menu="@menu/bottom_nav_menu"
+            app:itemTextAppearanceActive="@style/ItemActive"
             app:itemIconSize="@dimen/dimen30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"

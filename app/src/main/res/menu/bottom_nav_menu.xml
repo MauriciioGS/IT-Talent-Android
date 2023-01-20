@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/jobsFragment"
+        android:icon="@drawable/ic_home_selector"
+        app:showAsAction="ifRoom"
+        android:title="Inicio" />
+
+    <item
+        android:id="@+id/postulationsFragment"
+        android:icon="@drawable/ic_postulaciones_selector"
+        app:showAsAction="ifRoom"
+        android:title="Postulaciones" />
+
+    <item
+        android:id="@+id/myProfileFragment"
+        android:icon="@drawable/ic_profile_selector_bottom"
+        app:showAsAction="always"
+        android:title="Perfil" />
+
+    <item
+        android:id="@+id/talentFragment"
+        android:icon="@drawable/ic_people_selector"
+        app:showAsAction="never"
+        android:title="Talentos" />
+
+
+</menu>
