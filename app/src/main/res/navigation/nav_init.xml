@@ -55,7 +55,11 @@
         android:id="@+id/signUpFragment3"
         android:name="mx.mauriciogs.ittalent.ui.authentication.signup.SignUpFragment3Talent"
         android:label="SignUpFragment3"
-        tools:layout="@layout/fragment_sign_up3"/>
+        tools:layout="@layout/fragment_sign_up3">
+        <action
+            android:id="@+id/action_signUpFragment3_to_signInFragment"
+            app:destination="@id/signInFragment" />
+    </fragment>
     <fragment
         android:id="@+id/registerProfile"
         android:name="mx.mauriciogs.ittalent.ui.authentication.signup.RegisterProfileFragment"
@@ -69,8 +73,10 @@
         android:id="@+id/registerFragmentEnterpriseRecruit"
         android:name="mx.mauriciogs.ittalent.ui.authentication.signup.RegisterFragmentEnterpriseRecruit"
         android:label="RegisterFragmentEnterpriseRecruit"
-        tools:layout="@layout/fragment_register_enterprise"/>
+        tools:layout="@layout/fragment_register_enterprise">
+        <action
+            android:id="@+id/action_registerFragmentEnterpriseRecruit_to_signInFragment"
+            app:destination="@id/signInFragment" />
+    </fragment>
 
-    <action android:id="@+id/action_global_signInFragment"
-        app:destination="@id/signInFragment" />
 </navigation>

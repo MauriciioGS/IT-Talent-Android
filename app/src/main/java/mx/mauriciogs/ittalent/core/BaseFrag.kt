@@ -7,11 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import mx.mauriciogs.ittalent.R
 import mx.mauriciogs.ittalent.core.extensions.loadingDialog
 import mx.mauriciogs.ittalent.ui.init.InitActivity
+import mx.mauriciogs.ittalent.ui.main.MainActivity
 
 interface BaseListView {
     fun showProgressDialog()
@@ -26,8 +29,8 @@ open class BaseFrag <T : ViewDataBinding>(@LayoutRes private val layoutResId : I
     private var progressDialog : Dialog? = null
     protected var errorDialog : Dialog? = null
 
-    val activityInit: AppCompatActivity by lazy {
-        requireActivity() as InitActivity
+    val activityMain: AppCompatActivity by lazy {
+        requireActivity() as MainActivity
     }
 
     open fun T.initialize(){}
@@ -57,6 +60,19 @@ open class BaseFrag <T : ViewDataBinding>(@LayoutRes private val layoutResId : I
             }
         }catch (e: Exception){
             e.printStackTrace()
+        }
+    }
+
+    fun showNewJob(show: Boolean = true) {
+        val activity = (activityMain as MainActivity)
+        if (show) {
+            /*activity.binding.appbar.background = AppCompatResources.getDrawable(activity, R.drawable.appbar_bg_3)
+            activity.binding.toolbarMain.background = AppCompatResources.getDrawable(activity, R.drawable.appbar_bg_3)
+            activity.binding.ivBtnToolbar.setImageDrawable(AppCompatResources.getDrawable(activity, R.drawable.ic_close))*/
+            activity.binding.appbar.visibility = View.GONE
+            activity.binding.toolbarMain.visibility = View.GONE
+        } else {
+            activity.binding.appbar.visibility = View.VISIBLE
         }
     }
 

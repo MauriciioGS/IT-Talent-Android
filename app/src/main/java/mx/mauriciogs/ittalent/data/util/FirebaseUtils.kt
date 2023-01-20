@@ -1,4 +1,4 @@
-package mx.mauriciogs.ittalent.data.auth.util
+package mx.mauriciogs.ittalent.data.util
 
 import com.google.android.play.core.tasks.Task
 import kotlinx.coroutines.suspendCancellableCoroutine

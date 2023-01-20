@@ -10,4 +10,14 @@
         android:name="mx.mauriciogs.ittalent.ui.jobs.JobsFragment"
         android:label="JobsFragment"
         tools:layout="@layout/fragment_jobs"/>
+
+    <fragment
+        android:id="@+id/newJobFragment"
+        android:name="mx.mauriciogs.ittalent.ui.jobs.NewJobFragment"
+        android:label="NewJobFragment"
+        tools:layout="@layout/fragment_new_job"/>
+
+    <action android:id="@+id/action_global_newJobFragment"
+        app:destination="@id/newJobFragment"/>
+
 </navigation>

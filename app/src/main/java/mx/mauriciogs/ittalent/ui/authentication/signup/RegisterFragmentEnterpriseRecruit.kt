@@ -73,7 +73,7 @@ class RegisterFragmentEnterpriseRecruit : BaseFrag<FragmentRegisterEnterpriseBin
 
     private fun showError(exception: Exception) {
         snackbar(exception.message).showError()
-        findNavControllerSafely()?.safeNavigate(SignUpFragment3TalentDirections.actionGlobalSignInFragment())
+        findNavControllerSafely()?.safeNavigate(RegisterFragmentEnterpriseRecruitDirections.actionRegisterFragmentEnterpriseRecruitToSignInFragment())
     }
 
     private fun emptyField(editText: TextInputEditText, errorId: Int) {

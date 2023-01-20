@@ -84,7 +84,7 @@ class SignUpFragment3Talent : BaseFrag<FragmentSignUp3Binding>(R.layout.fragment
 
     private fun showError(exception: Exception) {
         snackbar(exception.message).showError()
-        findNavControllerSafely()?.safeNavigate(SignUpFragment3TalentDirections.actionGlobalSignInFragment())
+        findNavControllerSafely()?.safeNavigate(SignUpFragment3TalentDirections.actionSignUpFragment3ToSignInFragment())
     }
 
     private fun openLostConnDialog() = LostConnectionFragment.newInstance().run {
