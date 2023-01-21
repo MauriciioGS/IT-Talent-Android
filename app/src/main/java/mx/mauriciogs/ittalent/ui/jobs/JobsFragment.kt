@@ -3,6 +3,7 @@ package mx.mauriciogs.ittalent.ui.jobs
 import android.view.View
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.activityViewModels
 import com.google.android.material.appbar.AppBarLayout
 import mx.mauriciogs.ittalent.R
 import mx.mauriciogs.ittalent.core.BaseFrag
@@ -13,13 +14,16 @@ class JobsFragment: BaseFrag<FragmentJobsBinding>(R.layout.fragment_jobs) {
 
     private lateinit var mBinding: FragmentJobsBinding
 
+    private val jobsViewModel: JobsViewModel by activityViewModels()
+
     private var userType = Int.default()
 
     override fun FragmentJobsBinding.initialize() {
         mBinding = this
         showCollapsingToolBar(true)
         userType = requireActivity().intent.getIntExtra("userType", 0)
-        requireContext().toast("$userType").show()
+//        requireContext().toast("$userType").show()
+        jobsViewModel.getProfile()
         initUi()
         initListeners()
     }
@@ -52,6 +56,7 @@ class JobsFragment: BaseFrag<FragmentJobsBinding>(R.layout.fragment_jobs) {
                     tvHeader.text = getText(R.string.header_jobs_rec)
                     tvActives.text = getText(R.string.subheader_jobs_rec)
                     tvPast.text = getText(R.string.subheader_jobs_rec2)
+                    jobsViewModel.getMyJobPosts()
                 }
                 else -> {}
             }

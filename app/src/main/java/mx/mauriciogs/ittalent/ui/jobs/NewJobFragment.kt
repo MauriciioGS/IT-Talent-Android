@@ -1,14 +1,12 @@
 package mx.mauriciogs.ittalent.ui.jobs
 
+import android.util.Log
 import android.widget.AutoCompleteTextView
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.textfield.TextInputEditText
 import mx.mauriciogs.ittalent.R
 import mx.mauriciogs.ittalent.core.BaseFrag
-import mx.mauriciogs.ittalent.core.extensions.empty
-import mx.mauriciogs.ittalent.core.extensions.findNavControllerSafely
-import mx.mauriciogs.ittalent.core.extensions.showError
-import mx.mauriciogs.ittalent.core.extensions.snackbar
+import mx.mauriciogs.ittalent.core.extensions.*
 import mx.mauriciogs.ittalent.databinding.FragmentNewJobBinding
 import mx.mauriciogs.ittalent.domain.jobs.Job
 
@@ -23,6 +21,7 @@ class NewJobFragment: BaseFrag<FragmentNewJobBinding>(R.layout.fragment_new_job)
     override fun FragmentNewJobBinding.initialize() {
         mBinding = this
         showCollapsingToolBar()
+        initCloseBntListener(findNavControllerSafely())
         newJobViewModel.getProfile()
         initObservers()
     }
@@ -31,15 +30,20 @@ class NewJobFragment: BaseFrag<FragmentNewJobBinding>(R.layout.fragment_new_job)
         newJobViewModel.jobsUiModelState.observe(viewLifecycleOwner) {
             if (it.showProgress) showProgressDialog() else hideProgressDialog()
             if (it.setUI != null) initUi(it.setUI)
+            if (it.exception != null) snackbar(it.exception.message).showError()
+            if (it.showSuccess != null) showPostedSuccess()
         }
+    }
+
+    private fun showPostedSuccess() {
+        requireActivity().snackbar("Empleo publicado!").showSuccess()
+        findNavControllerSafely()?.popBackStack()
     }
 
     private fun initUi(empresaDatos: String) {
         firstItemMon = resources.getStringArray(R.array.coin)[0]
-        mBinding.dropdownCoin.setText(firstItemMon)
+        mBinding.dropdownCoin.setText(firstItemMon, false)
         mBinding.etEnterprise.setText(empresaDatos)
-        hideProgressDialog()
-        initCloseBntListener(findNavControllerSafely())
 
         with(mBinding) {
             btnContinue.setOnClickListener { checkFields() }
@@ -77,6 +81,7 @@ class NewJobFragment: BaseFrag<FragmentNewJobBinding>(R.layout.fragment_new_job)
 
                     val empleo = Job(job = cargo, enterprise = empresa, location = ubicacion, mode = modalidad,
                         type = tipo, wage = rangoSalario, vacancies = vacantes)
+                    Log.d("POSTJOB", "$empleo")
 
                     newJobViewModel.postJob(empleo)
                 }

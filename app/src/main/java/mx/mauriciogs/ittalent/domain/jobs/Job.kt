@@ -3,7 +3,7 @@ package mx.mauriciogs.ittalent.domain.jobs
 import mx.mauriciogs.ittalent.core.extensions.empty
 import mx.mauriciogs.ittalent.data.jobs.model.JobFirebase
 
-class Job (
+data class Job (
     val job: String = String.empty(),
     val enterprise: String = String.empty(),
     val imageUrl: String = String.empty(),
@@ -15,10 +15,13 @@ class Job (
     val applicants: List<String> = emptyList(),
     var emailRecruiter: String = String.empty(),
     var timestamp : String = String.empty(),
+    var date: String = String.empty(),
+    var time: String = String.empty()
 )
 
 fun Job.toJobFirebase() = JobFirebase(
     applicants = applicants.ifEmpty { listOf("") },
+    date = date,
     emailRecruiter = emailRecruiter,
     enterprise = enterprise,
     imageUrl = imageUrl.ifBlank { "" },
@@ -26,6 +29,7 @@ fun Job.toJobFirebase() = JobFirebase(
     location = location,
     mode = mode,
     type = type,
+    time = time,
     timestamp = timestamp,
     vacancies = vacancies,
     wage = wage,

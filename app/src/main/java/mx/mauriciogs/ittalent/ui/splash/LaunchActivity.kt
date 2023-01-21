@@ -15,7 +15,7 @@ class LaunchActivity : AppCompatActivity() {
 
         lifecycleScope.launchWhenStarted {
             delay(1200)
-            startActivity(Intent(this@LaunchActivity, InitActivity::class.java)).apply {
+            startActivity(Intent(this@LaunchActivity, MainActivity::class.java)).apply {
                 this@LaunchActivity.finish()
             }
         }

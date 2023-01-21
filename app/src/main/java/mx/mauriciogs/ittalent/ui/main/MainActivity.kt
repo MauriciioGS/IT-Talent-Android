@@ -50,9 +50,5 @@ class MainActivity: AppCompatActivity() {
 
             bottomNav.isVisible = showAppBar
         }
-
-        binding.ivBtnToolbar.setOnClickListener {
-
-        }
     }
 }
