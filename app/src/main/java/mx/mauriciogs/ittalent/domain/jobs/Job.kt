@@ -1,5 +1,6 @@
 package mx.mauriciogs.ittalent.domain.jobs
 
+import mx.mauriciogs.ittalent.core.extensions.default
 import mx.mauriciogs.ittalent.core.extensions.empty
 import mx.mauriciogs.ittalent.data.jobs.model.JobFirebase
 
@@ -14,9 +15,11 @@ data class Job (
     val vacancies: String? = String.empty(),
     val applicants: List<String>? = emptyList(),
     var emailRecruiter: String? = String.empty(),
+    var nameRecruiter: String? = String.empty(),
     var timestamp : String? = String.empty(),
     var date: String? = String.empty(),
-    var time: String? = String.empty()
+    var time: String? = String.empty(),
+    var status: Int? = Int.default(),
 )
 
 fun Job.toJobFirebase() = JobFirebase(
@@ -28,6 +31,8 @@ fun Job.toJobFirebase() = JobFirebase(
     job = job,
     location = location,
     mode = mode,
+    nameRecruiter = nameRecruiter,
+    status = status,
     type = type,
     time = time,
     timestamp = timestamp,

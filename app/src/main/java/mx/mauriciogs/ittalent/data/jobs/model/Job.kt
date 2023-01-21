@@ -13,9 +13,11 @@ data class JobFirebase (
         val vacancies: String? = null,
         val applicants: List<String>? = null,
         val emailRecruiter: String? = null,
+        val nameRecruiter: String? = null,
         val timestamp : String? = null,
         val date: String? = null,
-        val time: String? = null
+        val time: String? = null,
+        var status: Int? = null,
 )
 
 fun JobFirebase.toJob() = Job(
@@ -27,9 +29,11 @@ fun JobFirebase.toJob() = Job(
         job = job!!,
         location = location!!,
         mode = mode!!,
+        nameRecruiter = nameRecruiter!!,
         type = type!!,
         time = time!!,
         timestamp = timestamp!!,
         vacancies = vacancies!!,
         wage = wage!!,
+        status = status!!
 )

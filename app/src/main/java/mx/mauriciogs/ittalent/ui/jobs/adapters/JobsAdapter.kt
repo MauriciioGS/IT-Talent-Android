@@ -19,7 +19,7 @@ class JobsAdapter(private val jobsList: List<Job>, val context: Context): Recycl
         fun bind(job: Job) {
             itemBinding.tvJobName.text = job.job
             itemBinding.tvEnterprise.text = job.enterprise
-            itemBinding.tvPublisher.text = job.emailRecruiter
+            itemBinding.tvPublisher.text = job.nameRecruiter
             itemBinding.ivVacancies.text =  itemBinding.root.context.getString(R.string.txt_rvjobs_vacantes, job.vacancies)
             itemBinding.tvApplicants.text = if(job.applicants != null)
                 itemBinding.root.context.getString(R.string.txt_rvjobs_solicitantes, job.applicants.size-1) else ""
