@@ -17,6 +17,7 @@ class JobsFragment: BaseFrag<FragmentJobsBinding>(R.layout.fragment_jobs) {
 
     override fun FragmentJobsBinding.initialize() {
         mBinding = this
+        showCollapsingToolBar(true)
         userType = requireActivity().intent.getIntExtra("userType", 0)
         requireContext().toast("$userType").show()
         initUi()

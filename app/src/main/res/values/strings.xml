@@ -59,6 +59,8 @@
     <string name="hint_ciudad">Ciudad / Región</string>
     <string name="hint_modalidad">Modalidad del empleo</string>
     <string name="hint_tipo">Tipo de empleo</string>
+    <string name="hint_wage">Rango de salario</string>
+    <string name="hint_coin">Moneda</string>
     <string name="hint_inicio">Fecha de inicio:</string>
     <string name="hint_fin">Fecha de termino:</string>
     <string name="hint_mes">Mes</string>
@@ -113,6 +115,17 @@
     <string name="subheader_jobs_rec">Activos</string>
     <string name="subheader_jobs_rec2">Pasados</string>
     <string name="btn_openall">Ver todo</string>
+
+    <string name="hint_location">Ubicación</string>
+    <string name="hint_vacancy">Número de vacantes</string>
+    <string name="hint_salary">Rango aproximado de salario</string>
+    <string name="btn_post">Publicar</string>
+    <string name="txt_no_ciudad_ne">Ingresa la ciudad/región del empleo</string>
+    <string name="txt_no_vacantes">Ingresa las vacantes disponibles</string>
+    <string name="txt_no_modalidad_ne">Selecciona la modalidad del empleo</string>
+    <string name="txt_no_tipo_ne">Selecciona el tipo de empleo</string>
+    <string name="txt_no_salario">Selecciona el rango de salario del empleo. Ten en cuenta que son aproximaciones para guiar a los talentos.</string>
+    <string name="txt_no_moneda">Selecciona la moneda en que se poagaría el salario</string>
 
 
 </resources>

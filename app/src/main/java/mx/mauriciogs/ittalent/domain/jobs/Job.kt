@@ -13,8 +13,8 @@ class Job (
     val wage: String = String.empty(),
     val vacancies: String = String.empty(),
     val applicants: List<String> = emptyList(),
-    val emailRecruiter: String = String.empty(),
-    val timestamp : String = String.empty(),
+    var emailRecruiter: String = String.empty(),
+    var timestamp : String = String.empty(),
 )
 
 fun Job.toJobFirebase() = JobFirebase(

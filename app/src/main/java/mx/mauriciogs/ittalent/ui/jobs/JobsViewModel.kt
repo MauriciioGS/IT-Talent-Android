@@ -23,8 +23,8 @@ class JobsViewModel : ViewModel() {
 
 
 
-    private fun emitUiState(showProgress: Boolean = false, exception: Exception? = null, showSuccess: Boolean? = null) {
-        val signUpUiModel = JobsUiModel(showProgress, exception, showSuccess)
+    private fun emitUiState(showProgress: Boolean = false,enableContinueButton: Boolean = false, exception: Exception? = null, showSuccess: Boolean? = null) {
+        val signUpUiModel = JobsUiModel(showProgress, enableContinueButton, exception, showSuccess)
         _jobsUiModelState.value = signUpUiModel
     }
 

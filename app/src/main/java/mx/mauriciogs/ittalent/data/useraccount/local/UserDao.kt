@@ -13,7 +13,7 @@ interface UserDao {
     @Query(GET_USER_PROFILE)
     suspend fun getUserProfile(): UserProfileEntity
 
-    @Update
+    @Update(onConflict = OnConflictStrategy.REPLACE)
     suspend fun updateUserProfile(userProfileEntity: UserProfileEntity)
 
     @Query(DELETE_USER)

@@ -9,10 +9,12 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import mx.mauriciogs.ittalent.data.useraccount.local.entities.toUserProfile
 import mx.mauriciogs.ittalent.domain.authentication.GetProfileUseCase
 import mx.mauriciogs.ittalent.domain.jobs.Job
 import mx.mauriciogs.ittalent.domain.jobs.PostJobUseCase
 import mx.mauriciogs.ittalent.domain.useraccount.UserProfile
+import org.joda.time.LocalDate
 import javax.inject.Inject
 
 @HiltViewModel
@@ -21,33 +23,32 @@ class NewJobViewModel @Inject constructor(private val getProfileUseCase: GetProf
     private val postJobUseCase = PostJobUseCase()
     private lateinit var profile: UserProfile
 
-    private val _jobsUiModelState = MutableLiveData<JobsUiModel>()
+    private val _jobsUiModelState = MutableLiveData<NewJobUiModel>()
 
-    val jobsUiModelState: LiveData<JobsUiModel>
+    val jobsUiModelState: LiveData<NewJobUiModel>
         get() = _jobsUiModelState
 
     fun getProfile() {
         emitUiState(showProgress = true)
-        viewModelScope.launch(Dispatchers.IO) {
-            try {
-                profile = getProfileUseCase.getProfileLocal()
-                Log.d("PROF", "${profile.fullName}")
-                withContext(Dispatchers.Main) { emitUiState(showProgress = false) }
-            } catch (exception: Exception) {
-                withContext(Dispatchers.Main) { emitUiState(exception = exception) }
-            }
+        viewModelScope.launch {
+            profile = getProfileUseCase.getProfileLocal().toUserProfile()
+            Log.d("PROF", "$profile")
+            emitUiState(setUI = profile.enterprise, showProgress = false)
         }
     }
 
     fun postJob(newJob: Job){
-        viewModelScope.launch(Dispatchers.IO) {
+        newJob.emailRecruiter = profile.email!!
+        newJob.timestamp = LocalDate().toString()
+        Log.d("POSTJOB", "$newJob")
+        /*viewModelScope.launch(Dispatchers.IO) {
             val result = postJobUseCase.postJob(newJob)
-        }
+        }*/
     }
 
-    private fun emitUiState(showProgress: Boolean = false, exception: Exception? = null, showSuccess: Boolean? = null) {
-        val signUpUiModel = JobsUiModel(showProgress, exception, showSuccess)
-        _jobsUiModelState.value = signUpUiModel
+    private fun emitUiState(setUI: String? = null, showProgress: Boolean = false, exception: Exception? = null, enableContinueButton: Boolean = false, showSuccess: Boolean? = null) {
+        val newJobUiModel = NewJobUiModel(setUI, showProgress, enableContinueButton, exception, showSuccess)
+        _jobsUiModelState.value = newJobUiModel
     }
 
 }
