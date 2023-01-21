@@ -55,19 +55,28 @@ class JobsFragment: BaseFrag<FragmentJobsBinding>(R.layout.fragment_jobs) {
 
     private fun initListeners() {
         with(mBinding) {
-            floatingActionButton.setOnClickListener {
-                findNavControllerSafely()?.safeNavigate(JobsFragmentDirections.actionGlobalNewJobFragment())
+            btnOpenAll.setOnClickListener {
+
+            }
+            btnOpenAll2.setOnClickListener {
+
             }
         }
     }
 
     private fun initRecycler(jobs: MutableList<Job>) {
         mBinding.noDataAnim.visibility = View.GONE
+        mBinding.btnOpenAll.visibility = View.VISIBLE
+        mBinding.btnOpenAll2.visibility = View.VISIBLE
         mBinding.rvActives.apply {
             visibility = View.VISIBLE
             layoutManager = LinearLayoutManager(requireActivity())
-            adapter = JobsAdapter(jobs, requireActivity())
+            adapter = JobsAdapter(jobs, this@JobsFragment)
         }
+    }
+
+    fun onClickItem(item: Job) {
+        requireActivity().toast("$item").show()
     }
 
     private fun initUi() {
@@ -84,12 +93,12 @@ class JobsFragment: BaseFrag<FragmentJobsBinding>(R.layout.fragment_jobs) {
                     tvHeader.text = getText(R.string.header_jobs_tal)
                     //tvActives.text = getText(R.string.subheader_jobs_rec)
                     //tvPast.text = getText(R.string.subheader_jobs_rec2)
-                    floatingActionButton.visibility = View.GONE
                 }
                 Int.ENTERPRISE_R_UT() -> {
                     tvHeader.text = getText(R.string.header_jobs_rec)
                     tvActives.text = getText(R.string.subheader_jobs_rec)
                     tvPast.text = getText(R.string.subheader_jobs_rec2)
+                    showFloatingActionBtn(findNavControllerSafely())
                     jobsViewModel.getMyJobPosts()
                 }
                 else -> {}

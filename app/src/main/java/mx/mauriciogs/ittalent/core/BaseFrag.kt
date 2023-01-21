@@ -7,15 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
-import mx.mauriciogs.ittalent.R
+import mx.mauriciogs.ittalent.core.extensions.findNavControllerSafely
 import mx.mauriciogs.ittalent.core.extensions.loadingDialog
-import mx.mauriciogs.ittalent.ui.init.InitActivity
+import mx.mauriciogs.ittalent.core.extensions.safeNavigate
+import mx.mauriciogs.ittalent.ui.jobs.JobsFragmentDirections
 import mx.mauriciogs.ittalent.ui.main.MainActivity
 
 interface BaseListView {
@@ -70,6 +70,18 @@ open class BaseFrag <T : ViewDataBinding>(@LayoutRes private val layoutResId : I
         activity.binding.ivBtnToolbar.setOnClickListener {
             navController?.popBackStack()
         }
+    }
+
+    fun showFloatingActionBtn(findNavControllerSafely: NavController? = null, show: Boolean = true) {
+        val activity = (activityMain as MainActivity)
+
+        if (show){
+            activity.binding.floatingActionButton.visibility = View.VISIBLE
+            activity.binding.floatingActionButton.setOnClickListener {
+                findNavControllerSafely()?.safeNavigate(JobsFragmentDirections.actionGlobalNewJobFragment())
+            }
+        }else
+            activity.binding.floatingActionButton.visibility = View.GONE
     }
 
     fun showCollapsingToolBar(show: Boolean = false) {

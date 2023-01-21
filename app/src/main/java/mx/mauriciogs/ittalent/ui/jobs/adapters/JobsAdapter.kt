@@ -1,21 +1,22 @@
 package mx.mauriciogs.ittalent.ui.jobs.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import mx.mauriciogs.ittalent.R
 import mx.mauriciogs.ittalent.databinding.JobPostedCardBinding
 import mx.mauriciogs.ittalent.domain.jobs.Job
+import mx.mauriciogs.ittalent.ui.jobs.JobsFragment
 import org.joda.time.DateTime
 import org.joda.time.DateTimeZone
 import org.joda.time.Days
 import org.joda.time.Hours
 import org.joda.time.Minutes
 
-class JobsAdapter(private val jobsList: List<Job>, val context: Context): RecyclerView.Adapter<JobsAdapter.ViewHolder>() {
+class JobsAdapter(private val jobsList: List<Job>, val fragment: Fragment): RecyclerView.Adapter<JobsAdapter.ViewHolder>() {
 
-    class ViewHolder(private val itemBinding: JobPostedCardBinding): RecyclerView.ViewHolder(itemBinding.root) {
+    class ViewHolder(val itemBinding: JobPostedCardBinding): RecyclerView.ViewHolder(itemBinding.root) {
         fun bind(job: Job) {
             itemBinding.tvJobName.text = job.job
             itemBinding.tvEnterprise.text = job.enterprise
@@ -60,12 +61,21 @@ class JobsAdapter(private val jobsList: List<Job>, val context: Context): Recycl
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val inflater = LayoutInflater.from(context)
+        val inflater = LayoutInflater.from(fragment.requireActivity())
         val binding = JobPostedCardBinding.inflate(inflater, parent, false)
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(jobsList[position])
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
+        holder.itemView.setOnClickListener {
+            if(fragment is JobsFragment) fragment.onClickItem(jobsList[position])
+        }
+        holder.itemBinding.ibEdit.setOnClickListener {
+            if(fragment is JobsFragment) fragment.onClickItem(jobsList[position])
+        }
+        holder.bind(jobsList[position])
+    }
 
     override fun getItemCount(): Int = jobsList.size
 

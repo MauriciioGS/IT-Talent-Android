@@ -114,6 +114,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/btn_openall"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@+id/tvActives"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/tvActives" />
@@ -175,6 +176,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/btn_openall"
+                android:visibility="gone"
                 android:layout_marginHorizontal="@dimen/dimen16dp"
                 app:layout_constraintBottom_toBottomOf="@+id/tvPast"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -212,20 +214,6 @@
             </androidx.recyclerview.widget.RecyclerView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/dimen16dp"
-            android:layout_marginBottom="@dimen/dimen20dp"
-            android:src="@drawable/ic_add"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:tint="@color/icon"
-            tools:ignore="ContentDescription" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

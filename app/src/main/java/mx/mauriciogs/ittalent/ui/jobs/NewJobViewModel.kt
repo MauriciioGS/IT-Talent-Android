@@ -43,6 +43,7 @@ class NewJobViewModel @Inject constructor(private val getProfileUseCase: GetProf
     fun postJob(newJob: Job){
         emitUiState(showProgress = true)
         newJob.emailRecruiter = profile.email!!
+        newJob.nameRecruiter = profile.fullName!!
         newJob.timestamp = Calendar.getInstance().time.toString()
         newJob.date = LocalDate().toString()
         newJob.time = LocalTime().toString()
