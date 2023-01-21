@@ -3,9 +3,9 @@ package mx.mauriciogs.ittalent.ui.jobs
 import android.view.View
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.Toolbar
-import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.AppBarLayout
 import mx.mauriciogs.ittalent.R
 import mx.mauriciogs.ittalent.core.BaseFrag
@@ -14,6 +14,7 @@ import mx.mauriciogs.ittalent.data.jobs.exception.JobsException
 import mx.mauriciogs.ittalent.databinding.FragmentJobsBinding
 import mx.mauriciogs.ittalent.domain.jobs.Job
 import mx.mauriciogs.ittalent.ui.jobs.adapters.JobsAdapter
+import mx.mauriciogs.ittalent.ui.jobs.adapters.PastJobsAdapter
 
 class JobsFragment: BaseFrag<FragmentJobsBinding>(R.layout.fragment_jobs) {
 
@@ -41,42 +42,9 @@ class JobsFragment: BaseFrag<FragmentJobsBinding>(R.layout.fragment_jobs) {
             if(it.showProgress) showProgressDialog() else hideProgressDialog()
             if(it.exception != null) showError(it.exception)
             if (it.setUI != null) initUi()
-            if(it.showSuccess != null) initRecycler(it.showSuccess)
+            if(it.showSuccessActiveJobs != null) initRecyclerActives(it.showSuccessActiveJobs)
+            if (it.showSuccessPastJobs != null) initRecyclerPast(it.showSuccessPastJobs)
         }
-    }
-
-    private fun showError(exception: Exception) {
-        if (exception is JobsException.EmptyListOfJobs) {
-            mBinding.rvActives.isVisible = false
-            mBinding.noDataAnim.visibility = View.VISIBLE
-        }
-        snackbar(exception.message).showError()
-    }
-
-    private fun initListeners() {
-        with(mBinding) {
-            btnOpenAll.setOnClickListener {
-
-            }
-            btnOpenAll2.setOnClickListener {
-
-            }
-        }
-    }
-
-    private fun initRecycler(jobs: MutableList<Job>) {
-        mBinding.noDataAnim.visibility = View.GONE
-        mBinding.btnOpenAll.visibility = View.VISIBLE
-        mBinding.btnOpenAll2.visibility = View.VISIBLE
-        mBinding.rvActives.apply {
-            visibility = View.VISIBLE
-            layoutManager = LinearLayoutManager(requireActivity())
-            adapter = JobsAdapter(jobs, this@JobsFragment)
-        }
-    }
-
-    fun onClickItem(item: Job) {
-        requireActivity().toast("$item").show()
     }
 
     private fun initUi() {
@@ -103,6 +71,56 @@ class JobsFragment: BaseFrag<FragmentJobsBinding>(R.layout.fragment_jobs) {
                 }
                 else -> {}
             }
+        }
+    }
+
+    private fun initListeners() {
+        with(mBinding) {
+            btnOpenAll.setOnClickListener {
+
+            }
+            btnOpenAll2.setOnClickListener {
+
+            }
+        }
+    }
+
+    private fun initRecyclerActives(jobs: MutableList<Job>) {
+        mBinding.noDataAnim.visibility = View.GONE
+        mBinding.btnOpenAll.visibility = View.VISIBLE
+        mBinding.rvActives.apply {
+            visibility = View.VISIBLE
+            layoutManager = LinearLayoutManager(requireActivity())
+            adapter = JobsAdapter(jobs, this@JobsFragment)
+        }
+    }
+
+    private fun initRecyclerPast(jobs: MutableList<Job>) {
+        mBinding.noDataAnim2.visibility = View.GONE
+        mBinding.btnOpenAll2.visibility = View.VISIBLE
+        mBinding.rvPast.apply {
+            visibility = View.VISIBLE
+            layoutManager = LinearLayoutManager(requireActivity()).apply { orientation = RecyclerView.HORIZONTAL }
+            adapter = PastJobsAdapter(jobs, this@JobsFragment)
+        }
+    }
+
+    fun onClickItem(item: Job) {
+        requireActivity().toast("$item").show()
+    }
+
+    private fun showError(exception: Exception) {
+        when(exception){
+            is JobsException.EmptyListOfPastJobs -> {
+                mBinding.rvPast.visibility = View.GONE
+                mBinding.noDataAnim2.visibility = View.VISIBLE
+                requireActivity().snackbar(exception.message).showError()
+            }
+            is JobsException.EmptyListOfAciveJobs -> {
+                mBinding.rvActives.visibility = View.GONE
+                mBinding.noDataAnim.visibility = View.VISIBLE
+            }
+            else -> requireActivity().snackbar(exception.message).showError()
         }
     }
 

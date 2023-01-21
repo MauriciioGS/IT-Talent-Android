@@ -53,13 +53,19 @@ class JobsViewModel @Inject constructor(private val getProfileUseCase: GetProfil
     }
 
     private suspend fun getPosts(listPostFirebase: MutableList<DocumentSnapshot>) {
-        var myPosts = mutableListOf<Job>()
+        var myActivePosts = mutableListOf<Job>()
+        var myPastPosts = mutableListOf<Job>()
         listPostFirebase.forEach { document ->
-            document.toObject<Job>()?.let { myPosts.add(it) }
+            document.toObject<Job>()?.let {
+                if (it.status != 4) myActivePosts.add(it)
+                else myPastPosts.add(it)
+            }
         }
         withContext(Dispatchers.Main) {
-            if (myPosts.isNotEmpty()) emitUiState(showProgress = false, showSuccess = myPosts)
-            else emitUiState(showProgress = false, exception = JobsException.EmptyListOfJobs)
+            if (myActivePosts.isNotEmpty()) emitUiState(showProgress = false, showSuccessActivePosts = myActivePosts)
+            else emitUiState(showProgress = false, exception = JobsException.EmptyListOfAciveJobs)
+            if (myPastPosts.isNotEmpty()) emitUiState(showProgress = false, showSuccessPastJobs = myPastPosts)
+            else emitUiState(showProgress = false, exception = JobsException.EmptyListOfPastJobs)
         }
 
     }
@@ -68,8 +74,11 @@ class JobsViewModel @Inject constructor(private val getProfileUseCase: GetProfil
         emitUiState(showProgress = false,exception = exception)
     }
 
-    private fun emitUiState(setUI: String? = null, showProgress: Boolean = false, exception: Exception? = null, enableContinueButton: Boolean = false, showSuccess: MutableList<Job>? = null) {
-        val newJobUiModel = GetJobsUiModel(setUI, showProgress, enableContinueButton, exception, showSuccess)
+    private fun emitUiState(setUI: String? = null, showProgress: Boolean = false, exception: Exception? = null,
+                            enableContinueButton: Boolean = false, showSuccessActivePosts: MutableList<Job>? = null,
+                            showSuccessPastJobs: MutableList<Job>? = null
+    ) {
+        val newJobUiModel = GetJobsUiModel(setUI, showProgress, enableContinueButton, exception, showSuccessActivePosts, showSuccessPastJobs)
         _jobsUiModelState.value = newJobUiModel
     }
 
