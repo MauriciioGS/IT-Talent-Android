@@ -127,5 +127,11 @@
     <string name="txt_no_salario">Selecciona el rango de salario del empleo. Ten en cuenta que son aproximaciones para guiar a los talentos.</string>
     <string name="txt_no_moneda">Selecciona la moneda en que se poagaría el salario</string>
 
+    RecyclerView
+    <string name="txt_rvjobs_vacantes">%1$s vacantes</string>
+    <string name="txt_rvjobs_solicitantes">|  %1$d solicitantes</string>
+    <string name="txt_rvjobs_time_horas">Hace %1$d horas</string>
+    <string name="txt_rvjobs_time_min">Hace %1$d minutos</string>
+    <string name="txt_rvjobs_time_dias">Hace %1$d dias</string>
 
 </resources>

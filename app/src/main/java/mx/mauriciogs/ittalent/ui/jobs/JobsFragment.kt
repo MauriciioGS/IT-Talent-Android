@@ -3,12 +3,17 @@ package mx.mauriciogs.ittalent.ui.jobs
 import android.view.View
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.appbar.AppBarLayout
 import mx.mauriciogs.ittalent.R
 import mx.mauriciogs.ittalent.core.BaseFrag
 import mx.mauriciogs.ittalent.core.extensions.*
+import mx.mauriciogs.ittalent.data.jobs.exception.JobsException
 import mx.mauriciogs.ittalent.databinding.FragmentJobsBinding
+import mx.mauriciogs.ittalent.domain.jobs.Job
+import mx.mauriciogs.ittalent.ui.jobs.adapters.JobsAdapter
 
 class JobsFragment: BaseFrag<FragmentJobsBinding>(R.layout.fragment_jobs) {
 
@@ -21,11 +26,31 @@ class JobsFragment: BaseFrag<FragmentJobsBinding>(R.layout.fragment_jobs) {
     override fun FragmentJobsBinding.initialize() {
         mBinding = this
         showCollapsingToolBar(true)
-        userType = requireActivity().intent.getIntExtra("userType", 0)
+        //userType = requireActivity().intent.getIntExtra("userType", 0)
+        userType = 2
 //        requireContext().toast("$userType").show()
         jobsViewModel.getProfile()
-        initUi()
         initListeners()
+        initObservers()
+        //initAdapter()
+
+    }
+
+    private fun initObservers() {
+        jobsViewModel.jobsUiModelState.observe(viewLifecycleOwner) {
+            if(it.showProgress) showProgressDialog() else hideProgressDialog()
+            if(it.exception != null) showError(it.exception)
+            if (it.setUI != null) initUi()
+            if(it.showSuccess != null) initRecycler(it.showSuccess)
+        }
+    }
+
+    private fun showError(exception: Exception) {
+        if (exception is JobsException.EmptyListOfJobs) {
+            mBinding.rvActives.isVisible = false
+            mBinding.noDataAnim.visibility = View.VISIBLE
+        }
+        snackbar(exception.message).showError()
     }
 
     private fun initListeners() {
@@ -33,6 +58,15 @@ class JobsFragment: BaseFrag<FragmentJobsBinding>(R.layout.fragment_jobs) {
             floatingActionButton.setOnClickListener {
                 findNavControllerSafely()?.safeNavigate(JobsFragmentDirections.actionGlobalNewJobFragment())
             }
+        }
+    }
+
+    private fun initRecycler(jobs: MutableList<Job>) {
+        mBinding.noDataAnim.visibility = View.GONE
+        mBinding.rvActives.apply {
+            visibility = View.VISIBLE
+            layoutManager = LinearLayoutManager(requireActivity())
+            adapter = JobsAdapter(jobs, requireActivity())
         }
     }
 

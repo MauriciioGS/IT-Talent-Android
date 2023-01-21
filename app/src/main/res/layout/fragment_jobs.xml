@@ -10,6 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/dimen60dp"
         android:background="@color/background">
 
         <androidx.appcompat.widget.Toolbar
@@ -122,7 +123,7 @@
                 android:id="@+id/noDataAnim"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:visibility="gone"
+                android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -133,7 +134,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvActives"
-                android:visibility="visible"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -182,8 +183,8 @@
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/noDataAnim2"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:visibility="gone"
+                android:layout_height="@dimen/dimen200dp"
+                android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -194,6 +195,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvPast"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/background"
@@ -217,7 +219,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/dimen16dp"
-            android:layout_marginBottom="@dimen/dimen80dp"
+            android:layout_marginBottom="@dimen/dimen20dp"
             android:src="@drawable/ic_add"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
