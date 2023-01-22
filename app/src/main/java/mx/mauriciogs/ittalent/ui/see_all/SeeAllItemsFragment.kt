@@ -19,7 +19,7 @@ class SeeAllItemsFragment: BaseFrag<FragmenSeeAllItemsBinding>(R.layout.fragmen_
     override fun FragmenSeeAllItemsBinding.initialize() {
         mBinding = this
         seeAllItemsViewModel.getProfile()
-        showCollapsingToolBar()
+        showToolBar()
         showFloatingActionBtn(show = false)
         initCloseBntListener(findNavControllerSafely())
         initObservers()

@@ -7,3 +7,7 @@ data class GetProfileFirebaseResponse(
     val isSuccessfull: Boolean = Boolean.no(),
     val user: UserProfile?
 )
+
+data class UpdateProfileFirebaseResponse(
+    val isSuccessfull: Boolean = Boolean.no()
+)

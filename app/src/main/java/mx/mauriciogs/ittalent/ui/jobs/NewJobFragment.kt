@@ -20,7 +20,7 @@ class NewJobFragment: BaseFrag<FragmentNewJobBinding>(R.layout.fragment_new_job)
 
     override fun FragmentNewJobBinding.initialize() {
         mBinding = this
-        showCollapsingToolBar()
+        showToolBar()
         showFloatingActionBtn(show = false)
         initCloseBntListener(findNavControllerSafely())
         newJobViewModel.getProfile()

@@ -84,7 +84,7 @@ open class BaseFrag <T : ViewDataBinding>(@LayoutRes private val layoutResId : I
             activity.binding.floatingActionButton.visibility = View.GONE
     }
 
-    fun showCollapsingToolBar(show: Boolean = false) {
+    fun showToolBar(show: Boolean = false) {
         val activity = (activityMain as MainActivity)
         if (show) {
             activity.binding.toolbarMain.isVisible = true

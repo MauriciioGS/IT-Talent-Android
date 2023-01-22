@@ -6,6 +6,7 @@
     <!--Buttons-->
     <string name="btn_continue">Continuar</string>
     <string name="btn_guardar">Guardar</string>
+    <string name="btn_cancelar">Cancelar</string>
     <string name="btn_already_registered">Ya tengo una cuenta</string>
 
     <!--    Welcome Fragment-->
@@ -143,5 +144,17 @@
     -->
     <string name="txt_header_talent">Software Engineer</string>
     <string name="txt_years_experience">%1$d años de experiencia</string>
+    <!--
+        MyProfile
+    -->
+    <string name="btn_editar">Editar </string>
+    <string name="txt_header_empresa">Empresa</string>
+    <string name="btn_actualizar">Actualizar</string>
+    <string name="btn_cambiar_empresa"><u>Cambiar empresa</u></string>
+    <string name="btn_cambiar_foto"><u>Cambiar foto</u></string>
+    <string name="txt_head_cambiar_empresa">Ops!</string>
+    <string name="txt_cambiar_empresa">Para cambiar de empresa debes eliminar tu cuenta y crear una nueva con tu correo profesional</string>
+    <string name="txt_eliminar_cuenta">Eliminar cuenta</string>
+    <string name="txt_error_editar">Para editar tu perfil activa la edición</string>
 
 </resources>

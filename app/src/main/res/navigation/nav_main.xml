@@ -45,5 +45,13 @@
         <argument android:name="appbar"
             android:defaultValue="true"/>
     </fragment>
+    <fragment
+        android:id="@+id/myProfileFragment"
+        android:name="mx.mauriciogs.ittalent.ui.profile.MyProfileRecFragment"
+        android:label="MyProfileFragment"
+        tools:layout="@layout/fragment_my_profile_rec">
+        <argument android:name="appbar"
+            android:defaultValue="true"/>
+    </fragment>
 
 </navigation>
