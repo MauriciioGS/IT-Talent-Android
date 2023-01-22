@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import mx.mauriciogs.ittalent.R
 import mx.mauriciogs.ittalent.core.extensions.showInfo
+import mx.mauriciogs.ittalent.core.extensions.showWarning
 import mx.mauriciogs.ittalent.core.extensions.snackbar
 import mx.mauriciogs.ittalent.core.extensions.toast
 import mx.mauriciogs.ittalent.databinding.JobPostedCardBinding
@@ -71,7 +72,7 @@ class PastJobsAdapter (private val jobsList: List<Job>, val fragment: Fragment):
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.itemView.setOnClickListener {
-            fragment.requireActivity().snackbar("NO se pueden ver los empreos pasados").showInfo()
+            fragment.requireActivity().snackbar("NO se pueden ver los empleos pasados").showWarning()
         }
         holder.bind(jobsList[position])
     }

@@ -90,8 +90,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clRecycler1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen16dp"
+            android:layout_height="325dp"
             android:layout_marginHorizontal="@dimen/dimen16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -122,9 +121,10 @@
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/noDataAnim"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_width="@dimen/dimen200dp"
+                android:layout_height="0dp"
                 android:visibility="visible"
+                android:layout_marginTop="@dimen/dimen16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -135,13 +135,14 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvActives"
-                android:visibility="gone"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/dimen16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnOpenAll"
+                app:layout_constraintTop_toBottomOf="@+id/tvActives"
                 tools:itemCount="2"
                 tools:listitem="@layout/job_posted_card">
 
@@ -197,17 +198,17 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvPast"
-                android:visibility="gone"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/background"
+                android:layout_height="match_parent"
                 android:layout_marginHorizontal="@dimen/dimen16dp"
+                android:layout_marginTop="@dimen/dimen16dp"
+                android:background="@color/background"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnOpenAll2"
+                app:layout_constraintTop_toBottomOf="@+id/tvPast"
                 tools:itemCount="2"
                 tools:listitem="@layout/job_posted_old_card">
 
