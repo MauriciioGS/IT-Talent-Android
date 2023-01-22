@@ -26,4 +26,11 @@ class GetProfileUseCase  @Inject constructor(private val userLocalRepository: Us
     } catch (exception: Exception) {
         AuthResult.Error(exception)
     }
+
+    suspend fun deleteUser() = try {
+        userLocalRepository.deleteUser()
+        AuthResult.Success(Boolean.yes())
+    } catch (exception: Exception) {
+        AuthResult.Error(exception)
+    }
 }

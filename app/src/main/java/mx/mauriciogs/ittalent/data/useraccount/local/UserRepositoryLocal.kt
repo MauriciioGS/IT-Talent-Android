@@ -13,4 +13,6 @@ class UserRepositoryLocal @Inject constructor(private val userLocalDataSrc: User
 
     suspend fun getUserProfile() = userLocalDataSrc.getUserProfile()
 
+    suspend fun deleteUser() = userLocalDataSrc.deleteUser()
+
 }

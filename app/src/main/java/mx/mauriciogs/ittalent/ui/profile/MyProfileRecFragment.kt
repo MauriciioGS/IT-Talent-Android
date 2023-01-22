@@ -1,8 +1,8 @@
 package mx.mauriciogs.ittalent.ui.profile
 
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.net.Uri
-import android.util.Log
 import android.view.View
 import android.widget.AutoCompleteTextView
 import androidx.activity.result.PickVisualMediaRequest
@@ -21,12 +21,13 @@ import mx.mauriciogs.ittalent.core.BaseFrag
 import mx.mauriciogs.ittalent.core.extensions.*
 import mx.mauriciogs.ittalent.databinding.FragmentMyProfileRecBinding
 import mx.mauriciogs.ittalent.domain.useraccount.UserProfile
+import mx.mauriciogs.ittalent.ui.init.InitActivity
 
 class MyProfileRecFragment: BaseFrag<FragmentMyProfileRecBinding>(R.layout.fragment_my_profile_rec) {
 
     private lateinit var mBinding: FragmentMyProfileRecBinding
 
-    private val myProfileViewModel: MyProfileViewModel by activityViewModels()
+    private val myProfileRecViewModel: MyProfileRecViewModel by activityViewModels()
 
     private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
         if (uri != null) saveUri(uri)
@@ -40,12 +41,12 @@ class MyProfileRecFragment: BaseFrag<FragmentMyProfileRecBinding>(R.layout.fragm
         mBinding = this
         showToolBar(true)
         showFloatingActionBtn(show = false)
-        myProfileViewModel.getProfile()
+        myProfileRecViewModel.getProfile()
         initObservers()
     }
 
     private fun initObservers() {
-        myProfileViewModel.myProfileModelState.observe(viewLifecycleOwner) {
+        myProfileRecViewModel.myProfileModelState.observe(viewLifecycleOwner) {
             if (it.showProgress) showProgressDialog() else hideProgressDialog()
             if (it.setUI != null) setUI(it.setUI)
             if (it.exception != null) showError(it.exception)
@@ -54,7 +55,12 @@ class MyProfileRecFragment: BaseFrag<FragmentMyProfileRecBinding>(R.layout.fragm
                 mBinding.etName.requestFocus()
                 requireActivity().snackbar("Perfil acualizado!").showSuccess()
             }
+            if (it.showSuccessDeletion != null) navigateToSignIn()
         }
+    }
+
+    private fun navigateToSignIn() {
+        startActivity(Intent(requireActivity(), InitActivity::class.java)).apply { requireActivity().finish() }
     }
 
     private fun setUI(profile: UserProfile) {
@@ -90,7 +96,7 @@ class MyProfileRecFragment: BaseFrag<FragmentMyProfileRecBinding>(R.layout.fragm
                     .setMessage(R.string.txt_cambiar_empresa)
                     .setPositiveButton(R.string.txt_eliminar_cuenta) { dialog, _ ->
                         dialog.dismiss()
-                        //myProfileViewModel.deleteProfile()
+                        myProfileRecViewModel.deleteProfile()
                     }
                     .setNegativeButton(R.string.btn_cancelar) { dialog, _ ->
                         dialog.dismiss()
@@ -149,7 +155,7 @@ class MyProfileRecFragment: BaseFrag<FragmentMyProfileRecBinding>(R.layout.fragm
                     val resumen = etAbout.text.toString()
                     val rol = dropdownMenuRol.text.toString()
 
-                    myProfileViewModel.updateProfile(nombre, pais, ciudad, edad, numTel, resumen, photoUri, rol)
+                    myProfileRecViewModel.updateProfile(nombre, pais, ciudad, edad, numTel, resumen, photoUri, rol)
                 }
             }
         }

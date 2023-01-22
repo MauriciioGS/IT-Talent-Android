@@ -1,5 +1,6 @@
 package mx.mauriciogs.ittalent.data.useraccount.remote
 
+import android.util.Log
 import com.google.firebase.firestore.ktx.toObject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
@@ -42,6 +43,22 @@ class UserRepositoryRemote {
                 )
                 .await()
             AuthResult.Success(UpdateProfileFirebaseResponse(Boolean.yes()))
+        } catch (exception: Exception){
+            AuthResult.Error(exception)
+        }
+    }
+
+    suspend fun deleteProfile(email: String): AuthResult<GetProfileFirebaseResponse> = withContext(Dispatchers.IO) {
+        try {
+            val result = FirebaseClient.db.collection("users")
+                .document(email)
+                .delete()
+                .addOnFailureListener {
+                    it.printStackTrace()
+                    it.message?.let { it1 -> Log.e("ERRORDELETING", it1) }
+                }
+                .await()
+            AuthResult.Success(GetProfileFirebaseResponse(Boolean.yes(), null))
         } catch (exception: Exception){
             AuthResult.Error(exception)
         }

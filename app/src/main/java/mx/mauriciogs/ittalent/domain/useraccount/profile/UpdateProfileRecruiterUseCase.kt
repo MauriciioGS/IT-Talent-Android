@@ -10,4 +10,6 @@ class UpdateProfileRecruiterUseCase {
 
     suspend fun updateProfileRecruiter(userProfile: UserProfile) = userRepositoryRemote.updateProfileRecruiterFirebase(userProfile)
 
+    suspend fun deleteProfileRecruiter(userProfile: UserProfile) = userRepositoryRemote.deleteProfile(userProfile.email!!)
+
 }

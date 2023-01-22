@@ -18,7 +18,7 @@ import mx.mauriciogs.ittalent.domain.useraccount.profile.UpdateProfileRecruiterU
 import javax.inject.Inject
 
 @HiltViewModel
-class MyProfileViewModel@Inject constructor(private val getProfileUseCase: GetProfileUseCase): ViewModel() {
+class MyProfileRecViewModel@Inject constructor(private val getProfileUseCase: GetProfileUseCase): ViewModel() {
 
     private val updateProfileRecruiterUseCase = UpdateProfileRecruiterUseCase()
 
@@ -75,9 +75,31 @@ class MyProfileViewModel@Inject constructor(private val getProfileUseCase: GetPr
         }
     }
 
+    fun deleteProfile() {
+        emitUiState(showProgress = true)
+        viewModelScope.launch(Dispatchers.IO) {
+            val result = updateProfileRecruiterUseCase.deleteProfileRecruiter(profile)
+            withContext(Dispatchers.Main){
+                when(result) {
+                    is AuthResult.Success -> deleteLocalData()
+                    is AuthResult.Error -> emitUiState(showProgress = false, exception = result.exception)
+                }
+            }
+        }
+    }
+
+    private fun deleteLocalData() {
+        viewModelScope.launch {
+            when(val result = getProfileUseCase.deleteUser()) {
+                is AuthResult.Success -> emitUiState(showProgress = false, showSuccessDeletion = result.data)
+                is AuthResult.Error -> emitUiState(showProgress = false, exception = result.exception)
+            }
+        }
+    }
+
     private fun emitUiState(setUI: UserProfile? = null, showProgress: Boolean = false, exception: Exception? = null,
-                            enableUpdateButton: Boolean = false, showSuccess: Boolean? = null) {
-        val myProfileUiModel = MyProfileUiModel(setUI, showProgress, enableUpdateButton, exception, showSuccess)
+                            showSuccessDeletion: Boolean? = null, showSuccess: Boolean? = null) {
+        val myProfileUiModel = MyProfileUiModel(setUI, showProgress, showSuccessDeletion, exception, showSuccess)
         _myProfileModelState.value = myProfileUiModel
     }
 }

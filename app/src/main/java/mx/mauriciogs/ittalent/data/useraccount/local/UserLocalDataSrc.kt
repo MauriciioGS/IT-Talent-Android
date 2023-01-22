@@ -12,4 +12,6 @@ class UserLocalDataSrc @Inject constructor(private val userDao: UserDao) {
             = userDao.updateUserProfile(userProfileEntity)
 
     suspend fun getUserProfile() = userDao.getUserProfile()
+
+    suspend fun deleteUser() = userDao.deleteUser()
 }
