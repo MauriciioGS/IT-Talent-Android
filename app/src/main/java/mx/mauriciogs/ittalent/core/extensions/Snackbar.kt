@@ -20,6 +20,8 @@ fun Activity.snackbar(@StringRes resId: Int, duration: Int = Snackbar.LENGTH_SHO
 
 fun Snackbar.showError() = apply { view.setBackgroundResource(R.color.error) }
 
+fun Snackbar.showWarning() = apply { view.setBackgroundResource(R.color.warning) }
+
 fun Snackbar.showInfo() = apply { view.setBackgroundResource(R.color.info) }
 
 fun Snackbar.showSuccess() = apply { view.setBackgroundResource(R.color.success) }

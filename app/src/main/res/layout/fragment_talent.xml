@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            style="@style/H5Primary"
+            android:id="@+id/tvHFilters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tus filtros:"
+            android:layout_marginTop="@dimen/dimen16dp"
+            android:layout_marginHorizontal="@dimen/dimen16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Tus filtros:"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout"
+            style="@style/DropdownMenuOutline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen12dp"
+            android:layout_marginHorizontal="@dimen/dimen16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvHFilters">
+
+            <AutoCompleteTextView
+                android:id="@+id/dropdownMenuModalidad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/header_jobs_tal"
+                android:inputType="none"
+                app:simpleItems="@array/roles" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tvHeader"
+            style="@style/H5Primary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen16dp"
+            android:layout_marginHorizontal="@dimen/dimen16dp"
+            android:text="@string/txt_header_talent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+            tools:text="@string/txt_header_talent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvTalent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dimen16dp"
+            android:layout_marginBottom="@dimen/dimen16dp"
+            android:visibility="visible"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvHeader"
+            app:spanCount="2"
+            tools:itemCount="12"
+            tools:listitem="@layout/talent_card" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -16,6 +16,9 @@ import mx.mauriciogs.ittalent.domain.jobs.Job
 import mx.mauriciogs.ittalent.ui.jobs.adapters.JobsAdapter
 import mx.mauriciogs.ittalent.ui.jobs.adapters.PastJobsAdapter
 
+private const val ACTIVE_JOBS_KEY = 0
+private const val PAST_JOBS_KEY = 1
+
 class JobsFragment: BaseFrag<FragmentJobsBinding>(R.layout.fragment_jobs) {
 
     private lateinit var mBinding: FragmentJobsBinding
@@ -77,10 +80,12 @@ class JobsFragment: BaseFrag<FragmentJobsBinding>(R.layout.fragment_jobs) {
     private fun initListeners() {
         with(mBinding) {
             btnOpenAll.setOnClickListener {
-
+                findNavControllerSafely()
+                    ?.safeNavigate(JobsFragmentDirections.actionJobsFragmentToSeeJobsFragment(ACTIVE_JOBS_KEY))
             }
             btnOpenAll2.setOnClickListener {
-
+                findNavControllerSafely()
+                    ?.safeNavigate(JobsFragmentDirections.actionJobsFragmentToSeeJobsFragment(PAST_JOBS_KEY))
             }
         }
     }

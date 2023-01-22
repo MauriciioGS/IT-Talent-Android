@@ -12,6 +12,9 @@
         tools:layout="@layout/fragment_jobs">
         <argument android:name="appbar"
             android:defaultValue="true"/>
+        <action
+            android:id="@+id/action_jobsFragment_to_seeJobsFragment"
+            app:destination="@id/seeJobsFragment" />
     </fragment>
 
     <fragment
@@ -22,5 +25,25 @@
 
     <action android:id="@+id/action_global_newJobFragment"
         app:destination="@id/newJobFragment"/>
+
+    <fragment
+        android:id="@+id/seeJobsFragment"
+        android:name="mx.mauriciogs.ittalent.ui.see_all.SeeAllItemsFragment"
+        android:label="SeeJobsFragment"
+        tools:layout="@layout/fragmen_see_all_items">
+        <argument android:name="appbar"
+            android:defaultValue="false"/>
+        <argument
+            android:name="adapter"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/talentFragment"
+        android:name="mx.mauriciogs.ittalent.ui.talent.TalentFragment"
+        android:label="TalentFragment"
+        tools:layout="@layout/fragment_talent">
+        <argument android:name="appbar"
+            android:defaultValue="true"/>
+    </fragment>
 
 </navigation>

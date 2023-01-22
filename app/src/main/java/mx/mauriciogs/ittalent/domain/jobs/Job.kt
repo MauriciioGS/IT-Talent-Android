@@ -1,9 +1,12 @@
 package mx.mauriciogs.ittalent.domain.jobs
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 import mx.mauriciogs.ittalent.core.extensions.default
 import mx.mauriciogs.ittalent.core.extensions.empty
 import mx.mauriciogs.ittalent.data.jobs.model.JobFirebase
 
+@Parcelize
 data class Job (
     val job: String? = String.empty(),
     val enterprise: String? = String.empty(),
@@ -20,7 +23,7 @@ data class Job (
     var date: String? = String.empty(),
     var time: String? = String.empty(),
     var status: Int? = Int.default(),
-)
+): Parcelable
 
 fun Job.toJobFirebase() = JobFirebase(
     applicants = applicants?.ifEmpty { listOf("") },
