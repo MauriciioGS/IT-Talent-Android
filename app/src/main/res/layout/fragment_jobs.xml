@@ -219,7 +219,6 @@
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="@dimen/dimen16dp"
                 android:layout_marginTop="@dimen/dimen16dp"
-                android:background="@color/background"
                 android:orientation="horizontal"
                 android:visibility="gone"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

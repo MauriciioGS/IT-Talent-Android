@@ -38,9 +38,9 @@ class JobsFragment: BaseFrag<FragmentJobsBinding>(R.layout.fragment_jobs) {
     override fun FragmentJobsBinding.initialize() {
         mBinding = this
         showToolBar(true)
-        //userType = requireActivity().intent.getIntExtra("userType", 0)
-        userType = 1
-        //requireContext().toast("$userType").show()
+        userType = requireActivity().intent.getIntExtra("userType", 0)
+        //userType = 2
+        requireContext().toast("$userType").show()
         if (userType == Int.TALENT_UT()) jobsViewModel.getProfileTalent()
         else jobsViewModel.getProfile()
         initListeners()
@@ -90,6 +90,7 @@ class JobsFragment: BaseFrag<FragmentJobsBinding>(R.layout.fragment_jobs) {
 
                 }
                 Int.ENTERPRISE_R_UT() -> {
+                    toolbar.visibility = View.GONE
                     tvHeader.text = getText(R.string.header_jobs_rec)
                     tvActives.text = getText(R.string.subheader_jobs_rec)
                     tvPast.text = getText(R.string.subheader_jobs_rec2)
