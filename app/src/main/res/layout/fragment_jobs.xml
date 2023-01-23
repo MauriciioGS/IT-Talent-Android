@@ -20,7 +20,7 @@
             android:background="@drawable/appbar_bg"
             android:elevation="@dimen/dimen12dp"
             android:theme="?actionBarTheme"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -43,7 +43,22 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="Tus filtros:"/>
 
+                <TextView
+                    android:id="@+id/tvFiltersInfo"
+                    style="@style/Body3Secondary"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/dimen6dp"
+                    android:layout_marginHorizontal="@dimen/dimen6dp"
+                    android:text="Filtramos empleos para tí basándonos en tu rol profesional, para cambiarlo ve a 'Perfil'"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tvHFilters"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <HorizontalScrollView
+                    android:id="@+id/horizontalScrollView"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginTop="@dimen/dimen8dp"
@@ -53,6 +68,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/tvHFilters">
 
                     <com.google.android.material.chip.ChipGroup
+                        android:id="@+id/chipGroup"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         app:singleLine="true">
@@ -60,10 +76,11 @@
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip_1"
                             style="@style/MyChipOutlined"
-                            app:chipIcon="@drawable/ic_add"
+                            android:visibility="gone"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:text="Añade filtros"/>
+                            android:text="Añade filtros"
+                            app:chipIcon="@drawable/ic_add" />
 
                         <!-- Chips can be declared here, or added dynamically. -->
 

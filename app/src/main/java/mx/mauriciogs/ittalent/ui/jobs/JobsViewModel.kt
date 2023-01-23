@@ -1,5 +1,6 @@
 package mx.mauriciogs.ittalent.ui.jobs
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,10 +11,12 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import mx.mauriciogs.ittalent.data.auth.model.AuthResult
 import mx.mauriciogs.ittalent.data.jobs.exception.JobsException
 import mx.mauriciogs.ittalent.data.jobs.model.JobsResult
 import mx.mauriciogs.ittalent.data.useraccount.local.entities.toUserProfile
 import mx.mauriciogs.ittalent.domain.authentication.GetProfileUseCase
+import mx.mauriciogs.ittalent.domain.jobs.GetAllJobsUseCase
 import mx.mauriciogs.ittalent.domain.jobs.GetJobsPostedUseCase
 import mx.mauriciogs.ittalent.domain.jobs.Job
 import mx.mauriciogs.ittalent.domain.useraccount.UserProfile
@@ -23,13 +26,19 @@ import javax.inject.Inject
 class JobsViewModel @Inject constructor(private val getProfileUseCase: GetProfileUseCase): ViewModel() {
 
     private val getJobsPostedUseCase = GetJobsPostedUseCase()
+    private val getAllJobsUseCase = GetAllJobsUseCase()
+
+    lateinit var profile: UserProfile
 
     private val _jobsUiModelState = MutableLiveData<GetJobsUiModel>()
-
-    private lateinit var profile: UserProfile
-
     val jobsUiModelState: LiveData<GetJobsUiModel>
         get() = _jobsUiModelState
+
+    private val _jobsUiTalentModelState = MutableLiveData<GetJobsTalentUiModel>()
+    val jobsUiTalentModelState: LiveData<GetJobsTalentUiModel>
+        get() = _jobsUiTalentModelState
+
+
 
     fun getProfile() {
         viewModelScope.launch {
@@ -80,6 +89,63 @@ class JobsViewModel @Inject constructor(private val getProfileUseCase: GetProfil
     ) {
         val newJobUiModel = GetJobsUiModel(setUI, showProgress, enableContinueButton, exception, showSuccessActivePosts, showSuccessPastJobs)
         _jobsUiModelState.value = newJobUiModel
+    }
+
+    fun getProfileTalent() {
+        emitUiTalentState(showProgress = true)
+        viewModelScope.launch(Dispatchers.IO) {
+            val profLocal = getProfileUseCase.getProfileLocal().toUserProfile()
+            val result = getProfileUseCase.getProfileFirebaseByEmail(profLocal.email!!)
+            withContext(Dispatchers.Main){
+                when(result){
+                    is AuthResult.Success -> {
+                        profile = result.data.user!!
+                        Log.d("PROFTAL", "$profile")
+                        getJobs()
+                    }
+                    is AuthResult.Error -> emitUiState(showProgress = false, exception = result.exception)
+                }
+            }
+        }
+    }
+
+    private fun getJobs() {
+        viewModelScope.launch(Dispatchers.IO) {
+            if (profile.profRole != null) {
+                val result = getAllJobsUseCase.getAllJobs()
+                withContext(Dispatchers.Default) {
+                    when (result) {
+                        is JobsResult.Success -> { filterJobsByRole(result.data.documents) }
+                        is JobsResult.Error -> showErrorGettingPosts(result.exception)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun filterJobsByRole(jobsFirebase: MutableList<DocumentSnapshot>) {
+        viewModelScope.launch(Dispatchers.Default) {
+            val jobsByRole = mutableListOf<Job>()
+            val role = profile.profRole!!.split(" ")
+            jobsFirebase.forEach { document ->
+                document.toObject<Job>()?.let {
+                    // Filtra por rol: por ejemplo si soy Android Developer encuentra "Android" y "Developer"
+                    role.forEach { trim ->
+                        if (it.job?.contains(trim) == true) jobsByRole.add(it)
+                    }
+                }
+            }
+            withContext(Dispatchers.Main) {
+                if (jobsByRole.isNotEmpty()) emitUiTalentState(showProgress = false, setUI = jobsByRole)
+                else emitUiTalentState(showProgress = false, setUI = jobsByRole, exception = JobsException.EmptyListOfFilteredJobs)
+            }
+        }
+    }
+
+    private fun emitUiTalentState(setUI: MutableList<Job>? = null, showProgress: Boolean = false, exception: Exception? = null,
+                             showSuccessNewFilter: MutableList<Job>? = null) {
+        val getJobsTalentUiModel = GetJobsTalentUiModel(setUI, showProgress, exception, showSuccessNewFilter)
+        _jobsUiTalentModelState.value = getJobsTalentUiModel
     }
 
 }

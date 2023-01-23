@@ -133,12 +133,15 @@
 -->
     <string name="txt_rvjobs_vacantes">%1$s vacantes</string>
     <string name="txt_rvjobs_vacantes_old"> - %1$s vacantes</string>
+    <string name="txt_rvjobs_vacantes_tal">%1$s vacantes  </string>
     <string name="txt_rvjobs_solicitantes">|  %1$d solicitantes</string>
     <string name="txt_rvjobs_solicitantes_old"> - %1$d solicitantes</string>
     <string name="txt_rvjobs_rechazados"> - %1$d rechazados</string>
     <string name="txt_rvjobs_time_horas">Hace %1$d horas</string>
     <string name="txt_rvjobs_time_min">Hace %1$d minutos</string>
     <string name="txt_rvjobs_time_dias">Hace %1$d dias</string>
+    <string name="txt_rvjobs_modalidad">%1$s </string>
+    <string name="txt_rvjobs_tipo">| %1$s</string>
     <!--
         Talent
     -->

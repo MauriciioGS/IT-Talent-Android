@@ -33,7 +33,21 @@ class JobsRepository {
             JobsResult.Success(GetJobsResponse(Boolean.yes(), result.documents))
         } catch (exception: Exception){
             exception.printStackTrace()
-            exception.message?.let { Log.d("GETJOBS", it) }
+            exception.message?.let { Log.d("GETMYJOBS", it) }
+            JobsResult.Error(exception)
+        }
+    }
+
+    suspend fun getAllJobs(): JobsResult<GetJobsResponse> = withContext(Dispatchers.IO) {
+        try {
+            val result = FirebaseClient.db.collection("jobs")
+                .get()
+                .await()
+            if(result.isEmpty) Log.d("VACIA", "Lista vacia firebase")
+            JobsResult.Success(GetJobsResponse(Boolean.yes(), result.documents))
+        } catch (exception: Exception){
+            exception.printStackTrace()
+            exception.message?.let { Log.d("GETALLJOBS", it) }
             JobsResult.Error(exception)
         }
     }
