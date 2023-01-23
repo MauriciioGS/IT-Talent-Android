@@ -11,6 +11,7 @@
         android:id="@+id/cl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        style="@style/BackgroundGeneral"
         tools:context="mx.mauriciogs.ittalent.ui.connectivity.LostConnectionFragment">
 
         <TextView

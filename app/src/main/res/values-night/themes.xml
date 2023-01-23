@@ -16,14 +16,26 @@
 
     <style name="SplashScreen" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_background</item>
-        <item name="android:statusBarColor">@color/background</item>
+        <item name="android:statusBarColor">@color/primary</item>
+    </style>
+
+    <style name="BackgroundGeneral" parent="Theme.ITTalent">
+        <item name="android:background">@color/disable</item>
+    </style>
+
+    <style name="BackgroundGeneralSignIn" parent="Theme.ITTalent">
+        <item name="android:background">@color/primaryVariant</item>
+    </style>
+
+    <style name="Spacer" parent="Theme.ITTalent">
+        <item name="android:background">@color/main</item>
     </style>
 
     <style name="PrimaryButton" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerRadius">10dp</item>
-        <item name="backgroundTint">@color/secondary</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="backgroundTint">@color/secondaryVariant</item>
+        <item name="android:textColor">@color/main</item>
         <item name="fontFamily">@font/nunitosanseegular</item>
         <item name="android:textSize">16sp</item>
         <item name="android:paddingTop">15dp</item>
@@ -37,8 +49,8 @@
     <style name="PrimaryButtonEndIcon" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerRadius">10dp</item>
-        <item name="backgroundTint">@color/secondary</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="backgroundTint">@color/secondaryVariant</item>
+        <item name="android:textColor">@color/main</item>
         <item name="fontFamily">@font/nunitosanseegular</item>
         <item name="icon">@drawable/ic_navigate_next</item>
         <item name="iconGravity">end</item>
@@ -54,8 +66,8 @@
     <style name="PrimaryButtonDisabled" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerRadius">10dp</item>
-        <item name="backgroundTint">@color/disable</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="backgroundTint">@color/primaryVariant2</item>
+        <item name="android:textColor">@color/main</item>
         <item name="fontFamily">@font/nunitosanseegular</item>
         <item name="android:textSize">16sp</item>
         <item name="android:paddingTop">15dp</item>
@@ -70,9 +82,9 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerRadius">10dp</item>
         <item name="strokeWidth">3dp</item>
-        <item name="strokeColor">@color/secondary</item>
-        <item name="backgroundTint">@color/background</item>
-        <item name="android:textColor">@color/secondary</item>
+        <item name="strokeColor">@color/secondaryVariant</item>
+        <item name="background">@color/transparent</item>
+        <item name="android:textColor">@color/main</item>
         <item name="fontFamily">@font/nunitosanseegular</item>
         <item name="android:textSize">16sp</item>
         <item name="android:paddingTop">15dp</item>
@@ -84,8 +96,8 @@
     </style>
 
     <style name="TertiaryPrimaryButton" parent="Widget.MaterialComponents.Button.TextButton">
-        <item name="android:textColor">@color/secondary</item>
-        <item name="fontFamily">@font/nunitosanseegular</item>
+        <item name="android:textColor">@color/main</item>
+        <item name="fontFamily">@font/nunitosasnssemibold</item>
         <item name="android:textSize">16sp</item>
         <item name="android:paddingTop">10dp</item>
         <item name="android:paddingBottom">10dp</item>
@@ -93,8 +105,23 @@
 
     </style>
 
+    <!--Cards-->
+    <style name="Cards" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">@color/primaryVariant</item>
+        <item name="cardCornerRadius">@dimen/dimen10dp</item>
+        <item name="cardElevation">4dp</item>
+    </style>
+
     <!--EditText-->
-    <style name="EditTextGeneral" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+    <style name="EditTextGeneral" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="boxBackgroundColor">@color/primary</item>
+        <item name="boxStrokeColor">@color/main</item>
+        <item name="android:textColorHint">@color/main</item>
+        <item name="hintTextColor">@color/main</item>
+        <item name="helperTextTextColor">@color/main</item>
+        <item name="android:textColor">@color/main</item>
+        <item name="android:textAppearance">@style/Body3Primary</item>
+        <item name="hintTextAppearance">@style/Body3Secondary</item>
         <item name="boxCornerRadiusBottomEnd">@dimen/dimen10dp</item>
         <item name="boxCornerRadiusBottomStart">@dimen/dimen10dp</item>
         <item name="boxCornerRadiusTopEnd">@dimen/dimen10dp</item>
@@ -104,22 +131,26 @@
     </style>
 
     <!--EditText-->
-    <style name="EditTextIcon" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+    <style name="EditTextIcon" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
         <item name="boxCornerRadiusBottomEnd">@dimen/dimen10dp</item>
         <item name="boxCornerRadiusBottomStart">@dimen/dimen10dp</item>
         <item name="boxCornerRadiusTopEnd">@dimen/dimen10dp</item>
         <item name="boxCornerRadiusTopStart">@dimen/dimen10dp</item>
         <item name="endIconMode">custom</item>
         <item name="endIconDrawable">@drawable/ic_add</item>
-        <item name="endIconTint">@color/icon</item>
+        <item name="endIconTint">@color/white</item>
+        <item name="hintTextColor">@color/white</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="boxStrokeColor">@color/main</item>
+        <item name="boxBackgroundColor">@color/primary</item>
         <item name="errorIconTint">@color/error</item>
         <item name="errorTextColor">@color/error</item>
     </style>
 
     <!--DropdownList-->
     <style name="DropdownMenu" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
-        <item name="boxBackgroundColor">@color/secondary</item>
-        <item name="endIconTint">@color/main</item>
+        <item name="boxBackgroundColor">@color/primary</item>
+        <item name="endIconTint">@color/icon</item>
         <item name="boxStrokeWidth">@dimen/dimen0dp</item>
         <item name="boxCornerRadiusBottomEnd">@dimen/dimen10dp</item>
         <item name="boxCornerRadiusBottomStart">@dimen/dimen10dp</item>
@@ -130,7 +161,26 @@
     </style>
 
     <!--DropdownList-->
-    <style name="DropdownMenuOutline" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+    <style name="DropdownMenuOutline" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
+        <item name="boxBackgroundColor">@color/primary</item>
+        <item name="endIconTint">@color/main</item>
+        <item name="boxStrokeColor">@color/main</item>
+        <item name="android:textColorHint">@color/main</item>
+        <item name="hintTextColor">@color/main</item>
+        <item name="helperTextTextColor">@color/main</item>
+        <item name="android:textColor">@color/main</item>
+        <item name="android:textAppearance">@style/Body3Primary</item>
+        <item name="hintTextAppearance">@style/Body3Secondary</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/dimen10dp</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/dimen10dp</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/dimen10dp</item>
+        <item name="boxCornerRadiusTopStart">@dimen/dimen10dp</item>
+        <item name="errorIconTint">@color/error</item>
+        <item name="errorTextColor">@color/error</item>
+    </style>
+
+    <!--DropdownList-->
+    <style name="DropdownMenuOutlineOnPrimary" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
         <item name="endIconTint">@color/icon</item>
         <item name="boxStrokeWidth">@dimen/dimen1dp</item>
         <item name="boxStrokeColor">@color/icon</item>
@@ -142,23 +192,10 @@
         <item name="errorTextColor">@color/error</item>
     </style>
 
-    <!--DropdownList-->
-    <style name="DropdownMenuOutlineOnPrimary" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
-        <item name="endIconTint">@color/main</item>
-        <item name="boxStrokeWidth">@dimen/dimen1dp</item>
-        <item name="boxStrokeColor">@color/main</item>
-        <item name="boxCornerRadiusBottomEnd">@dimen/dimen10dp</item>
-        <item name="boxCornerRadiusBottomStart">@dimen/dimen10dp</item>
-        <item name="boxCornerRadiusTopEnd">@dimen/dimen10dp</item>
-        <item name="boxCornerRadiusTopStart">@dimen/dimen10dp</item>
-        <item name="errorIconTint">@color/error</item>
-        <item name="errorTextColor">@color/error</item>
-    </style>
-
     <!--Chips-->
     <style name="MyChip" parent="@style/Widget.MaterialComponents.Chip.Choice">
         <item name="android:layout_height">@dimen/dimen64dp</item>
-        <item name="chipBackgroundColor">@color/secondary</item>
+        <item name="chipBackgroundColor">@color/secondaryVariant</item>
         <item name="android:textAppearance">@style/SubtitleSecondary</item>
         <item name="android:textColor">@color/textBold</item>
         <item name="chipCornerRadius">@dimen/dimen10dp</item>
@@ -166,7 +203,7 @@
 
     <!--Chips-->
     <style name="MyChipOutlined" parent="@style/Widget.MaterialComponents.Chip.Choice">
-        <item name="chipBackgroundColor">@color/primary</item>
+        <item name="chipBackgroundColor">@color/primaryVariant</item>
         <item name="android:textAppearance">@style/SubtitleSecondary</item>
         <item name="android:textColor">@color/main</item>
         <item name="chipStrokeColor">@color/main</item>
@@ -195,6 +232,13 @@
         <item name="android:textColor">@color/textBold</item>
     </style>
 
+    <!--Texts-->
+    <style name="H6PrimarySignIn" parent="TextAppearance.AppCompat">
+        <item name="fontFamily">@font/nunitosasnssemibold</item>
+        <item name="android:textSize">@dimen/dimen20dp</item>
+        <item name="android:textColor">@color/secondaryLight</item>
+    </style>
+
     <style name="H6Secondary" parent="TextAppearance.AppCompat">
         <item name="fontFamily">@font/montserratsemibold</item>
         <item name="android:textSize">@dimen/dimen18dp</item>
@@ -206,6 +250,13 @@
         <item name="fontFamily">@font/nunitosasnssemibold</item>
         <item name="android:textSize">@dimen/dimen24dp</item>
         <item name="android:textColor">@color/textBold</item>
+    </style>
+
+    <!--Texts-->
+    <style name="H5PrimaryCard" parent="TextAppearance.AppCompat">
+        <item name="fontFamily">@font/nunitosasnssemibold</item>
+        <item name="android:textSize">@dimen/dimen24dp</item>
+        <item name="android:textColor">@color/secondaryLight</item>
     </style>
 
     <style name="BodySecondary" parent="TextAppearance.AppCompat">
@@ -221,17 +272,19 @@
     <style name="Body3Secondary" parent="TextAppearance.AppCompat">
         <item name="fontFamily">@font/montserratregular</item>
         <item name="android:textSize">@dimen/dimen11dp</item>
+        <item name="android:textColor">@color/white</item>
     </style>
 
     <style name="Body3Primary" parent="TextAppearance.AppCompat">
         <item name="fontFamily">@font/nunitosanseegular</item>
         <item name="android:textSize">@dimen/dimen12dp</item>
+        <item name="android:textColor">@color/main</item>
     </style>
 
     <style name="SubtitleSecondary" parent="TextAppearance.AppCompat">
         <item name="fontFamily">@font/montserratmedium</item>
         <item name="android:textSize">@dimen/dimen14dp</item>
-        <item name="android:textColor">@color/textBold</item>
+        <item name="android:textColor">@color/secondaryLight</item>
     </style>
 
     <style name="FullScreenDialog">

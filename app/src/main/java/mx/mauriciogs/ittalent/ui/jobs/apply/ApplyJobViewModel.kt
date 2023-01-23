@@ -37,6 +37,10 @@ class ApplyJobViewModel: ViewModel() {
         }
     }
 
+    fun stopSuccess() {
+        emitUiApplyState(showSuccess = null)
+    }
+
     private fun emitUiApplyState(showProgress: Boolean = false, exception: Exception? = null, showSuccess: String? = null) {
         val applyJobUiModel = ApplyJobUiModel(showProgress, exception, showSuccess)
         _appliJobModelState.value = applyJobUiModel

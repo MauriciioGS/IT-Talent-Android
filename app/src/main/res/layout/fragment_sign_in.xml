@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background"
+        style="@style/BackgroundGeneralSignIn"
         tools:context="mx.mauriciogs.ittalent.ui.authentication.">
 
         <ImageView
@@ -39,7 +39,7 @@
             android:layout_height="@dimen/dimen1dp"
             android:layout_marginHorizontal="@dimen/dimen16dp"
             android:layout_marginBottom="@dimen/dimen16dp"
-            android:background="@color/icon"
+            style="@style/Spacer"
             app:layout_constraintBottom_toTopOf="@+id/tvRegister"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"

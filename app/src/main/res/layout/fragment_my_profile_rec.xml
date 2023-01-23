@@ -10,6 +10,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        style="@style/BackgroundGeneral"
         tools:context="MyProfileFragment">
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -81,7 +82,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/dimen16dp"
                     android:text="@string/btn_cambiar_foto"
-                    android:visibility="invisible"
+                    android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="@+id/materialCardView"
                     app:layout_constraintStart_toStartOf="@+id/materialCardView"
                     app:layout_constraintTop_toBottomOf="@+id/materialCardView" />

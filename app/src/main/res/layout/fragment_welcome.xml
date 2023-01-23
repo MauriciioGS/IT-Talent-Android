@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background"
+        style="@style/BackgroundGeneralSignIn"
         tools:context="mx.mauriciogs.ittalent.ui.welcome.WelcomeFragment">
 
         <ImageView
@@ -25,12 +25,11 @@
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:backgroundTint="@color/background"
             app:tabMode="fixed"
-
+            app:tabTextColor="@color/secondary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -40,15 +39,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:icon="@drawable/icon_user_selector"
-                android:text="@string/soy_talento"
-                tools:text="Soy Talento" />
+                android:text="@string/soy_talento"/>
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:icon="@drawable/icon_user_selector"
-                android:text="@string/busco_talento"
-                tools:text="Busco Talento" />
+                android:text="@string/busco_talento"/>
 
         </com.google.android.material.tabs.TabLayout>
 

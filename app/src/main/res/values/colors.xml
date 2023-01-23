@@ -5,6 +5,8 @@
 
     <color name="primary">#FF045497</color>
     <color name="primaryVariant">#FF002b67</color>
+    <color name="primaryVariant3">#FF02306C</color>
+    <color name="primaryVariant2">#FF074764</color>
 
     <color name="secondaryLight">#FF93e4ff</color>
     <color name="secondary">#FF5DB2DF</color>
@@ -12,9 +14,13 @@
 
     <color name="tertiary">#FFFFAA4D</color>
 
+    <color name="transparent">#00FFFFFF</color>
+
     <color name="textBold">#FF012257</color>
     <color name="background">#FFF2F4F9</color>
+    <color name="background_night">#FF757575</color>
     <color name="main">#FFC9EDF9</color>
+    <color name="main2">#6CA3AA</color>
     <color name="main_transp">#54C9EDF9</color>
     <color name="error">#FFD31E3D</color>
     <color name="success">#FF20B245</color>
@@ -22,6 +28,7 @@
     <color name="warning">#FFFFA602</color>
     <color name="icon">#FF001848</color>
     <color name="disable">#FFA7A7A7</color>
+    <color name="disablen">#757575</color>
 
 
 </resources>

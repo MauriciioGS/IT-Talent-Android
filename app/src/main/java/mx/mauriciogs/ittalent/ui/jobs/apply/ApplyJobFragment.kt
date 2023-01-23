@@ -33,8 +33,12 @@ class ApplyJobFragment: BaseFrag<FragmentApplyJobBinding>(R.layout.fragment_appl
         applyJobViewModel.appliJobModelState.observe(viewLifecycleOwner) {
             if (it.showProgress) showProgressDialog() else hideProgressDialog()
             if (it.exception != null) requireActivity().snackbar(it.exception.message).showError()
-            if (it.showSuccess != null) findNavControllerSafely()
-                ?.safeNavigate(ApplyJobFragmentDirections.actionApplyJobFragmentToNewApplicantFragment(it.showSuccess))
+            if (it.showSuccess != null) {
+                findNavControllerSafely()
+                    ?.safeNavigate(ApplyJobFragmentDirections.actionApplyJobFragmentToNewApplicantFragment(it.showSuccess))
+                applyJobViewModel.stopSuccess()
+            }
+
         }
     }
 

@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background"
+        style="@style/BackgroundGeneralSignIn"
         tools:context="mx.mauriciogs.ittalent.ui.authentication.signup.SignUpFragment2">
 
         <ImageView
@@ -25,7 +25,7 @@
 
         <TextView
             android:id="@+id/tvWelcome"
-            style="@style/H6Primary"
+            style="@style/H6PrimarySignIn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen16dp"
