@@ -57,17 +57,7 @@ class MyProfileRecFragment :
                 mBinding.etName.requestFocus()
                 requireActivity().snackbar("Perfil acualizado!").showSuccess()
             }
-            if (it.showSuccessDeletion != null) navigateToSignIn()
         }
-    }
-
-    private fun navigateToSignIn() {
-        startActivity(
-            Intent(
-                requireActivity(),
-                InitActivity::class.java
-            )
-        ).apply { requireActivity().finish() }
     }
 
     private fun setUI(profile: UserProfile) {
@@ -120,6 +110,10 @@ class MyProfileRecFragment :
                         dialog.dismiss()
                     }
                     .show()
+            }
+
+            btnDelete.setOnClickListener {
+                findNavControllerSafely()?.safeNavigate(MyProfileRecFragmentDirections.actionMyProfileFragmentToRetentionFragment())
             }
 
             swEditar.setOnCheckedChangeListener { _, isChecked ->
