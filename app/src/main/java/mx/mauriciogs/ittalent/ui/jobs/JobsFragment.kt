@@ -38,7 +38,7 @@ class JobsFragment: BaseFrag<FragmentJobsBinding>(R.layout.fragment_jobs) {
     override fun FragmentJobsBinding.initialize() {
         mBinding = this
         showToolBar(true)
-        userType = requireActivity().intent.getIntExtra("userType", 0)
+        //userType = requireActivity().intent.getIntExtra("userType", 0)
         userType = 1
         //requireContext().toast("$userType").show()
         if (userType == Int.TALENT_UT()) jobsViewModel.getProfileTalent()
