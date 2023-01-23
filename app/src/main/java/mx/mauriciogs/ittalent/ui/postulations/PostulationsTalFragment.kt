@@ -11,10 +11,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import mx.mauriciogs.ittalent.R
 import mx.mauriciogs.ittalent.core.BaseFrag
-import mx.mauriciogs.ittalent.core.extensions.empty
-import mx.mauriciogs.ittalent.core.extensions.showWarning
-import mx.mauriciogs.ittalent.core.extensions.snackbar
-import mx.mauriciogs.ittalent.core.extensions.toast
+import mx.mauriciogs.ittalent.core.extensions.*
 import mx.mauriciogs.ittalent.databinding.FragmentPostulationsTalBinding
 import mx.mauriciogs.ittalent.domain.jobs.Job
 import mx.mauriciogs.ittalent.ui.jobs.adapters.JobsAdapter
@@ -80,7 +77,9 @@ class PostulationsTalFragment: BaseFrag<FragmentPostulationsTalBinding>(R.layout
     }
 
     fun onClickItem(item: Job) {
-        requireActivity().toast("$item").show()
+        // TODO: abrir empleo desde postulaciones y contactar al reclutador
+        findNavControllerSafely()
+            ?.safeNavigate(PostulationsTalFragmentDirections.actionPostulationsTalFragmentToStatusPostulFragment(item))
     }
 
 }

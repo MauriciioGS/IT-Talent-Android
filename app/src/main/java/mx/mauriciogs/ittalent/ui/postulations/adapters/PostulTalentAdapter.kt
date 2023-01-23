@@ -19,8 +19,8 @@ import org.joda.time.Hours
 import org.joda.time.Minutes
 
 private const val PROCESS_JOB_STAGE1 = 0
-private const val PROCESS_JOB_STAGE2 = 2
-private const val PROCESS_JOB_STAGE3 = 4
+private const val PROCESS_JOB_STAGE2 = 1
+private const val PROCESS_JOB_STAGE3 = 2
 private const val PROCESS_JOB_FINISHED = 4
 
 class PostulTalentAdapter(private val jobsList: List<Job>, val fragment: Fragment): RecyclerView.Adapter<PostulTalentAdapter.ViewHolder>() {

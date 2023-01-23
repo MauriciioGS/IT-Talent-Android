@@ -98,6 +98,18 @@
         tools:layout="@layout/fragment_postulations_tal">
         <argument android:name="appbar"
             android:defaultValue="true"/>
+        <action
+            android:id="@+id/action_postulationsTalFragment_to_statusPostulFragment"
+            app:destination="@id/statusPostulFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/statusPostulFragment"
+        android:name="mx.mauriciogs.ittalent.ui.postulations.StatusPostulFragment"
+        android:label="StatusPostulFragment"
+        tools:layout="@layout/fragment_status_postulation">
+        <argument
+            android:name="job"
+            app:argType="mx.mauriciogs.ittalent.domain.jobs.Job" />
     </fragment>
 
 </navigation>

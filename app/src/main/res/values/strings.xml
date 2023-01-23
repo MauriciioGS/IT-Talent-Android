@@ -178,5 +178,9 @@
     <string name="txt_postulaciones_stg1">Revisión de perfil</string>
     <string name="txt_postulaciones_stg2">Etapa de entrevistas</string>
     <string name="txt_postulaciones_stg3">Pruebas y evaluaciones</string>
+    <string name="txt_reclutador_contact">Contactar al reclutador:  </string>
+    <string name="txt_contactar">¿Deseas contactar al reclutador?</string>
+    <string name="txt_contactar_desc">El reclutador se encargará de contactarte mientras vayas avanzando en el proceso de postulación</string>
+    <string name="btn_contactar">Contactar vía email</string>
 
 </resources>
