@@ -9,7 +9,13 @@
         android:title="Inicio" />
 
     <item
-        android:id="@+id/postulationsFragment"
+        android:id="@+id/postulationsTalFragment"
+        android:icon="@drawable/ic_postulaciones_selector"
+        app:showAsAction="ifRoom"
+        android:title="Postulaciones" />
+
+    <item
+        android:id="@+id/postulationsRecFragment"
         android:icon="@drawable/ic_postulaciones_selector"
         app:showAsAction="ifRoom"
         android:title="Postulaciones" />

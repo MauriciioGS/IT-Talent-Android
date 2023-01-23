@@ -9,5 +9,6 @@ sealed class JobsException(override val message: String?) : Exception() {
 
 sealed class ApplyJobException(override val message: String?) : Exception() {
     object UnrecognizedError : ApplyJobException("Ocurrió un erro al enviar los datos, intenta de nuevo más tarde")
+    object EmptyListOfApplyJobs : ApplyJobException("No has aplicado a trabajos tovadía")
 }
 

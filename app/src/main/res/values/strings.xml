@@ -169,6 +169,14 @@
     <string name="txt_recluta">Reclutador:  </string>
     <string name="txt_te_has_postulado">¡ Te has postulado para: %1$s !</string>
     <string name="txt_te_has_postulado_desc">El reclutador recibirá el perfil profesional que configuraste en esta aplicación, asi como tus datos de contacto. Evaluara tu perfil y se pondrá en contacto contigo, puedes ver el status de tu postulación en <u>Postulaciones</u></string>
-
+    <!--
+        Postulations Talent
+    -->
+    <string name="txt_postulaciones_act">Postulaciones Acivas</string>
+    <string name="txt_postulaciones_fin">Postulaciones finalizadas</string>
+    <string name="txt_postulaciones_stgend">Proceso finalizado</string>
+    <string name="txt_postulaciones_stg1">Revisión de perfil</string>
+    <string name="txt_postulaciones_stg2">Etapa de entrevistas</string>
+    <string name="txt_postulaciones_stg3">Pruebas y evaluaciones</string>
 
 </resources>

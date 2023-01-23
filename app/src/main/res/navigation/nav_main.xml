@@ -91,5 +91,13 @@
         android:name="mx.mauriciogs.ittalent.ui.profile.RetentionFragment"
         android:label="RetentionFragment"
         tools:layout="@layout/fragment_retention"/>
+    <fragment
+        android:id="@+id/postulationsTalFragment"
+        android:name="mx.mauriciogs.ittalent.ui.postulations.PostulationsTalFragment"
+        android:label="PostulationsTalFragment"
+        tools:layout="@layout/fragment_postulations_tal">
+        <argument android:name="appbar"
+            android:defaultValue="true"/>
+    </fragment>
 
 </navigation>

@@ -49,6 +49,10 @@ class MainActivity: AppCompatActivity() {
         if(intent.getIntExtra("userType", 1) == Int.TALENT_UT()) {
             binding.bottomNav.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_SELECTED
             binding.bottomNav.menu.removeItem(R.id.talentFragment)
+            binding.bottomNav.menu.removeItem(R.id.postulationsRecFragment)
+        }else {
+            binding.bottomNav.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_AUTO
+            binding.bottomNav.menu.removeItem(R.id.postulationsTalFragment)
         }
         binding.bottomNav.setupWithNavController(navController)
 
