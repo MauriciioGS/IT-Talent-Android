@@ -23,7 +23,7 @@ class JobsAdapter(private val jobsList: List<Job>, val fragment: Fragment): Recy
             itemBinding.tvPublisher.text = job.nameRecruiter
             itemBinding.ivVacancies.text =  itemBinding.root.context.getString(R.string.txt_rvjobs_vacantes, job.vacancies)
             itemBinding.tvApplicants.text = if(job.applicants != null)
-                itemBinding.root.context.getString(R.string.txt_rvjobs_solicitantes, job.applicants.size-1) else ""
+                itemBinding.root.context.getString(R.string.txt_rvjobs_solicitantes, job.applicants!!.size-1) else ""
             itemBinding.tvTime.text = getTime(job.date, job.time)
         }
 

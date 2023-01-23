@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -8,6 +10,144 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tvJob"
+            style="@style/H5Primary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dimen16dp"
+            android:layout_marginTop="@dimen/dimen32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/hint_cargo" />
+
+        <TextView
+            android:id="@+id/tvVacancies"
+            style="@style/Body3Primary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen3dp"
+            android:textColor="@color/success"
+            app:layout_constraintStart_toStartOf="@+id/tvJob"
+            app:layout_constraintTop_toBottomOf="@+id/tvJob"
+            tools:text="3 Vacantes  " />
+
+        <TextView
+            android:id="@+id/tvWage"
+            style="@style/Body3Primary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen3dp"
+            android:textColor="@color/textBold"
+            app:layout_constraintStart_toStartOf="@+id/tvVacancies"
+            app:layout_constraintTop_toBottomOf="@+id/tvVacancies"
+            tools:text="$4000 - $5000 USD" />
+
+        <TextView
+            android:id="@+id/tvEnterprise"
+            style="@style/Body3Primary"
+            android:layout_marginTop="@dimen/dimen16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/textBold"
+            app:layout_constraintStart_toStartOf="@+id/tvWage"
+            app:layout_constraintTop_toBottomOf="@+id/tvWage"
+            tools:text="Nombre de la empresa  " />
+
+        <TextView
+            android:id="@+id/tvCity"
+            style="@style/Body3Primary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/tvEnterprise"
+            app:layout_constraintStart_toEndOf="@+id/tvEnterprise"
+            app:layout_constraintTop_toTopOf="@+id/tvEnterprise"
+            tools:text="|  Ciudad o región" />
+
+        <Button
+            android:id="@+id/btnOpenRec"
+            style="@style/TertiaryPrimaryButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            android:textSize="@dimen/dimen12sp"
+            app:layout_constraintStart_toEndOf="@+id/tvRecruiter"
+            app:layout_constraintTop_toBottomOf="@+id/tvEnterprise"
+            tools:text="Mauricio García"/>
+
+        <TextView
+            android:id="@+id/tvRecruiter"
+            style="@style/Body3Primary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen16dp"
+            android:text="@string/txt_recluta"
+            app:layout_constraintStart_toStartOf="@+id/tvEnterprise"
+            app:layout_constraintTop_toBottomOf="@+id/tvEnterprise" />
+
+        <TextView
+            android:id="@+id/tvModal"
+            style="@style/Body3Primary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/tvRecruiter"
+            app:layout_constraintTop_toBottomOf="@+id/btnOpenRec"
+            tools:text="Presencial  " />
+
+        <TextView
+            android:id="@+id/tvType"
+            style="@style/Body3Primary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/tvModal"
+            app:layout_constraintStart_toEndOf="@+id/tvModal"
+            app:layout_constraintTop_toTopOf="@+id/tvModal"
+            tools:text="|  Tiempo completo" />
+
+        <TextView
+            android:id="@+id/tvApplicants"
+            style="@style/Body3Secondary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/disable"
+            android:layout_marginTop="@dimen/dimen12sp"
+            app:layout_constraintStart_toStartOf="@+id/tvModal"
+            app:layout_constraintTop_toBottomOf="@+id/tvModal"
+            tools:text="10 Solicitantes" />
+
+        <TextView
+            android:id="@+id/tvTime"
+            style="@style/Body3Secondary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/disable"
+            app:layout_constraintBottom_toBottomOf="@+id/tvApplicants"
+            app:layout_constraintEnd_toEndOf="@+id/tvJob"
+            app:layout_constraintTop_toTopOf="@+id/tvApplicants"
+            tools:text="Hace 2 días" />
+
+        <ImageView
+            android:id="@+id/ivEnterprise"
+            android:layout_width="84dp"
+            android:layout_height="84dp"
+            android:src="@drawable/enterprise"
+            app:layout_constraintEnd_toEndOf="@+id/tvJob"
+            app:layout_constraintTop_toTopOf="@+id/tvJob"
+            tools:ignore="ContentDescription" />
+
+        <Button
+            android:id="@+id/btnContinue"
+            style="@style/PrimaryButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="@dimen/dimen16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvApplicants" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

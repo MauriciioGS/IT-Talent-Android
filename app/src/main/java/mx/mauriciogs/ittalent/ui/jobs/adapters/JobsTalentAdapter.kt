@@ -27,7 +27,7 @@ class JobsTalentAdapter(private val jobsList: List<Job>, val fragment: Fragment)
             itemBinding.tvType.text = itemBinding.root.context.getString(R.string.txt_rvjobs_tipo, job.type)
             itemBinding.ivVacancies.text =  itemBinding.root.context.getString(R.string.txt_rvjobs_vacantes, job.vacancies)
             itemBinding.tvApplicants.text = if(job.applicants != null)
-                itemBinding.root.context.getString(R.string.txt_rvjobs_solicitantes, job.applicants.size-1) else ""
+                itemBinding.root.context.getString(R.string.txt_rvjobs_solicitantes, job.applicants!!.size-1) else ""
             itemBinding.tvTime.text = getTime(job.date, job.time)
             itemBinding.tvWage.text = job.wage
         }

@@ -6,3 +6,8 @@ sealed class JobsException(override val message: String?) : Exception() {
     object EmptyListOfPastJobs : JobsException("No se encontraron empleos pasados")
     object EmptyListOfFilteredJobs : JobsException("No se encontraron empleos con el filtro especificado")
 }
+
+sealed class ApplyJobException(override val message: String?) : Exception() {
+    object UnrecognizedError : ApplyJobException("Ocurrió un erro al enviar los datos, intenta de nuevo más tarde")
+}
+

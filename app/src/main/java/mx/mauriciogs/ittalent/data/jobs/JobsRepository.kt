@@ -23,6 +23,18 @@ class JobsRepository {
         }
     }.isSuccess
 
+    suspend fun addNewApplicantToJob(applicants: List<String>, id: String): Boolean = kotlin.runCatching {
+        try {
+            FirebaseClient.db.collection("jobs")
+                .document(id)
+                .update("applicants", applicants)
+                .await()
+        } catch (exception: Exception){
+            exception.printStackTrace()
+            exception.message?.let { Log.d("UPDJOB", it) }
+        }
+    }.isSuccess
+
     suspend fun getJobsByRecruiter(email: String): JobsResult<GetJobsResponse> = withContext(
         Dispatchers.IO) {
         try {

@@ -136,12 +136,15 @@
     <string name="txt_rvjobs_vacantes_tal">%1$s vacantes  </string>
     <string name="txt_rvjobs_solicitantes">|  %1$d solicitantes</string>
     <string name="txt_rvjobs_solicitantes_old"> - %1$d solicitantes</string>
+    <string name="txt_rvjobs_solicitantes_opj">%1$d solicitantes</string>
     <string name="txt_rvjobs_rechazados"> - %1$d rechazados</string>
     <string name="txt_rvjobs_time_horas">Hace %1$d horas</string>
     <string name="txt_rvjobs_time_min">Hace %1$d minutos</string>
     <string name="txt_rvjobs_time_dias">Hace %1$d dias</string>
     <string name="txt_rvjobs_modalidad">%1$s </string>
     <string name="txt_rvjobs_tipo">| %1$s</string>
+    <string name="txt_rvjobs_empresa">%1$s </string>
+    <string name="txt_rvjobs_location">| %1$s</string>
     <!--
         Talent
     -->
@@ -159,5 +162,13 @@
     <string name="txt_cambiar_empresa">Para cambiar de empresa debes eliminar tu cuenta y crear una nueva con tu correo profesional</string>
     <string name="txt_eliminar_cuenta">Eliminar cuenta</string>
     <string name="txt_error_editar">Para editar tu perfil activa la edición</string>
+    <!--
+        Apply job
+    -->
+    <string name="txt_listo">Listo</string>
+    <string name="txt_recluta">Reclutador:  </string>
+    <string name="txt_te_has_postulado">¡ Te has postulado para: %1$s !</string>
+    <string name="txt_te_has_postulado_desc">El reclutador recibirá el perfil profesional que configuraste en esta aplicación, asi como tus datos de contacto. Evaluara tu perfil y se pondrá en contacto contigo, puedes ver el status de tu postulación en <u>Postulaciones</u></string>
+
 
 </resources>

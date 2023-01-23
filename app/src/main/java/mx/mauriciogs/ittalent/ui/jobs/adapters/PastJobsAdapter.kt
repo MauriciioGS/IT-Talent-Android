@@ -25,9 +25,9 @@ class PastJobsAdapter (private val jobsList: List<Job>, val fragment: Fragment):
             itemBinding.tvPublisher.text = job.nameRecruiter
             itemBinding.ivVacancies.text =  itemBinding.root.context.getString(R.string.txt_rvjobs_vacantes_old, job.vacancies)
             itemBinding.tvApplicants.text = if(job.applicants != null)
-                itemBinding.root.context.getString(R.string.txt_rvjobs_solicitantes_old, job.applicants.size-1) else ""
+                itemBinding.root.context.getString(R.string.txt_rvjobs_solicitantes_old, job.applicants!!.size-1) else ""
             if (job.vacancies != null && job.applicants != null)
-                itemBinding.ivRejected.text = itemBinding.root.context.getString(R.string.txt_rvjobs_rechazados, ((job.applicants.size-1) - job.vacancies.toInt()))
+                itemBinding.ivRejected.text = itemBinding.root.context.getString(R.string.txt_rvjobs_rechazados, ((job.applicants!!.size-1) - job.vacancies.toInt()))
             itemBinding.tvTime.text = getTime(job.date, job.time)
         }
 

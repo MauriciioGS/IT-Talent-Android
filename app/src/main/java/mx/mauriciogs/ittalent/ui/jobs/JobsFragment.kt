@@ -15,11 +15,9 @@ import mx.mauriciogs.ittalent.core.extensions.*
 import mx.mauriciogs.ittalent.data.jobs.exception.JobsException
 import mx.mauriciogs.ittalent.databinding.FragmentJobsBinding
 import mx.mauriciogs.ittalent.domain.jobs.Job
-import mx.mauriciogs.ittalent.domain.talent.Talent
 import mx.mauriciogs.ittalent.ui.jobs.adapters.JobsAdapter
 import mx.mauriciogs.ittalent.ui.jobs.adapters.JobsTalentAdapter
 import mx.mauriciogs.ittalent.ui.jobs.adapters.PastJobsAdapter
-import mx.mauriciogs.ittalent.ui.talent.adapters.TalentAdapter
 
 private const val ACTIVE_JOBS_KEY = 0
 private const val PAST_JOBS_KEY = 1
@@ -170,7 +168,8 @@ class JobsFragment: BaseFrag<FragmentJobsBinding>(R.layout.fragment_jobs) {
     }
 
     fun onClickItemTalent(item: Job) {
-        requireActivity().snackbar("$item").showInfo()
+        findNavControllerSafely()?.safeNavigate(
+            JobsFragmentDirections.actionJobsFragmentToApplyJobFragment(item, jobsViewModel.profile.email!!))
     }
 
     private fun showError(exception: Exception) {

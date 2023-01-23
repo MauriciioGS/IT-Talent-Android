@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_jobsFragment_to_seeJobsFragment"
             app:destination="@id/seeJobsFragment" />
+        <action
+            android:id="@+id/action_jobsFragment_to_applyJobFragment"
+            app:destination="@id/applyJobFragment" />
     </fragment>
 
     <fragment
@@ -52,6 +55,33 @@
         tools:layout="@layout/fragment_my_profile_rec">
         <argument android:name="appbar"
             android:defaultValue="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/applyJobFragment"
+        android:name="mx.mauriciogs.ittalent.ui.jobs.apply.ApplyJobFragment"
+        android:label="ApplyJobFragment"
+        tools:layout="@layout/fragment_apply_job">
+        <argument
+            android:name="job"
+            app:argType="mx.mauriciogs.ittalent.domain.jobs.Job" />
+        <argument
+            android:name="user_email"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_applyJobFragment_to_newApplicantFragment"
+            app:destination="@id/newApplicantFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newApplicantFragment"
+        android:name="mx.mauriciogs.ittalent.ui.jobs.apply.NewApplicantFragment"
+        android:label="NewApplicantFragment"
+        tools:layout="@layout/fragment_new_applicant">
+        <argument
+            android:name="jobName"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_newApplicantFragment_to_jobsFragment"
+            app:destination="@id/jobsFragment" />
     </fragment>
 
 </navigation>

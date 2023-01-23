@@ -10,3 +10,5 @@ data class GetJobsUiModel (val setUI: String?, val showProgress: Boolean, val en
 
 data class GetJobsTalentUiModel (val setUI: MutableList<Job>?, val showProgress: Boolean, val exception: Exception?,
                            val showSuccessNewFilter: MutableList<Job>?)
+
+data class ApplyJobUiModel (val showProgress: Boolean, val exception: Exception?, val showSuccess: String?)

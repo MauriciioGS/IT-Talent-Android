@@ -8,6 +8,7 @@ import mx.mauriciogs.ittalent.data.jobs.model.JobFirebase
 
 @Parcelize
 data class Job (
+    var id: String? = String.empty(),
     val job: String? = String.empty(),
     val enterprise: String? = String.empty(),
     val imageUrl: String? = String.empty(),
@@ -16,7 +17,7 @@ data class Job (
     val type: String? = String.empty(),
     val wage: String? = String.empty(),
     val vacancies: String? = String.empty(),
-    val applicants: List<String>? = emptyList(),
+    var applicants: List<String>? = emptyList(),
     var emailRecruiter: String? = String.empty(),
     var nameRecruiter: String? = String.empty(),
     var timestamp : String? = String.empty(),

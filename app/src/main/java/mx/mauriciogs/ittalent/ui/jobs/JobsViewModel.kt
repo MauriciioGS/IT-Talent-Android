@@ -131,7 +131,10 @@ class JobsViewModel @Inject constructor(private val getProfileUseCase: GetProfil
                 document.toObject<Job>()?.let {
                     // Filtra por rol: por ejemplo si soy Android Developer encuentra "Android" y "Developer"
                     role.forEach { trim ->
-                        if (it.job?.contains(trim) == true) jobsByRole.add(it)
+                        if (it.job?.contains(trim) == true) {
+                            it.id = document.id
+                            jobsByRole.add(it)
+                        }
                     }
                 }
             }
