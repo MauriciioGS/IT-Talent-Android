@@ -23,16 +23,18 @@ import mx.mauriciogs.ittalent.databinding.FragmentMyProfileRecBinding
 import mx.mauriciogs.ittalent.domain.useraccount.UserProfile
 import mx.mauriciogs.ittalent.ui.init.InitActivity
 
-class MyProfileRecFragment: BaseFrag<FragmentMyProfileRecBinding>(R.layout.fragment_my_profile_rec) {
+class MyProfileRecFragment :
+    BaseFrag<FragmentMyProfileRecBinding>(R.layout.fragment_my_profile_rec) {
 
     private lateinit var mBinding: FragmentMyProfileRecBinding
 
     private val myProfileRecViewModel: MyProfileRecViewModel by activityViewModels()
 
-    private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
-        if (uri != null) saveUri(uri)
-        else snackbar(R.string.info_foto).showInfo()
-    }
+    private val pickMedia =
+        registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+            if (uri != null) saveUri(uri)
+            else snackbar(R.string.info_foto).showInfo()
+        }
 
     var photoUri = String.empty()
     private var isEditEnabled = Boolean.no()
@@ -60,22 +62,38 @@ class MyProfileRecFragment: BaseFrag<FragmentMyProfileRecBinding>(R.layout.fragm
     }
 
     private fun navigateToSignIn() {
-        startActivity(Intent(requireActivity(), InitActivity::class.java)).apply { requireActivity().finish() }
+        startActivity(
+            Intent(
+                requireActivity(),
+                InitActivity::class.java
+            )
+        ).apply { requireActivity().finish() }
     }
 
     private fun setUI(profile: UserProfile) {
         with(mBinding) {
+            if (profile.userType != Int.TALENT_UT()) {
+                enterpriseEdit.visibility = View.VISIBLE
+            } else {
+                enterpriseEdit.visibility = View.GONE
+            }
             photoUri = profile.photoUrl!!
             Glide.with(requireActivity())
                 .load(profile.photoUrl)
                 .centerCrop()
                 .listener(object : RequestListener<Drawable> {
-                    override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                    override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?,
+                        dataSource: DataSource?, isFirstResource: Boolean): Boolean {
                         return false
                     }
-
-                    override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
-                        mBinding.ivProfilePhoto.setImageDrawable(AppCompatResources.getDrawable(requireActivity(), R.drawable.user_icon_active))
+                    override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?,
+                        isFirstResource: Boolean): Boolean {
+                        mBinding.ivProfilePhoto.setImageDrawable(
+                            AppCompatResources.getDrawable(
+                                requireActivity(),
+                                R.drawable.user_icon_active
+                            )
+                        )
                         return false
                     }
                 })
@@ -112,8 +130,7 @@ class MyProfileRecFragment: BaseFrag<FragmentMyProfileRecBinding>(R.layout.fragm
                     btnFoto.setOnClickListener {
                         pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
                     }
-                }
-                else {
+                } else {
                     btnSave.setBackgroundColor(requireActivity().getColor(R.color.disable))
                     btnFoto.visibility = View.INVISIBLE
                     isEditEnabled = Boolean.no()
@@ -121,28 +138,42 @@ class MyProfileRecFragment: BaseFrag<FragmentMyProfileRecBinding>(R.layout.fragm
             }
 
             btnSave.setOnClickListener {
-                if (!isEditEnabled) requireActivity().snackbar(R.string.txt_error_editar).showError()
-                else checkFields()
+                if (!isEditEnabled) requireActivity().snackbar(R.string.txt_error_editar)
+                    .showError()
+                else{
+                    if (profile.userType != Int.TALENT_UT())
+                        checkFieldsRec()
+                    else
+                        checkFieldsTal()
+                }
             }
         }
     }
 
-    private fun checkFields() {
+    private fun checkFieldsRec() {
         with(mBinding) {
             when {
                 etName.text.toString().isEmpty() -> emptyField(etName, R.string.txt_name)
-                dropdownMenuPais.text.toString().isEmpty() -> emptyFieldList(dropdownMenuPais,
+                dropdownMenuPais.text.toString().isEmpty() -> emptyFieldList(
+                    dropdownMenuPais,
                     R.string.txt_require_pais
                 )
                 etCiudad.text.toString().isEmpty() -> emptyField(etCiudad, R.string.txt_ciudad_p)
                 etEdad.text.toString().isEmpty() -> emptyField(etName, R.string.txt_require_edad)
-                etEdad.text.toString().toInt() < 18 -> requireActivity().snackbar(R.string.txt_mayor_edad).showError()
-                etPhoNum.text.toString().isEmpty() || etPhoNum.text.toString().length < 10 -> emptyField(etPhoNum,
+                etEdad.text.toString()
+                    .toInt() < 18 -> requireActivity().snackbar(R.string.txt_mayor_edad).showError()
+                etPhoNum.text.toString()
+                    .isEmpty() || etPhoNum.text.toString().length < 10 -> emptyField(
+                    etPhoNum,
                     R.string.txt_requite_phonenum
                 )
                 etAbout.text.toString().isEmpty() -> emptyField(etAbout, R.string.txt_require_desc)
-                etEmpresa.text.toString().isEmpty() -> emptyField(etEmpresa, R.string.txt_no_empresa)
-                dropdownMenuRol.text.toString().isEmpty() -> emptyFieldList(dropdownMenuRol,
+                etEmpresa.text.toString().isEmpty() -> emptyField(
+                    etEmpresa,
+                    R.string.txt_no_empresa
+                )
+                dropdownMenuRol.text.toString().isEmpty() -> emptyFieldList(
+                    dropdownMenuRol,
                     R.string.txt_no_rolerec
                 )
                 photoUri.isEmpty() -> requireActivity().snackbar(R.string.txt_no_foto).showError()
@@ -155,7 +186,50 @@ class MyProfileRecFragment: BaseFrag<FragmentMyProfileRecBinding>(R.layout.fragm
                     val resumen = etAbout.text.toString()
                     val rol = dropdownMenuRol.text.toString()
 
-                    myProfileRecViewModel.updateProfile(nombre, pais, ciudad, edad, numTel, resumen, photoUri, rol)
+                    myProfileRecViewModel.updateProfile(
+                        nombre,
+                        pais,
+                        ciudad,
+                        edad,
+                        numTel,
+                        resumen,
+                        photoUri,
+                        rol
+                    )
+                }
+            }
+        }
+    }
+
+    private fun checkFieldsTal() {
+        with(mBinding) {
+            when {
+                etName.text.toString().isEmpty() -> emptyField(etName, R.string.txt_name)
+                dropdownMenuPais.text.toString().isEmpty() -> emptyFieldList(
+                    dropdownMenuPais,
+                    R.string.txt_require_pais
+                )
+                etCiudad.text.toString().isEmpty() -> emptyField(etCiudad, R.string.txt_ciudad_p)
+                etEdad.text.toString().isEmpty() -> emptyField(etName, R.string.txt_require_edad)
+                etEdad.text.toString()
+                    .toInt() < 18 -> requireActivity().snackbar(R.string.txt_mayor_edad).showError()
+                etPhoNum.text.toString()
+                    .isEmpty() || etPhoNum.text.toString().length < 10 -> emptyField(
+                    etPhoNum,
+                    R.string.txt_requite_phonenum
+                )
+                etAbout.text.toString().isEmpty() -> emptyField(etAbout, R.string.txt_require_desc)
+                photoUri.isEmpty() -> requireActivity().snackbar(R.string.txt_no_foto).showError()
+                else -> {
+                    val nombre = etName.text.toString()
+                    val pais = dropdownMenuPais.text.toString()
+                    val ciudad = etCiudad.text.toString()
+                    val edad = etEdad.text.toString().toInt()
+                    val numTel = etPhoNum.text.toString()
+                    val resumen = etAbout.text.toString()
+
+                    myProfileRecViewModel.updateProfile(nombre, pais, ciudad, edad, numTel, resumen,
+                        photoUri,String.empty())
                 }
             }
         }

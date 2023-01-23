@@ -38,7 +38,6 @@ class MyProfileRecViewModel@Inject constructor(private val getProfileUseCase: Ge
                 when(result){
                     is AuthResult.Success -> {
                         profile = result.data.user!!
-                        Log.d("PROF", "Get primero $profile")
                         emitUiState(showProgress = false, setUI = profile)
                     }
                     is AuthResult.Error -> emitUiState(showProgress = false, exception = result.exception)
