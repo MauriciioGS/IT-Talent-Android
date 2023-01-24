@@ -68,12 +68,12 @@ class JobsAdapter(private val jobsList: List<Job>, val fragment: Fragment): Recy
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        holder.itemView.setOnClickListener {
+        /*holder.itemView.setOnClickListener {
             if(fragment is JobsFragment) fragment.onClickItem(jobsList[position])
         }
         holder.itemBinding.ibEdit.setOnClickListener {
             if(fragment is JobsFragment) fragment.onClickItem(jobsList[position])
-        }
+        }*/
         holder.bind(jobsList[position])
     }
 

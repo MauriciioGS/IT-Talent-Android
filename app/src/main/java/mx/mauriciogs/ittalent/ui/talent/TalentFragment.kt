@@ -3,6 +3,7 @@ package mx.mauriciogs.ittalent.ui.talent
 import android.view.View
 import android.widget.ArrayAdapter
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import mx.mauriciogs.ittalent.R
 import mx.mauriciogs.ittalent.core.BaseFrag
@@ -10,13 +11,23 @@ import mx.mauriciogs.ittalent.core.extensions.*
 import mx.mauriciogs.ittalent.data.talent.exceptions.TalentExceptionHandler
 import mx.mauriciogs.ittalent.databinding.FragmentTalentBinding
 import mx.mauriciogs.ittalent.domain.talent.Talent
+import mx.mauriciogs.ittalent.ui.connectivity.LostConnViewModel
+import mx.mauriciogs.ittalent.ui.connectivity.LostConnectionFragment
+import mx.mauriciogs.ittalent.ui.init.InitViewModel
 import mx.mauriciogs.ittalent.ui.talent.adapters.TalentAdapter
+import mx.mauriciogs.ittalent.ui.welcome.WelcomeFragment
+
+private val lostConnBottomSheetTag: String = LostConnectionFragment::class.java.simpleName
 
 class TalentFragment: BaseFrag<FragmentTalentBinding>(R.layout.fragment_talent){
 
     private lateinit var mBinding: FragmentTalentBinding
 
     private val talentViewModel : TalentViewModel by activityViewModels()
+    private val initViewModel : InitViewModel by viewModels() {
+        InitViewModel.MainVMFactory(requireActivity().application)
+    }
+    private val lostConnViewModel : LostConnViewModel by activityViewModels()
 
     private var talent = mutableListOf<Talent>()
 
@@ -24,9 +35,10 @@ class TalentFragment: BaseFrag<FragmentTalentBinding>(R.layout.fragment_talent){
 
     override fun FragmentTalentBinding.initialize() {
         mBinding = this
-        talentViewModel.getTalent()
+        initViewModel.monitorStateConnection()
         showFloatingActionBtn(show = false)
         initObservers()
+        talentViewModel.getTalent()
     }
 
     private fun initObservers() {
@@ -36,6 +48,8 @@ class TalentFragment: BaseFrag<FragmentTalentBinding>(R.layout.fragment_talent){
             if (it.showSuccess != null) initUI()
             if (it.showSuccessFiler != null) showTalent(it.showSuccessFiler)
         }
+        initViewModel.isConnected.observe(viewLifecycleOwner) { isConnected -> if (!isConnected) openLostConnDialog() }
+        lostConnViewModel.isUiEnabled.observe(viewLifecycleOwner) { if (it) dismissLostConnDialog() }
     }
 
     private fun initUI() {
@@ -78,4 +92,17 @@ class TalentFragment: BaseFrag<FragmentTalentBinding>(R.layout.fragment_talent){
             else -> requireActivity().snackbar(exception.message).showError()
         }
     }
+
+    private fun openLostConnDialog() = LostConnectionFragment.newInstance().run {
+        this@TalentFragment.childFragmentManager.executePendingTransactions()
+        if(!this@TalentFragment.findChildFragmentByTag(WelcomeFragment.lostConnBottomSheetTag)?.isAdded.orDefault())
+            show(this@TalentFragment.childFragmentManager, WelcomeFragment.lostConnBottomSheetTag)
+    }
+
+    private fun dismissLostConnDialog() = this@TalentFragment.findChildFragmentByTag(
+        lostConnBottomSheetTag
+    )?.asDialogFragment()?.run {
+        dismiss()
+    }
+
 }

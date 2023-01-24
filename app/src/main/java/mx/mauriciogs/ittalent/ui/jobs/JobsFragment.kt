@@ -5,6 +5,7 @@ import android.view.View
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.AppBarLayout
@@ -15,18 +16,27 @@ import mx.mauriciogs.ittalent.core.extensions.*
 import mx.mauriciogs.ittalent.data.jobs.exception.JobsException
 import mx.mauriciogs.ittalent.databinding.FragmentJobsBinding
 import mx.mauriciogs.ittalent.domain.jobs.Job
+import mx.mauriciogs.ittalent.ui.connectivity.LostConnViewModel
+import mx.mauriciogs.ittalent.ui.connectivity.LostConnectionFragment
+import mx.mauriciogs.ittalent.ui.init.InitViewModel
 import mx.mauriciogs.ittalent.ui.jobs.adapters.JobsAdapter
 import mx.mauriciogs.ittalent.ui.jobs.adapters.JobsTalentAdapter
 import mx.mauriciogs.ittalent.ui.jobs.adapters.PastJobsAdapter
+import mx.mauriciogs.ittalent.ui.welcome.WelcomeFragment
 
 private const val ACTIVE_JOBS_KEY = 0
 private const val PAST_JOBS_KEY = 1
+private val lostConnBottomSheetTag: String = LostConnectionFragment::class.java.simpleName
 
 class JobsFragment: BaseFrag<FragmentJobsBinding>(R.layout.fragment_jobs) {
 
     private lateinit var mBinding: FragmentJobsBinding
 
     private val jobsViewModel: JobsViewModel by activityViewModels()
+    private val initViewModel : InitViewModel by viewModels() {
+        InitViewModel.MainVMFactory(requireActivity().application)
+    }
+    private val lostConnViewModel : LostConnViewModel by activityViewModels()
 
     private var userType = Int.default()
     private var listUserSkills = mutableListOf<String>()
@@ -40,11 +50,12 @@ class JobsFragment: BaseFrag<FragmentJobsBinding>(R.layout.fragment_jobs) {
         showToolBar(true)
         userType = requireActivity().intent.getIntExtra("userType", 0)
         //userType = 2
-        requireContext().toast("$userType").show()
-        if (userType == Int.TALENT_UT()) jobsViewModel.getProfileTalent()
-        else jobsViewModel.getProfile()
+        //requireContext().toast("$userType").show()
+        initViewModel.monitorStateConnection()
         initListeners()
         initObservers()
+        if (userType == Int.TALENT_UT()) jobsViewModel.getProfileTalent()
+        else jobsViewModel.getProfile()
         //initAdapter()
 
     }
@@ -64,6 +75,9 @@ class JobsFragment: BaseFrag<FragmentJobsBinding>(R.layout.fragment_jobs) {
             if (it.setUI != null) initUi(it.setUI)
             if(it.showSuccessNewFilter != null) initRecyclerActives(it.showSuccessNewFilter)
         }
+
+        initViewModel.isConnected.observe(viewLifecycleOwner) { isConnected -> if (!isConnected) openLostConnDialog() }
+        lostConnViewModel.isUiEnabled.observe(viewLifecycleOwner) { if (it) dismissLostConnDialog() }
     }
 
     private fun initUi(jobsFiltered: MutableList<Job>? = null) {
@@ -164,10 +178,6 @@ class JobsFragment: BaseFrag<FragmentJobsBinding>(R.layout.fragment_jobs) {
         }
     }
 
-    fun onClickItem(item: Job) {
-        requireActivity().toast("$item").show()
-    }
-
     fun onClickItemTalent(item: Job) {
         findNavControllerSafely()?.safeNavigate(
             JobsFragmentDirections.actionJobsFragmentToApplyJobFragment(item, jobsViewModel.profile.email!!))
@@ -191,6 +201,18 @@ class JobsFragment: BaseFrag<FragmentJobsBinding>(R.layout.fragment_jobs) {
             }
             else -> requireActivity().snackbar(exception.message).showError()
         }
+    }
+
+    private fun openLostConnDialog() = LostConnectionFragment.newInstance().run {
+        this@JobsFragment.childFragmentManager.executePendingTransactions()
+        if(!this@JobsFragment.findChildFragmentByTag(WelcomeFragment.lostConnBottomSheetTag)?.isAdded.orDefault())
+            show(this@JobsFragment.childFragmentManager, WelcomeFragment.lostConnBottomSheetTag)
+    }
+
+    private fun dismissLostConnDialog() = this@JobsFragment.findChildFragmentByTag(
+       lostConnBottomSheetTag
+    )?.asDialogFragment()?.run {
+        dismiss()
     }
 
 }

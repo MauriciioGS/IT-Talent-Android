@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -14,20 +15,30 @@ import mx.mauriciogs.ittalent.core.extensions.*
 import mx.mauriciogs.ittalent.data.jobs.exception.RecruitmentException
 import mx.mauriciogs.ittalent.databinding.FragmentRecruitmentBinding
 import mx.mauriciogs.ittalent.domain.jobs.Job
+import mx.mauriciogs.ittalent.ui.connectivity.LostConnViewModel
+import mx.mauriciogs.ittalent.ui.connectivity.LostConnectionFragment
+import mx.mauriciogs.ittalent.ui.init.InitViewModel
+import mx.mauriciogs.ittalent.ui.welcome.WelcomeFragment
 
 private const val PROCESS_JOB_STAGE1 = 0
 private const val PROCESS_JOB_STAGE2 = 1
 private const val PROCESS_JOB_STAGE3 = 2
 private const val PROCESS_JOB_FINISHED = 4
+private val lostConnBottomSheetTag: String = LostConnectionFragment::class.java.simpleName
 
 class RecruitmentFragment: BaseFrag<FragmentRecruitmentBinding>(R.layout.fragment_recruitment) {
 
     private lateinit var mBinding: FragmentRecruitmentBinding
 
     private val recruitmentViewModel: RecruitmentViewModel by activityViewModels()
+    private val initViewModel : InitViewModel by viewModels() {
+        InitViewModel.MainVMFactory(requireActivity().application)
+    }
+    private val lostConnViewModel : LostConnViewModel by activityViewModels()
 
     override fun FragmentRecruitmentBinding.initialize() {
         mBinding = this
+        initViewModel.monitorStateConnection()
         showToolBar(true)
         initObservers()
         showFloatingActionBtn(show = false)
@@ -53,6 +64,8 @@ class RecruitmentFragment: BaseFrag<FragmentRecruitmentBinding>(R.layout.fragmen
                 recruitmentViewModel.stopFinishRecruitment()
             }
         }
+        initViewModel.isConnected.observe(viewLifecycleOwner) { isConnected -> if (!isConnected) openLostConnDialog() }
+        lostConnViewModel.isUiEnabled.observe(viewLifecycleOwner) { if (it) dismissLostConnDialog() }
     }
 
     private fun showSendEmails(emails: List<String>, job: Job) {
@@ -157,6 +170,18 @@ class RecruitmentFragment: BaseFrag<FragmentRecruitmentBinding>(R.layout.fragmen
                 requireActivity().snackbar("NO se pueden ver procesos pasados").showWarning()
             }
         }
+    }
+
+    private fun openLostConnDialog() = LostConnectionFragment.newInstance().run {
+        this@RecruitmentFragment.childFragmentManager.executePendingTransactions()
+        if(!this@RecruitmentFragment.findChildFragmentByTag(WelcomeFragment.lostConnBottomSheetTag)?.isAdded.orDefault())
+            show(this@RecruitmentFragment.childFragmentManager, WelcomeFragment.lostConnBottomSheetTag)
+    }
+
+    private fun dismissLostConnDialog() = this@RecruitmentFragment.findChildFragmentByTag(
+        lostConnBottomSheetTag
+    )?.asDialogFragment()?.run {
+        dismiss()
     }
 
 }

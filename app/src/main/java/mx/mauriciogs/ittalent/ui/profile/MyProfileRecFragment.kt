@@ -9,6 +9,7 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
@@ -21,7 +22,13 @@ import mx.mauriciogs.ittalent.core.BaseFrag
 import mx.mauriciogs.ittalent.core.extensions.*
 import mx.mauriciogs.ittalent.databinding.FragmentMyProfileRecBinding
 import mx.mauriciogs.ittalent.domain.useraccount.UserProfile
+import mx.mauriciogs.ittalent.ui.connectivity.LostConnViewModel
+import mx.mauriciogs.ittalent.ui.connectivity.LostConnectionFragment
 import mx.mauriciogs.ittalent.ui.init.InitActivity
+import mx.mauriciogs.ittalent.ui.init.InitViewModel
+import mx.mauriciogs.ittalent.ui.welcome.WelcomeFragment
+
+private val lostConnBottomSheetTag: String = LostConnectionFragment::class.java.simpleName
 
 class MyProfileRecFragment :
     BaseFrag<FragmentMyProfileRecBinding>(R.layout.fragment_my_profile_rec) {
@@ -29,6 +36,10 @@ class MyProfileRecFragment :
     private lateinit var mBinding: FragmentMyProfileRecBinding
 
     private val myProfileRecViewModel: MyProfileRecViewModel by activityViewModels()
+    private val initViewModel : InitViewModel by viewModels() {
+        InitViewModel.MainVMFactory(requireActivity().application)
+    }
+    private val lostConnViewModel : LostConnViewModel by activityViewModels()
 
     private val pickMedia =
         registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
@@ -41,10 +52,11 @@ class MyProfileRecFragment :
 
     override fun FragmentMyProfileRecBinding.initialize() {
         mBinding = this
+        initViewModel.monitorStateConnection()
         showToolBar(true)
         showFloatingActionBtn(show = false)
-        myProfileRecViewModel.getProfile()
         initObservers()
+        myProfileRecViewModel.getProfile()
     }
 
     private fun initObservers() {
@@ -58,6 +70,8 @@ class MyProfileRecFragment :
                 requireActivity().snackbar("Perfil acualizado!").showSuccess()
             }
         }
+        initViewModel.isConnected.observe(viewLifecycleOwner) { isConnected -> if (!isConnected) openLostConnDialog() }
+        lostConnViewModel.isUiEnabled.observe(viewLifecycleOwner) { if (it) dismissLostConnDialog() }
     }
 
     private fun setUI(profile: UserProfile) {
@@ -248,6 +262,18 @@ class MyProfileRecFragment :
         if (exception != null) {
             requireActivity().snackbar(exception.message).showError()
         }
+    }
+
+    private fun openLostConnDialog() = LostConnectionFragment.newInstance().run {
+        this@MyProfileRecFragment.childFragmentManager.executePendingTransactions()
+        if(!this@MyProfileRecFragment.findChildFragmentByTag(WelcomeFragment.lostConnBottomSheetTag)?.isAdded.orDefault())
+            show(this@MyProfileRecFragment.childFragmentManager, WelcomeFragment.lostConnBottomSheetTag)
+    }
+
+    private fun dismissLostConnDialog() = this@MyProfileRecFragment.findChildFragmentByTag(
+        lostConnBottomSheetTag
+    )?.asDialogFragment()?.run {
+        dismiss()
     }
 
 }
