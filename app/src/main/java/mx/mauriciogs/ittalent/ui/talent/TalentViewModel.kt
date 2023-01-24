@@ -48,6 +48,7 @@ class TalentViewModel: ViewModel() {
     }
 
     private suspend fun showSuccess(users: MutableList<DocumentSnapshot>) {
+        listOfUsers.clear()
         users.forEach { document ->
             document.toObject<Talent>()?.let {
                 listOfUsers.add(it)
@@ -62,7 +63,10 @@ class TalentViewModel: ViewModel() {
     fun filterByRole(role: String) {
         viewModelScope.launch(Dispatchers.Default) {
             val filterList = mutableListOf<Talent>()
-            listOfUsers.forEach { talent -> if (talent.profRole == role) filterList.add(talent) }
+            listOfUsers.forEach { talent -> if (talent.profRole == role) {
+                println("1")
+                filterList.add(talent)
+            } }
             withContext(Dispatchers.Main) {
                 if (filterList.isNotEmpty()) emitUiState(showProgress = false, showSuccessFiler = filterList)
                 else emitUiState(showProgress = false, exception = TalentExceptionHandler.TalentEmpyList)
