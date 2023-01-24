@@ -92,6 +92,9 @@ class RecruitmentJobAdapter (private val jobsList: List<Job>, val fragment: Frag
         holder.itemBinding.btnNextStep.setOnClickListener {
             if(fragment is RecruitmentFragment) fragment.onClickItem(jobsList[position])
         }
+        holder.itemView.setOnClickListener {
+            if(fragment is RecruitmentFragment) fragment.onClickItem(jobsList[position])
+        }
         holder.bind(jobsList[position])
     }
 

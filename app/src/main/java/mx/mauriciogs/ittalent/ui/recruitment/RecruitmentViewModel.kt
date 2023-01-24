@@ -11,7 +11,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import mx.mauriciogs.ittalent.data.jobs.exception.JobsException
 import mx.mauriciogs.ittalent.data.jobs.exception.RecruitmentException
 import mx.mauriciogs.ittalent.data.jobs.model.JobsResult
 import mx.mauriciogs.ittalent.data.useraccount.local.entities.toUserProfile
@@ -31,7 +30,8 @@ private const val PROCESS_JOB_STAGE3 = 2
 private const val PROCESS_JOB_FINISHED = 4
 
 @HiltViewModel
-class RecruitmentViewModel @Inject constructor(private val getProfileUseCase: GetProfileUseCase): ViewModel() {
+class RecruitmentViewModel @Inject constructor(private val getProfileUseCase: GetProfileUseCase) :
+    ViewModel() {
 
     private val getJobsPostedUseCase = GetJobsPostedUseCase()
     private val setNextStepJob = SetNextStepJob()
@@ -39,10 +39,15 @@ class RecruitmentViewModel @Inject constructor(private val getProfileUseCase: Ge
     private val getTalentUseCase = GetTalentUseCase()
 
     private lateinit var profile: UserProfile
+    private lateinit var jobSelected: Job
 
     private var _recruitmentUiModelState = MutableLiveData<RecruitmentUiModel>()
-    val recruitmentUiModelState : LiveData<RecruitmentUiModel>
+    val recruitmentUiModelState: LiveData<RecruitmentUiModel>
         get() = _recruitmentUiModelState
+
+    private var _recruitmentFinishUiModelState = MutableLiveData<RecruitmentFinishUiModel>()
+    val recruitmentFinishUiModelState: LiveData<RecruitmentFinishUiModel>
+        get() = _recruitmentFinishUiModelState
 
     fun getProfile() {
         emitUiState(showProgress = true)
@@ -58,7 +63,9 @@ class RecruitmentViewModel @Inject constructor(private val getProfileUseCase: Ge
                 val result = getJobsPostedUseCase.getJobsByRecruiter(profile.email!!)
                 withContext(Dispatchers.Default) {
                     when (result) {
-                        is JobsResult.Success -> { getJobs(result.data.documents)}
+                        is JobsResult.Success -> {
+                            getJobs(result.data.documents)
+                        }
                         is JobsResult.Error -> showErrorGettingPosts(result.exception)
                     }
                 }
@@ -73,7 +80,7 @@ class RecruitmentViewModel @Inject constructor(private val getProfileUseCase: Ge
         var stepFourJobs = mutableListOf<Job>()
         listPostFirebase.forEach { document ->
             document.toObject<Job>()?.let {
-                when(it.status) {
+                when (it.status) {
                     PROCESS_JOB_STAGE1 -> {
                         it.id = document.id
                         stepOneJobs.add(it)
@@ -94,29 +101,50 @@ class RecruitmentViewModel @Inject constructor(private val getProfileUseCase: Ge
             }
         }
         withContext(Dispatchers.Main) {
-            if (stepOneJobs.isNotEmpty()) emitUiState(showProgress = false, showSuccessStepOne = stepOneJobs)
+            if (stepOneJobs.isNotEmpty()) emitUiState(
+                showProgress = false,
+                showSuccessStepOne = stepOneJobs
+            )
             else emitUiState(showProgress = false, exception = RecruitmentException.EmptyListStage1)
-            if (stepTwoJobs.isNotEmpty()) emitUiState(showProgress = false, showSuccessStepTwo = stepTwoJobs)
+            if (stepTwoJobs.isNotEmpty()) emitUiState(
+                showProgress = false,
+                showSuccessStepTwo = stepTwoJobs
+            )
             else emitUiState(showProgress = false, exception = RecruitmentException.EmptyListStage2)
-            if (stepThreeJobs.isNotEmpty()) emitUiState(showProgress = false, showSuccessStepThree = stepThreeJobs)
+            if (stepThreeJobs.isNotEmpty()) emitUiState(
+                showProgress = false,
+                showSuccessStepThree = stepThreeJobs
+            )
             else emitUiState(showProgress = false, exception = RecruitmentException.EmptyListStage3)
-            if (stepFourJobs.isNotEmpty()) emitUiState(showProgress = false, showSuccessStepFour = stepFourJobs)
+            if (stepFourJobs.isNotEmpty()) emitUiState(
+                showProgress = false,
+                showSuccessStepFour = stepFourJobs
+            )
             else emitUiState(showProgress = false, exception = RecruitmentException.EmptyListStage4)
         }
     }
 
-    private suspend fun showErrorGettingPosts(exception: Exception) = withContext(Dispatchers.Main) {
-        emitUiState(showProgress = false,exception = exception)
-    }
+    private suspend fun showErrorGettingPosts(exception: Exception) =
+        withContext(Dispatchers.Main) {
+            emitUiState(showProgress = false, exception = exception)
+        }
 
     fun setNextStep(job: Job) {
         emitUiState(showProgress = true)
         viewModelScope.launch(Dispatchers.IO) {
-            job.status = job.status?.plus(1)
+            if (job.status == PROCESS_JOB_STAGE3)
+                job.status = PROCESS_JOB_FINISHED
+            else
+                job.status = job.status?.plus(1)
             val result = setNextStepJob.updateStatusJob(job)
             withContext(Dispatchers.Main) {
-                when(result){
-                    is JobsResult.Success -> emitUiState(showProgress = false, showSuccessUpdate = true)
+                when (result) {
+                    is JobsResult.Success -> {
+                        if (job.status == PROCESS_JOB_FINISHED){
+                            emitUiState(showProgress = false, showSuccessUpdate = true)
+                            emitUiStateFinished(jobSelected.applicants, job)
+                        } else emitUiState(showProgress = false, showSuccessUpdate = true)
+                    }
                     is JobsResult.Error ->
                         emitUiState(showProgress = false, exception = RecruitmentException.UnrecognizedError2)
                 }
@@ -128,11 +156,11 @@ class RecruitmentViewModel @Inject constructor(private val getProfileUseCase: Ge
         emitUiState(showProgress = true)
         viewModelScope.launch(Dispatchers.IO) {
             val result = getAllJobsUseCase.getJobsById(id)
-                when (result) {
-                    is JobsResult.Success -> getTalentApplicants(result.data.documents)
-                    is JobsResult.Error ->
-                        emitUiState(showProgress = false, exception = RecruitmentException.UnrecognizedError2)
-                }
+            when (result) {
+                is JobsResult.Success -> getTalentApplicants(result.data.documents)
+                is JobsResult.Error ->
+                    emitUiState(showProgress = false, exception = RecruitmentException.UnrecognizedError2)
+            }
         }
     }
 
@@ -140,20 +168,29 @@ class RecruitmentViewModel @Inject constructor(private val getProfileUseCase: Ge
         viewModelScope.launch(Dispatchers.IO) {
             val result = getTalentUseCase.getAllTalent()
             when (result) {
-                is JobsResult.Success -> filterTalentByJob(result.data.documents, document.toObject<Job>())
+                is JobsResult.Success ->
+                    filterTalentByJob(result.data.documents, document.toObject<Job>(), document.id)
                 is JobsResult.Error ->
                     emitUiState(showProgress = false, exception = RecruitmentException.UnrecognizedError2)
             }
         }
     }
 
-    private fun filterTalentByJob(documents: MutableList<DocumentSnapshot>, job: Job?) {
+    private fun filterTalentByJob(documents: MutableList<DocumentSnapshot>, job: Job?, id: String) {
         viewModelScope.launch(Dispatchers.Default) {
+            if (job != null) {
+                jobSelected = job
+                jobSelected.id = id
+            }
             val listOfApplicants = mutableListOf<Talent>()
+
             documents.forEach { document ->
                 document.toObject<Talent>()?.let { talent ->
-                    if (job != null)
-                        if (job.applicants?.contains(talent.email) == true) listOfApplicants.add(talent)
+                    if (job != null) {
+                        if (job.applicants?.contains(talent.email) == true) {
+                            listOfApplicants.add(talent)
+                        }
+                    }
                 }
             }
             withContext(Dispatchers.Main) {
@@ -164,17 +201,56 @@ class RecruitmentViewModel @Inject constructor(private val getProfileUseCase: Ge
         }
     }
 
-    private fun emitUiState(showProgress: Boolean = false, exception: Exception? = null,
-                            showSuccessStepOne: MutableList<Job>? = null,
-                            showSuccessStepTwo: MutableList<Job>? = null,
-                            showSuccessStepThree: MutableList<Job>? = null,
-                            showSuccessStepFour: MutableList<Job>? = null,
-                            showSuccessUpdate: Boolean? = null,
-                            showSuccessGetApplicants: MutableList<Talent>? = null
+    fun setApplicantsNextStep(talentSelected: MutableList<Talent>, jobId: String) {
+        //emitUiState(showProgress = true)
+        viewModelScope.launch(Dispatchers.Default) {
+            if (jobSelected.id == jobId) {
+                val talentEmails = mutableListOf("")
+                talentSelected.forEach { talent ->
+                    talent.email?.let { talentEmails.add(it) }
+                }
+                jobSelected.applicants = talentEmails
+                withContext(Dispatchers.Main) {
+                    when (setNextStepJob.updateApplicantsJob(jobSelected)) {
+                        is JobsResult.Success -> { setNextStep(jobSelected) }
+                        is JobsResult.Error ->
+                            emitUiState(showProgress = false, exception = RecruitmentException.UnrecognizedError)
+                    }
+                }
+            } else
+                emitUiState(showProgress = false, exception = RecruitmentException.UnrecognizedError)
+        }
+    }
+
+    fun stopFinishRecruitment(){
+        emitUiStateFinished()
+    }
+
+    private fun emitUiState(
+        showProgress: Boolean = false, exception: Exception? = null,
+        showSuccessStepOne: MutableList<Job>? = null,
+        showSuccessStepTwo: MutableList<Job>? = null,
+        showSuccessStepThree: MutableList<Job>? = null,
+        showSuccessStepFour: MutableList<Job>? = null,
+        showSuccessUpdate: Boolean? = null,
+        showSuccessGetApplicants: MutableList<Talent>? = null
     ) {
-        val getJobsTalentUiModel = RecruitmentUiModel(showProgress, exception, showSuccessStepOne,
-            showSuccessStepTwo, showSuccessStepThree, showSuccessStepFour, showSuccessUpdate, showSuccessGetApplicants)
+        val getJobsTalentUiModel = RecruitmentUiModel(
+            showProgress,
+            exception,
+            showSuccessStepOne,
+            showSuccessStepTwo,
+            showSuccessStepThree,
+            showSuccessStepFour,
+            showSuccessUpdate,
+            showSuccessGetApplicants
+        )
         _recruitmentUiModelState.value = getJobsTalentUiModel
+    }
+
+    private fun emitUiStateFinished(showSendEmail: List<String>? = null, job: Job? = null){
+        val finishProcessJob = RecruitmentFinishUiModel(showSendEmail, job)
+        _recruitmentFinishUiModelState.value = finishProcessJob
     }
 
 }

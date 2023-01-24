@@ -14,4 +14,11 @@ class SetNextStepJob {
         else
             JobsResult.Error(JobsException.UnrecognizedError)
     }
+
+    suspend fun updateApplicantsJob(job: Job): JobsResult<Boolean> {
+        return if(jobsRepository.updateApplicantsJob(job.applicants!!, job.id!!))
+            JobsResult.Success(Boolean.yes())
+        else
+            JobsResult.Error(JobsException.UnrecognizedError)
+    }
 }

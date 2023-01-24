@@ -68,23 +68,26 @@
             tools:ignore="ContentDescription" />
 
         <ImageView
-            android:id="@+id/ivIcono"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/ivOk"
+            android:layout_width="@dimen/dimen32dp"
+            android:layout_height="@dimen/dimen32dp"
             android:src="@drawable/ic_ok_arrow"
             android:layout_marginTop="@dimen/dimen32dp"
+            android:layout_marginEnd="@dimen/dimen16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvXp" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/dimen32dp"
+            android:id="@+id/ivNo"
+            android:layout_width="@dimen/dimen32dp"
+            android:layout_height="@dimen/dimen32dp"
             android:src="@drawable/ic_close2"
-            app:layout_constraintBottom_toBottomOf="@+id/ivIcono"
-            app:layout_constraintEnd_toStartOf="@+id/ivIcono"
-            app:layout_constraintTop_toTopOf="@+id/ivIcono" />
+            android:visibility="gone"
+            android:layout_marginEnd="@dimen/dimen16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/ivOk"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ivOk" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

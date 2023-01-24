@@ -204,7 +204,11 @@
 
 
     <string name="txt_header_next_step">Siguiente etapa: Entrevistas</string>
-    <string name="btn_next_step"><u>%1$s A siguiente etapa</u></string>
+    <string name="btn_next_step"><u>%1$d A siguiente etapa</u></string>
+    <string name="btn_envia_correo">Enviar correo</string>
     <string name="txt_next_step_desc">La siguiente etapa consiste en revisar los perfiles profesionales (CV) de los candidatos al puesto de Cargo.\nAl pasar a la segunda etapa se retirara el anuncio de empleo, por lo tanto no le aparecerá a nuevos aspirantes.\n<b>¿Deseas pasar a la segunda etapa: Revisión de perfiles?</b></string>
+    <string name="txt_envia_correos">Envíale correo a los solicitantes</string>
+    <string name="txt_envia_correos_desc">Informale a los solicitantes que fueron aceptados y dales la bienvenida.\n¡De nuestra parte, nos queda desearte la mejor de las experiencias con estos talentos!</string>
+
 
 </resources>

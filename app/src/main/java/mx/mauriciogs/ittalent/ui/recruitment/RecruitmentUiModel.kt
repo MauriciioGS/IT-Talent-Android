@@ -10,3 +10,5 @@ data class RecruitmentUiModel (val showProgress: Boolean, val exception: Excepti
                                val showSuccessStepFour: MutableList<Job>?,
                                val showSuccessUpdate: Boolean?,
                                val showSuccessGetApplicants: MutableList<Talent>?)
+
+data class RecruitmentFinishUiModel (val showFinishRecruitment: List<String>?, val job: Job?)

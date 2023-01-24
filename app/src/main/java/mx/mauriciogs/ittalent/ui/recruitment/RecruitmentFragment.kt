@@ -1,6 +1,9 @@
 package mx.mauriciogs.ittalent.ui.recruitment
 
+import android.app.Activity
+import android.content.Intent
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -44,6 +47,41 @@ class RecruitmentFragment: BaseFrag<FragmentRecruitmentBinding>(R.layout.fragmen
                 recruitmentViewModel.getProfile()
             }
         }
+        recruitmentViewModel.recruitmentFinishUiModelState.observe(viewLifecycleOwner) {
+            if (it.showFinishRecruitment != null && it.job != null){
+                showSendEmails(it.showFinishRecruitment, it.job)
+                recruitmentViewModel.stopFinishRecruitment()
+            }
+        }
+    }
+
+    private fun showSendEmails(emails: List<String>, job: Job) {
+        MaterialAlertDialogBuilder(requireActivity(), R.style.MyDialog)
+            .setTitle(R.string.txt_envia_correos)
+            .setMessage(R.string.txt_envia_correos_desc)
+            .setPositiveButton(R.string.btn_envia_correo) { dialog, _ ->
+                sendEmail(emails.toTypedArray(), asunto = "¡Felicidades has sido seleccionado para ${job.job}!")
+                dialog.dismiss()
+            }
+            .show()
+    }
+
+    private val getResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        when (it.resultCode) {
+            Activity.RESULT_CANCELED -> {
+                requireActivity().snackbar("Correo enviado!").showSuccess()
+            }
+            else -> {}
+        }
+    }
+
+    private fun sendEmail(to: Array<String>, asunto: String) {
+        val intent = Intent(Intent.ACTION_SENDTO).apply {
+            type = "text/plain"
+            putExtra(Intent.EXTRA_EMAIL, to)
+            putExtra(Intent.EXTRA_SUBJECT, asunto)
+        }
+        getResult.launch(Intent.createChooser(intent, "Choose an Email client :"))
     }
 
     private fun initRecyclerStepOne(jobs: MutableList<Job>) {
@@ -111,11 +149,7 @@ class RecruitmentFragment: BaseFrag<FragmentRecruitmentBinding>(R.layout.fragmen
                     }
                     .show()
             }
-            PROCESS_JOB_STAGE2 -> {
-                findNavControllerSafely()
-                    ?.safeNavigate(RecruitmentFragmentDirections.actionPostulationsRecFragmentToOpenApplicantsFragment(job.id!!))
-            }
-            PROCESS_JOB_STAGE3 -> {
+            PROCESS_JOB_STAGE2, PROCESS_JOB_STAGE3 -> {
                 findNavControllerSafely()
                     ?.safeNavigate(RecruitmentFragmentDirections.actionPostulationsRecFragmentToOpenApplicantsFragment(job.id!!))
             }

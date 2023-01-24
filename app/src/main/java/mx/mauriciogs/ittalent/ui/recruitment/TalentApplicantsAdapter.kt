@@ -1,7 +1,9 @@
 package mx.mauriciogs.ittalent.ui.recruitment
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import mx.mauriciogs.ittalent.R
@@ -31,10 +33,21 @@ class TalentApplicantsAdapter(private val talentList: List<Talent>, val fragment
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
-        holder.itemView.setOnClickListener {
-            if(fragment is OpenApplicantsFragment) fragment.onClickItem(talentList[position])
+        holder.itemBinding.ivOk.setOnClickListener {
+            if(fragment is OpenApplicantsFragment) {
+                holder.itemBinding.ivOk.visibility = View.GONE
+                holder.itemBinding.ivNo.visibility = View.VISIBLE
+                fragment.onClickItemOk(talentList[position])
+            }
         }
+        holder.itemBinding.ivNo.setOnClickListener {
+            if(fragment is OpenApplicantsFragment) {
+                holder.itemBinding.ivNo.visibility = View.GONE
+                holder.itemBinding.ivOk.visibility = View.VISIBLE
+                fragment.onClickItemNo(talentList[position])
+            }
+        }
+
         holder.bind(talentList[position])
     }
 
