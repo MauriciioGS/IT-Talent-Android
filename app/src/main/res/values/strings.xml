@@ -156,6 +156,8 @@
     -->
     <string name="btn_editar">Editar </string>
     <string name="txt_header_empresa">Empresa</string>
+    <string name="txt_header_rol">Rol Profesional</string>
+    <string name="txt_hint_rol">Tu rol profesional</string>
     <string name="btn_actualizar">Actualizar</string>
     <string name="btn_cambiar_empresa"><u>Cambiar empresa</u></string>
     <string name="btn_cambiar_foto"><u>Cambiar foto</u></string>

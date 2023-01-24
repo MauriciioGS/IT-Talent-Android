@@ -338,6 +338,61 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/roleEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/space">
+
+                    <TextView
+                        android:id="@+id/tvProfRole"
+                        style="@style/H6Primary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimen16dp"
+                        android:layout_marginTop="@dimen/dimen16dp"
+                        android:text="@string/txt_header_rol"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimen6dp"
+                        android:src="@drawable/ic_baseline_work"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvProfRole"
+                        app:layout_constraintStart_toEndOf="@+id/tvProfRole"
+                        app:layout_constraintTop_toTopOf="@+id/tvProfRole" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputLayout"
+                        style="@style/DropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/dimen16dp"
+                        android:layout_marginTop="@dimen/dimen8dp"
+                        android:hint="@string/txt_hint_rol"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvProfRole">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/dropdownMenuRolProf"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="none"
+                            app:simpleItems="@array/roles" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
                 <Button
                     android:id="@+id/btnSave"
                     style="@style/PrimaryButtonDisabled"
@@ -348,7 +403,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/enterpriseEdit" />
+                    app:layout_constraintTop_toBottomOf="@id/roleEdit" />
 
                 <Button
                     android:id="@+id/btnDelete"

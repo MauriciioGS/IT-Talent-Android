@@ -38,7 +38,8 @@ class UserRepositoryRemote {
                     Pair("phoneNum", userProfile.phoneNum!!),
                     Pair("photoUrl", userProfile.photoUrl!!),
                     Pair("resume", userProfile.resume!!),
-                    Pair("role", userProfile.role!!)
+                    Pair("role", userProfile.role!!),
+                    Pair("profRole", userProfile.profRole!!)
                 )
                 )
                 .await()

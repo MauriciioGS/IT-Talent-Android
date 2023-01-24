@@ -78,7 +78,9 @@ class MyProfileRecFragment :
         with(mBinding) {
             if (profile.userType != Int.TALENT_UT()) {
                 enterpriseEdit.visibility = View.VISIBLE
+                roleEdit.visibility = View.GONE
             } else {
+                roleEdit.visibility = View.VISIBLE
                 enterpriseEdit.visibility = View.GONE
             }
             photoUri = profile.photoUrl!!
@@ -111,6 +113,7 @@ class MyProfileRecFragment :
             etAbout.setText(profile.resume)
             etEmpresa.setText(profile.enterprise)
             dropdownMenuRol.setText(profile.role, false)
+            dropdownMenuRolProf.setText(profile.profRole, false)
 
             btnChange.setOnClickListener {
                 MaterialAlertDialogBuilder(requireActivity(), R.style.MyDialog)
@@ -194,16 +197,8 @@ class MyProfileRecFragment :
                     val resumen = etAbout.text.toString()
                     val rol = dropdownMenuRol.text.toString()
 
-                    myProfileRecViewModel.updateProfile(
-                        nombre,
-                        pais,
-                        ciudad,
-                        edad,
-                        numTel,
-                        resumen,
-                        photoUri,
-                        rol
-                    )
+                    myProfileRecViewModel.updateProfile(nombre, pais, ciudad, edad, numTel, resumen,
+                        photoUri, rol, String.empty())
                 }
             }
         }
@@ -213,21 +208,18 @@ class MyProfileRecFragment :
         with(mBinding) {
             when {
                 etName.text.toString().isEmpty() -> emptyField(etName, R.string.txt_name)
-                dropdownMenuPais.text.toString().isEmpty() -> emptyFieldList(
-                    dropdownMenuPais,
-                    R.string.txt_require_pais
-                )
+                dropdownMenuPais.text.toString().isEmpty() ->
+                    emptyFieldList(dropdownMenuPais, R.string.txt_require_pais)
                 etCiudad.text.toString().isEmpty() -> emptyField(etCiudad, R.string.txt_ciudad_p)
                 etEdad.text.toString().isEmpty() -> emptyField(etName, R.string.txt_require_edad)
                 etEdad.text.toString()
                     .toInt() < 18 -> requireActivity().snackbar(R.string.txt_mayor_edad).showError()
-                etPhoNum.text.toString()
-                    .isEmpty() || etPhoNum.text.toString().length < 10 -> emptyField(
-                    etPhoNum,
-                    R.string.txt_requite_phonenum
-                )
+                etPhoNum.text.toString().isEmpty() || etPhoNum.text.toString().length < 10 ->
+                        emptyField(etPhoNum, R.string.txt_requite_phonenum)
                 etAbout.text.toString().isEmpty() -> emptyField(etAbout, R.string.txt_require_desc)
                 photoUri.isEmpty() -> requireActivity().snackbar(R.string.txt_no_foto).showError()
+                dropdownMenuRolProf.text.toString().isEmpty() ->
+                    emptyFieldList(dropdownMenuPais, R.string.txt_require_pais)
                 else -> {
                     val nombre = etName.text.toString()
                     val pais = dropdownMenuPais.text.toString()
@@ -235,9 +227,10 @@ class MyProfileRecFragment :
                     val edad = etEdad.text.toString().toInt()
                     val numTel = etPhoNum.text.toString()
                     val resumen = etAbout.text.toString()
+                    val profRole = dropdownMenuRolProf.text.toString()
 
                     myProfileRecViewModel.updateProfile(nombre, pais, ciudad, edad, numTel, resumen,
-                        photoUri,String.empty())
+                        photoUri,String.empty(), profRole)
                 }
             }
         }

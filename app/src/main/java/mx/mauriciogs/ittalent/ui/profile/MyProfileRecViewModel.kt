@@ -48,7 +48,7 @@ class MyProfileRecViewModel@Inject constructor(private val getProfileUseCase: Ge
     }
 
     fun updateProfile(nombre: String, pais: String, ciudad: String, edad: Int, numTel: String, resumen: String,
-                      photoUri: String, rol: String
+                      photoUri: String, rol: String, profRole: String
     ) {
         profile.fullName = nombre
         profile.country = pais
@@ -58,7 +58,7 @@ class MyProfileRecViewModel@Inject constructor(private val getProfileUseCase: Ge
         profile.resume = resumen
         profile.photoUrl = photoUri
         profile.role = rol
-
+        profile.profRole = profRole
         emitUiState(showProgress = true)
         viewModelScope.launch(Dispatchers.IO) {
             val result = updateProfileRecruiterUseCase.updateProfileRecruiter(profile)
