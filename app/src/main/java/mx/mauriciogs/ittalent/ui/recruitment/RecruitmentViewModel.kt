@@ -136,6 +136,7 @@ class RecruitmentViewModel @Inject constructor(private val getProfileUseCase: Ge
                 job.status = PROCESS_JOB_FINISHED
             else
                 job.status = job.status?.plus(1)
+            Log.d("STATUS", "${job.status}")
             val result = setNextStepJob.updateStatusJob(job)
             withContext(Dispatchers.Main) {
                 when (result) {

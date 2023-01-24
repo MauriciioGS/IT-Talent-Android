@@ -3,18 +3,14 @@ package mx.mauriciogs.ittalent.ui.postulations.adapters
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import mx.mauriciogs.ittalent.R
 import mx.mauriciogs.ittalent.core.extensions.showWarning
 import mx.mauriciogs.ittalent.core.extensions.snackbar
-import mx.mauriciogs.ittalent.core.extensions.toast
-import mx.mauriciogs.ittalent.databinding.JobForTalentCardBinding
-import mx.mauriciogs.ittalent.databinding.JobPostedCardBinding
 import mx.mauriciogs.ittalent.databinding.JobProcessTalentCardBinding
 import mx.mauriciogs.ittalent.domain.jobs.Job
-import mx.mauriciogs.ittalent.ui.jobs.JobsFragment
-import mx.mauriciogs.ittalent.ui.postulations.PostulationsTalFragment
 import org.joda.time.DateTime
 import org.joda.time.DateTimeZone
 import org.joda.time.Days
@@ -30,7 +26,6 @@ class PostulPastTalentAdapter(private val jobsList: List<Job>, val fragment: Fra
 
     class ViewHolder(val itemBinding: JobProcessTalentCardBinding): RecyclerView.ViewHolder(itemBinding.root) {
         fun bind(job: Job) {
-            Log.d("AKI", "${job.job}")
             itemBinding.tvJobName.text = job.job
             itemBinding.tvEnterprise.text = job.enterprise
             itemBinding.tvCity.text = job.location
@@ -51,8 +46,9 @@ class PostulPastTalentAdapter(private val jobsList: List<Job>, val fragment: Fra
                     itemBinding.ivStatus.setTextColor(itemBinding.root.context.getColor(R.color.success))
                 }
                 PROCESS_JOB_FINISHED -> {
-                    itemBinding.ivStatus.text = itemBinding.root.context.getString(R.string.txt_postulaciones_stgend)
-                    itemBinding.ivStatus.setTextColor(itemBinding.root.context.getColor(R.color.error))
+                    itemBinding.ivStatus.text = itemBinding.root.context.getString(R.string.txt_aceptado)
+                    itemBinding.ivStatus.setTextColor(itemBinding.root.context.getColor(R.color.success))
+                    itemBinding.icState.setImageDrawable(AppCompatResources.getDrawable(itemBinding.root.context, R.drawable.ic_accepted))
                 }
 
             }

@@ -22,6 +22,8 @@ import mx.mauriciogs.ittalent.domain.jobs.Job
 import mx.mauriciogs.ittalent.domain.useraccount.UserProfile
 import javax.inject.Inject
 
+private const val PROCESS_JOB_STAGE1 = 0
+
 @HiltViewModel
 class JobsViewModel @Inject constructor(private val getProfileUseCase: GetProfileUseCase): ViewModel() {
 
@@ -131,9 +133,11 @@ class JobsViewModel @Inject constructor(private val getProfileUseCase: GetProfil
                 document.toObject<Job>()?.let {
                     // Filtra por rol: por ejemplo si soy Android Developer encuentra "Android" y "Developer"
                     role.forEach { trim ->
-                        if (it.job?.contains(trim) == true) {
-                            it.id = document.id
-                            jobsByRole.add(it)
+                        if (it.job?.contains(trim) == true && it.status == PROCESS_JOB_STAGE1) {
+                            if (it.applicants?.contains(profile.email!!) == false){
+                                it.id = document.id
+                                jobsByRole.add(it)
+                            }
                         }
                     }
                 }
