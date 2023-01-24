@@ -131,13 +131,13 @@ class JobsViewModel @Inject constructor(private val getProfileUseCase: GetProfil
             val role = profile.profRole!!.split(" ")
             jobsFirebase.forEach { document ->
                 document.toObject<Job>()?.let {
+                    it.id = document.id
                     // Filtra por rol: por ejemplo si soy Android Developer encuentra "Android" y "Developer"
                     role.forEach { trim ->
-                        if (it.job?.contains(trim) == true && it.status == PROCESS_JOB_STAGE1) {
-                            if (it.applicants?.contains(profile.email!!) == false){
-                                it.id = document.id
-                                jobsByRole.add(it)
-                            }
+                        if (it.job?.contains(trim) == true && it.status == PROCESS_JOB_STAGE1
+                            && it.applicants?.contains(profile.email!!) == false
+                            && !jobsByRole.contains(it)) {
+                            jobsByRole.add(it)
                         }
                     }
                 }

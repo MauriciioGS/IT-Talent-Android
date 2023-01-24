@@ -97,6 +97,7 @@ class JobsFragment: BaseFrag<FragmentJobsBinding>(R.layout.fragment_jobs) {
                     clRecycler2.visibility = View.GONE
                     setChips()
                     if (jobsFiltered != null && jobsFiltered.isNotEmpty()){
+                        Log.d("JOBFILT","$jobsFiltered")
                         mBinding.noDataAnim.visibility = View.GONE
                         listAdaper = JobsTalentAdapter(jobsFiltered, this@JobsFragment)
                         rvActives.adapter = listAdaper

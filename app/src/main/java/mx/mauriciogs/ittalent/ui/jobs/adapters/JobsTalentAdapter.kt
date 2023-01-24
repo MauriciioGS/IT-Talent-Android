@@ -22,7 +22,7 @@ class JobsTalentAdapter(private val jobsList: List<Job>, val fragment: Fragment)
         fun bind(job: Job) {
             itemBinding.tvJobName.text = job.job
             itemBinding.tvEnterprise.text = job.enterprise
-            itemBinding.tvCity.text = job.location
+            itemBinding.tvCity.text = "| ${job.location}"
             itemBinding.tvModal.text = itemBinding.root.context.getString(R.string.txt_rvjobs_modalidad, job.mode)
             itemBinding.tvType.text = itemBinding.root.context.getString(R.string.txt_rvjobs_tipo, job.type)
             itemBinding.ivVacancies.text =  itemBinding.root.context.getString(R.string.txt_rvjobs_vacantes, job.vacancies)

@@ -142,8 +142,8 @@
     <string name="txt_rvjobs_time_horas">Hace %1$d horas</string>
     <string name="txt_rvjobs_time_min">Hace %1$d minutos</string>
     <string name="txt_rvjobs_time_dias">Hace %1$d dias</string>
-    <string name="txt_rvjobs_modalidad">%1$s </string>
-    <string name="txt_rvjobs_tipo">| %1$s</string>
+    <string name="txt_rvjobs_modalidad">%1$s</string>
+    <string name="txt_rvjobs_tipo"> | %1$s</string>
     <string name="txt_rvjobs_empresa">%1$s </string>
     <string name="txt_rvjobs_location">| %1$s</string>
     <!--
