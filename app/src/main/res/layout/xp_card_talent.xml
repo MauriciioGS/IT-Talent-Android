@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginBottom="@dimen/dimen12sp"
+    app:cardCornerRadius="@dimen/dimen10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Cards2">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/dimen16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvCargo"
+            style="@style/SubtitleSecondary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Android Developer" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen6dp">
+
+            <TextView
+                android:id="@+id/tvEnterprise"
+                style="@style/SubtitleSecondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Empresa" />
+
+            <TextView
+                android:id="@+id/tvModal"
+                style="@style/SubtitleSecondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen3dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvEnterprise"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="| Modalidad" />
+
+            <TextView
+                android:id="@+id/tvLocation"
+                style="@style/SubtitleSecondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen3dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvModal"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="| Ciudad de méxico" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tvPeriod"
+            style="@style/Body2Secondary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen3dp"
+            app:layout_constraintStart_toStartOf="@+id/tvEnterprise"
+            app:layout_constraintTop_toBottomOf="@+id/tvEnterprise"
+            tools:text="Inicio - Fin" />
+
+        <TextView
+            android:id="@+id/tvLogros"
+            style="@style/Body2Secondary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen6dp"
+            app:layout_constraintStart_toStartOf="@+id/tvEnterprise"
+            app:layout_constraintTop_toBottomOf="@+id/tvEnterprise"
+            tools:text="Texto con aprendizajes, logros, retos sorteados y demas vivencias en dicha experiencia que relata el usuario." />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</com.google.android.material.card.MaterialCardView>

@@ -1,9 +1,12 @@
 package mx.mauriciogs.ittalent.domain.talent
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 import mx.mauriciogs.ittalent.core.extensions.default
 import mx.mauriciogs.ittalent.core.extensions.empty
 import mx.mauriciogs.ittalent.core.extensions.no
 
+@Parcelize
 data class Talent(
     // Talent
     var userType: Int? = Int.default(),
@@ -25,8 +28,9 @@ data class Talent(
     var enterprise: String? = String.empty(),
     var role: String? = String.empty(),
     var store: String? = String.empty()
-)
+): Parcelable
 
+@Parcelize
 data class Experience(
     var charge: String? = String.empty(),
     var enterprise: String? = String.empty(),
@@ -37,4 +41,4 @@ data class Experience(
     var yearsXp: Int? = Int.default(),
     var nowadays: Boolean? = Boolean.no(),
     var achievements: String? = String.empty()
-)
+): Parcelable

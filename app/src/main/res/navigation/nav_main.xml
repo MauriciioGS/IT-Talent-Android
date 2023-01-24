@@ -47,6 +47,9 @@
         tools:layout="@layout/fragment_talent">
         <argument android:name="appbar"
             android:defaultValue="true"/>
+        <action
+            android:id="@+id/action_talentFragment_to_profileProfesionalFragment"
+            app:destination="@id/profileProfesionalFragment" />
     </fragment>
     <fragment
         android:id="@+id/myProfileFragment"
@@ -110,6 +113,15 @@
         <argument
             android:name="job"
             app:argType="mx.mauriciogs.ittalent.domain.jobs.Job" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileProfesionalFragment"
+        android:name="mx.mauriciogs.ittalent.ui.profile.profesional.ProfileProfesionalFragment"
+        android:label="ProfileProfesionalFragment"
+        tools:layout="@layout/fragment_profesional_profile">
+        <argument
+            android:name="talentProfile"
+            app:argType="mx.mauriciogs.ittalent.domain.talent.Talent" />
     </fragment>
 
 </navigation>

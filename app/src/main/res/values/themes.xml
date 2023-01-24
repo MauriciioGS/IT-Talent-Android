@@ -30,6 +30,10 @@
     <style name="Spacer" parent="Theme.ITTalent">
         <item name="android:background">@color/icon</item>
     </style>
+
+    <style name="MyDialog" parent="Theme.MaterialComponents.Dialog">
+        <item name="buttonBarButtonStyle">@style/TertiaryPrimaryButton</item>
+    </style>
     
     <style name="PrimaryButton" parent="">
         <item name="cornerFamily">rounded</item>
@@ -108,6 +112,13 @@
     <!--Cards-->
     <style name="Cards" parent="Widget.MaterialComponents.CardView">
         <item name="cardBackgroundColor">@color/white</item>
+        <item name="cardCornerRadius">@dimen/dimen10dp</item>
+        <item name="cardElevation">4dp</item>
+    </style>
+
+    <!--Cards-->
+    <style name="Cards2" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">@color/secondary</item>
         <item name="cardCornerRadius">@dimen/dimen10dp</item>
         <item name="cardElevation">4dp</item>
     </style>
@@ -256,6 +267,12 @@
         <item name="fontFamily">@font/montserratregular</item>
         <item name="android:textSize">@dimen/dimen11dp</item>
         <item name="android:textColor">@color/disable</item>
+    </style>
+
+    <style name="Body3SecondaryCard" parent="TextAppearance.AppCompat">
+        <item name="fontFamily">@font/montserratregular</item>
+        <item name="android:textSize">@dimen/dimen11dp</item>
+        <item name="android:textColor">@color/primary</item>
     </style>
 
     <style name="Body3Primary" parent="TextAppearance.AppCompat">

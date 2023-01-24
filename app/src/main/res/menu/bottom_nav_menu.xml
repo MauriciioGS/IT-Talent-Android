@@ -18,7 +18,7 @@
         android:id="@+id/postulationsRecFragment"
         android:icon="@drawable/ic_work_selector"
         app:showAsAction="ifRoom"
-        android:title="Postulaciones" />
+        android:title="Reclutamiento" />
 
     <item
         android:id="@+id/talentFragment"

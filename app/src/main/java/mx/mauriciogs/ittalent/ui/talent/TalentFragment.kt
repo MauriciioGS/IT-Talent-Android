@@ -6,10 +6,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import mx.mauriciogs.ittalent.R
 import mx.mauriciogs.ittalent.core.BaseFrag
-import mx.mauriciogs.ittalent.core.extensions.showError
-import mx.mauriciogs.ittalent.core.extensions.showWarning
-import mx.mauriciogs.ittalent.core.extensions.snackbar
-import mx.mauriciogs.ittalent.core.extensions.toast
+import mx.mauriciogs.ittalent.core.extensions.*
 import mx.mauriciogs.ittalent.data.talent.exceptions.TalentExceptionHandler
 import mx.mauriciogs.ittalent.databinding.FragmentTalentBinding
 import mx.mauriciogs.ittalent.domain.talent.Talent
@@ -67,7 +64,8 @@ class TalentFragment: BaseFrag<FragmentTalentBinding>(R.layout.fragment_talent){
     }
 
     fun onClickItem(item: Talent) {
-        requireActivity().toast("$item").show()
+        findNavControllerSafely()
+            ?.safeNavigate(TalentFragmentDirections.actionTalentFragmentToProfileProfesionalFragment(item))
     }
 
     private fun showError(exception: Exception) {

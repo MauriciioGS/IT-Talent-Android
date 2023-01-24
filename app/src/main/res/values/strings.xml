@@ -183,4 +183,11 @@
     <string name="txt_contactar_desc">El reclutador se encargará de contactarte mientras vayas avanzando en el proceso de postulación</string>
     <string name="btn_contactar">Contactar vía email</string>
 
+    <!--
+        Talent Pfofesional Profile
+    -->
+    <string name="btn_contactar2">Contactar talento</string>
+    <string name="txt_contactar_tal">¿Deseas contactar a %1$s?</string>
+    <string name="txt_contactar_tal_desc">Escribe un mensaje para que Joe se interese en el empleo. Puedes ofrecer mas información sobre el cargo, proyecto, empresa, lo que requieres de el, propuestas de salario, etcétera.\nAdjunta tus datos de contacto.</string>
+
 </resources>

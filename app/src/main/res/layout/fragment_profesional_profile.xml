@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        style="@style/BackgroundGeneral">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/dimen90dp"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/materialCardView"
+                    android:layout_width="@dimen/dimen174dp"
+                    android:layout_height="@dimen/dimen174dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/dimen16dp"
+                    android:layout_marginStart="@dimen/dimen16dp"
+                    app:cardCornerRadius="@dimen/dimen100dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/iv_profile_photo"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/user_icon_active"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dimen16dp"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="@+id/materialCardView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/materialCardView"
+                    app:layout_constraintTop_toTopOf="@+id/materialCardView">
+
+                    <TextView
+                        android:id="@+id/tvName"
+                        style="@style/H6Primary"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:text="Joe Stockton" />
+
+                    <TextView
+                        android:id="@+id/tvProfRole"
+                        style="@style/SubtitleSecondary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dimen6dp"
+                        app:layout_constraintStart_toStartOf="@+id/tvJob"
+                        app:layout_constraintTop_toBottomOf="@+id/tvJob"
+                        tools:text="Android Developer" />
+
+                    <TextView
+                        android:id="@+id/tvLocation"
+                        style="@style/Body2Secondary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dimen6dp"
+                        app:layout_constraintStart_toStartOf="@+id/tvEnterprise"
+                        app:layout_constraintTop_toBottomOf="@+id/tvEnterprise"
+                        tools:text="Ciudad de México, México" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <Button
+                    android:id="@+id/btnContinue"
+                    style="@style/PrimaryButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen16dp"
+                    android:text="@string/btn_contactar2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
+
+                <View
+                    android:id="@+id/spacer1"
+                    style="@style/Spacer"
+                    android:layout_width="@dimen/dimen0dp"
+                    android:layout_height="@dimen/dimen1dp"
+                    android:layout_marginHorizontal="@dimen/dimen16dp"
+                    android:layout_marginTop="@dimen/dimen12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/btnContinue" />
+
+                <TextView
+                    android:id="@+id/tvHeaderXp"
+                    style="@style/H6Primary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen12sp"
+                    android:layout_marginStart="@dimen/dimen16dp"
+                    android:text="@string/h6_xp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spacer1" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen6dp"
+                    android:src="@drawable/ic_work_active2"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvHeaderXp"
+                    app:layout_constraintStart_toEndOf="@+id/tvHeaderXp"
+                    app:layout_constraintTop_toTopOf="@+id/tvHeaderXp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvXp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxHeight="300dp"
+                    android:layout_marginHorizontal="@dimen/dimen16dp"
+                    android:layout_marginTop="@dimen/dimen12sp"
+                    app:layout_constraintEnd_toEndOf="@+id/spacer1"
+                    app:layout_constraintStart_toStartOf="@+id/tvHeaderXp"
+                    app:layout_constraintTop_toBottomOf="@+id/tvHeaderXp"
+                    tools:listitem="@layout/xp_card_talent"
+                    tools:itemCount="3"/>
+
+                <View
+                    android:id="@+id/spacer2"
+                    style="@style/Spacer"
+                    android:layout_width="@dimen/dimen0dp"
+                    android:layout_height="@dimen/dimen1dp"
+                    android:layout_marginHorizontal="@dimen/dimen16dp"
+                    android:layout_marginTop="@dimen/dimen12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rvXp" />
+
+                <TextView
+                    android:id="@+id/tvHeaderSkills"
+                    style="@style/H6Primary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen12sp"
+                    android:layout_marginStart="@dimen/dimen16dp"
+                    android:text="@string/tab_skills"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spacer2" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen6dp"
+                    android:src="@drawable/ic_skills"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvHeaderSkills"
+                    app:layout_constraintStart_toEndOf="@+id/tvHeaderSkills"
+                    app:layout_constraintTop_toTopOf="@+id/tvHeaderSkills" />
+
+                <com.google.android.material.chip.ChipGroup
+                    style="@style/MyChip"
+                    android:id="@+id/chipGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen12dp"
+                    android:layout_marginHorizontal="@dimen/dimen16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvHeaderSkills">
+
+                </com.google.android.material.chip.ChipGroup>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.core.widget.NestedScrollView>
+</layout>
