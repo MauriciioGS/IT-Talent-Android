@@ -31,5 +31,5 @@ IT Talent se compone visualmente de tonos Azul que, según la psicología del co
 
 Hablando del logo elegido, para este se ideo un diseño simple el cuál se comprende totalmente del color primario para generar presencia y no perder elementos del mismo añadiendo más colores.
 
-[Más información de la propuesta visual](./propuesta-visualPropuesta%20visual%20IT%20Talent.pdf)
+[Más información de la propuesta visual](https://github.com/MauriciioGS/IT-Talent/blob/master/propuesta-visual/Propuesta%20visual%20IT%20Talent.pdf)
 
