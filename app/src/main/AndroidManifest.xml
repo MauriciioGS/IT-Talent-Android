@@ -18,6 +18,7 @@
         <activity
             android:name="mx.mauriciogs.ittalent.ui.splash.LaunchActivity"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:theme="@style/SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,9 +29,11 @@
         </activity>
         <activity
             android:name="mx.mauriciogs.ittalent.ui.init.InitActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <activity android:name=".ui.main.MainActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
     </application>
 
