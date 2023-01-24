@@ -24,6 +24,12 @@ En IT Talent los profesionales de TI pueden:
 
 ## 2. Descripción
 
-**Logo de IT Talent**
+**Visuales IT Talent**
+![ic_logo](./assets/logotransparent.png)
+![main_logo](./assets/logo-horizontal.png)
+IT Talent se compone visualmente de tonos Azul que, según la psicología del color, denota profesionalidad, hace ver serias las cosas, además emite sinceridad y calma. Con toques terciarios de amarillo-naranja para meter positividad, modernidad, luminosidad e innovación, buscando eso, crear un espacio amigable, cómodo, innovador, moderno, que cumpla con la mayoría de recomendaciones y estándares de UI/UX para reunir y conectar personas llegando a mejorar la experiencia de la empleabilidad en el área de las tecnologías de la información.
 
-[title](https://www.example.com)
+Hablando del logo elegido, para este se ideo un diseño simple el cuál se comprende totalmente del color primario para generar presencia y no perder elementos del mismo añadiendo más colores.
+
+[Más información de la propuesta visual](./propuesta-visualPropuesta%20visual%20IT%20Talent.pdf)
+
