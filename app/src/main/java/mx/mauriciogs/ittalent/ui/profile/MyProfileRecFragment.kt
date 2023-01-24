@@ -99,7 +99,7 @@ class MyProfileRecFragment :
             dropdownMenuRol.setText(profile.role, false)
 
             btnChange.setOnClickListener {
-                MaterialAlertDialogBuilder(requireActivity())
+                MaterialAlertDialogBuilder(requireActivity(), R.style.MyDialog)
                     .setTitle(R.string.txt_head_cambiar_empresa)
                     .setMessage(R.string.txt_cambiar_empresa)
                     .setPositiveButton(R.string.txt_eliminar_cuenta) { dialog, _ ->

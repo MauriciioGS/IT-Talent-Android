@@ -69,7 +69,7 @@ class StatusPostulFragment: BaseFrag<FragmentStatusPostulationBinding>(R.layout.
             }
 
             btnOpenRec.setOnClickListener {
-                MaterialAlertDialogBuilder(requireActivity())
+                MaterialAlertDialogBuilder(requireActivity(), R.style.MyDialog)
                     .setTitle(R.string.txt_contactar)
                     .setMessage(R.string.txt_contactar_desc)
                     .setPositiveButton(R.string.btn_contactar) { dialog, _ ->

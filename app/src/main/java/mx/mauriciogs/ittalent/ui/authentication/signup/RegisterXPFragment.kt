@@ -156,7 +156,7 @@ class RegisterXPFragment : BaseFrag<FragmentRegisterXPBinding>(R.layout.fragment
     }
 
     private fun anotherXp() {
-        MaterialAlertDialogBuilder(requireActivity())
+        MaterialAlertDialogBuilder(requireActivity(), R.style.MyDialog)
             .setTitle(R.string.txt_saved_data)
             .setMessage(R.string.txt_desc_xp)
             .setPositiveButton(R.string.txt_yes) { dialog, _ ->

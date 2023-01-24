@@ -8,3 +8,9 @@ data class GetJobsResponse(
     val documents: MutableList<DocumentSnapshot>
 
     )
+
+data class GetJobResponse(
+    val isSuccessfull: Boolean = Boolean.no(),
+    val documents: DocumentSnapshot
+
+    )

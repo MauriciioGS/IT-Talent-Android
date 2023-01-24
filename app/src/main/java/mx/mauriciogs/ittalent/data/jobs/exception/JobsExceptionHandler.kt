@@ -12,3 +12,13 @@ sealed class ApplyJobException(override val message: String?) : Exception() {
     object EmptyListOfApplyJobs : ApplyJobException("No has aplicado a trabajos tovadía")
 }
 
+sealed class RecruitmentException(override val message: String?) : Exception() {
+    object EmptyListStage1 : RecruitmentException("Ocurrió un error obteniendo los datos")
+    object EmptyListStage2 : RecruitmentException("Ocurrió un error obteniendo los datos")
+    object EmptyListStage3 : RecruitmentException("Ocurrió un error obteniendo los datos")
+    object EmptyListStage4 : RecruitmentException("Ocurrió un error obteniendo los datos")
+    object UnrecognizedError2 : RecruitmentException("Ocurrió un error obteniendo los datos")
+    object UnrecognizedError : RecruitmentException("Ocurrió un error actualizando el empleo")
+    object EmptyListApplicants : RecruitmentException("No hay talento solicitante para esta oferta, intenta de nuevo más tarde")
+}
+

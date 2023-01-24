@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="280dp"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginTop="@dimen/dimen6dp"
+    android:layout_marginHorizontal="@dimen/dimen12dp"
+    android:layout_marginBottom="@dimen/dimen12dp"
+    style="@style/Cards">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/dimen12dp">
+
+        <TextView
+            android:id="@+id/tvJobName"
+            style="@style/SubtitleSecondary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Software Engineer" />
+
+        <TextView
+            android:id="@+id/tvEnterprise"
+            style="@style/Body3Primary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen3dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvJobName"
+            tools:text="Nombre de la empresa" />
+
+        <TextView
+            android:id="@+id/tvPublisher"
+            style="@style/Body3Primary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen3dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvEnterprise"
+            tools:text="Publicado por: Mauricio" />
+
+        <TextView
+            android:id="@+id/tvApplicants"
+            style="@style/Body3Primary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen8dp"
+            android:layout_marginTop="@dimen/dimen6dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvPublisher"
+            tools:text="10 Solicitantes" />
+
+        <TextView
+            android:id="@+id/ivVacancies"
+            style="@style/Body3Primary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/success"
+            android:layout_marginStart="@dimen/dimen8dp"
+            android:layout_marginTop="@dimen/dimen3dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvApplicants"
+            tools:text="3 Vacantes" />
+
+        <TextView
+            android:id="@+id/ivRejected"
+            style="@style/Body3Primary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/error"
+            android:layout_marginStart="@dimen/dimen8dp"
+            android:layout_marginTop="@dimen/dimen3dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivVacancies"
+            tools:text="3 Rechazados" />
+
+        <Button
+            android:id="@+id/btnNextStep"
+            style="@style/TertiaryPrimaryButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivRejected"
+            tools:text="Pasar a la siguient etapa" />
+
+        <TextView
+            android:id="@+id/tvTime"
+            style="@style/Body3Secondary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/disable"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Hace 2 dias" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

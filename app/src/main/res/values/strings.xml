@@ -5,6 +5,7 @@
 
     <!--Buttons-->
     <string name="btn_continue">Continuar</string>
+    <string name="btn_regresar">Regresar</string>
     <string name="btn_guardar">Guardar</string>
     <string name="btn_cancelar">Cancelar</string>
     <string name="btn_already_registered">Ya tengo una cuenta</string>
@@ -189,5 +190,21 @@
     <string name="btn_contactar2">Contactar talento</string>
     <string name="txt_contactar_tal">¿Deseas contactar a %1$s?</string>
     <string name="txt_contactar_tal_desc">Escribe un mensaje para que Joe se interese en el empleo. Puedes ofrecer mas información sobre el cargo, proyecto, empresa, lo que requieres de el, propuestas de salario, etcétera.\nAdjunta tus datos de contacto.</string>
+
+    <!--
+        Talent Pfofesional Profile
+    -->
+    <string name="txt_header_reclutamiento">Reclutamentos activos</string>
+    <string name="txt_header_reclutamiento2">Reclutamentos pasados</string>
+    <string name="txt_subheader1_reclut">Etapa 1: Publicados y revisión de perfiles</string>
+    <string name="txt_subheader2_reclut">Etapa 2: Entrevistas</string>
+    <string name="txt_subheader3_reclut">Etapa 3: Pruebas y evaluaciones</string>
+    <string name="txt_subheader4_reclut">Etapa 4: Finalizados</string>
+    <string name="txt_btn_next_step"><u>%1$s</u></string>
+
+
+    <string name="txt_header_next_step">Siguiente etapa: Entrevistas</string>
+    <string name="btn_next_step"><u>%1$s A siguiente etapa</u></string>
+    <string name="txt_next_step_desc">La siguiente etapa consiste en revisar los perfiles profesionales (CV) de los candidatos al puesto de Cargo.\nAl pasar a la segunda etapa se retirara el anuncio de empleo, por lo tanto no le aparecerá a nuevos aspirantes.\n<b>¿Deseas pasar a la segunda etapa: Revisión de perfiles?</b></string>
 
 </resources>

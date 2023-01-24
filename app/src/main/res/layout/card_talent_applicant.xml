@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/dimen6dp"
+    android:layout_marginHorizontal="@dimen/dimen16dp"
+    android:layout_marginBottom="@dimen/dimen6dp"
+    style="@style/Cards">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/dimen12dp">
+
+        <TextView
+            android:id="@+id/tvName"
+            style="@style/SubtitleSecondary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen12sp"
+            android:layout_marginStart="@dimen/dimen16dp"
+            app:layout_constraintStart_toEndOf="@+id/ivTalent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Joe Stockton" />
+
+        <TextView
+            android:id="@+id/tvRol"
+            style="@style/Body3Primary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen6dp"
+            app:layout_constraintStart_toStartOf="@+id/tvName"
+            app:layout_constraintTop_toBottomOf="@+id/tvName"
+            tools:text="Android developer, " />
+
+        <TextView
+            android:id="@+id/tvLocation"
+            style="@style/Body3Primary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen6dp"
+            app:layout_constraintStart_toStartOf="@+id/tvRol"
+            app:layout_constraintTop_toBottomOf="@+id/tvRol"
+            tools:text="Ciudad de México" />
+
+        <TextView
+            android:id="@+id/tvXp"
+            style="@style/Body3Primary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen6dp"
+            app:layout_constraintStart_toStartOf="@+id/tvLocation"
+            app:layout_constraintTop_toBottomOf="@+id/tvLocation"
+            tools:text="2 Años de experiencia" />
+
+        <ImageView
+            android:id="@+id/ivTalent"
+            android:layout_width="@dimen/dimen64dp"
+            android:layout_height="@dimen/dimen64dp"
+            android:layout_marginStart="@dimen/dimen12dp"
+            android:src="@drawable/user_icon_active"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/ivIcono"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_ok_arrow"
+            android:layout_marginTop="@dimen/dimen32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvXp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dimen32dp"
+            android:src="@drawable/ic_close2"
+            app:layout_constraintBottom_toBottomOf="@+id/ivIcono"
+            app:layout_constraintEnd_toStartOf="@+id/ivIcono"
+            app:layout_constraintTop_toTopOf="@+id/ivIcono" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

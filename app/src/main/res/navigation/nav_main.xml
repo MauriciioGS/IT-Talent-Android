@@ -123,5 +123,25 @@
             android:name="talentProfile"
             app:argType="mx.mauriciogs.ittalent.domain.talent.Talent" />
     </fragment>
+    <fragment
+        android:id="@+id/postulationsRecFragment"
+        android:name="mx.mauriciogs.ittalent.ui.recruitment.RecruitmentFragment"
+        android:label="RecruitmentFragment"
+        tools:layout="@layout/fragment_recruitment">
+        <argument android:name="appbar"
+            android:defaultValue="true"/>
+        <action
+            android:id="@+id/action_postulationsRecFragment_to_openApplicantsFragment"
+            app:destination="@id/openApplicantsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/openApplicantsFragment"
+        android:name="mx.mauriciogs.ittalent.ui.recruitment.OpenApplicantsFragment"
+        android:label="OpenApplicantsFragment"
+        tools:layout="@layout/fragmen_open_applicants">
+        <argument
+            android:name="jobID"
+            app:argType="string" />
+    </fragment>
 
 </navigation>
