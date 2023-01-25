@@ -60,6 +60,7 @@ Se han buscado API's no tan antiguas por la utilización de algunas bibliotecas 
         - Firebase KTX: extensiones de Firebase para Kotlin
     - Room Database: para guardar datos locales del usuario de manera sencilla
     - Componente de Navegación de Android: Nav Component: ya se menciono este, pero se añaden las dependencias requeridas para utilizar el paso de argumentos seguro *Safe Args* entre destinos.
+- Material Design for Android: para implementar los componentes de Material Design en las interfáces gráficas, añadirles estilos temas así como sus clases y métodos.
 - Corrutinas de Kotlin: para ejecución de subprocesos (procesos en segundo plano) y manejar de mejor manera las peticiones a serivdor y bases de datos.
 - Dagger Hilt: para inyección de dependencias en Android para trabajos repetitivos de creación de instancias de clases en clases que dependen de esas instancias.
 - Firebase Analytics: para que se envíen datos sobre el uso de la app en los dispositivos que la instalan y ver un análisis de dichos datos en la consola de Google Firebase.
