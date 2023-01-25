@@ -10,6 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import mx.mauriciogs.ittalent.data.auth.model.AuthResult
+import mx.mauriciogs.ittalent.data.useraccount.local.entities.toUserProfile
 import mx.mauriciogs.ittalent.domain.authentication.Credentials
 import mx.mauriciogs.ittalent.domain.authentication.GetProfileUseCase
 import mx.mauriciogs.ittalent.domain.authentication.SignInUseCase
@@ -28,6 +29,16 @@ class SignInViewModel @Inject constructor(private val getProfileUseCase: GetProf
 
     val signInUiModelState: LiveData<SignInUIModel>
         get() = _signInUiModelState
+
+    fun getCredentials() {
+        viewModelScope.launch {
+            val profileLocal = getProfileUseCase.getProfileLocal()
+            if (profileLocal != null) {
+                val profile = profileLocal.toUserProfile()
+                profile.email?.let { profile.password?.let { it1 -> Credentials(it, it1) } }?.let { signInEmailPass(it) }
+            }
+        }
+    }
 
     fun signInEmailPass(userCredential: Credentials) {
         val (areInvalidCredentials, exception) = signInExceptionHandler.areInvalidUserCredentials(userCredential)
@@ -76,4 +87,5 @@ class SignInViewModel @Inject constructor(private val getProfileUseCase: GetProf
         val signInUiModel = SignInUIModel(showProgress, exception, signInSuccess)
         _signInUiModelState.value = signInUiModel
     }
+
 }

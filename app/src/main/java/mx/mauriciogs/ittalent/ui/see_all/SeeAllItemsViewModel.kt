@@ -35,8 +35,11 @@ class SeeAllItemsViewModel @Inject constructor(private val getProfileUseCase: Ge
 
     fun getProfile() {
         viewModelScope.launch {
-            profile = getProfileUseCase.getProfileLocal().toUserProfile()
-            emitUiState(setUI = profile.email)
+            val profileLocal = getProfileUseCase.getProfileLocal()
+            if (profileLocal != null) {
+                profile = profileLocal.toUserProfile()
+                emitUiState(setUI = profile.email)
+            }
         }
     }
 

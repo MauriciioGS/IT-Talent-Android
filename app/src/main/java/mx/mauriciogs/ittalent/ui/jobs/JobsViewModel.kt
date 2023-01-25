@@ -44,8 +44,11 @@ class JobsViewModel @Inject constructor(private val getProfileUseCase: GetProfil
 
     fun getProfile() {
         viewModelScope.launch {
-            profile = getProfileUseCase.getProfileLocal().toUserProfile()
-            emitUiState(setUI = profile.email)
+            val profileLocal = getProfileUseCase.getProfileLocal()
+            if (profileLocal != null) {
+                profile = profileLocal.toUserProfile()
+                emitUiState(setUI = profile.email)
+            }
         }
     }
 
@@ -96,16 +99,18 @@ class JobsViewModel @Inject constructor(private val getProfileUseCase: GetProfil
     fun getProfileTalent() {
         emitUiTalentState(showProgress = true)
         viewModelScope.launch(Dispatchers.IO) {
-            val profLocal = getProfileUseCase.getProfileLocal().toUserProfile()
-            val result = getProfileUseCase.getProfileFirebaseByEmail(profLocal.email!!)
-            withContext(Dispatchers.Main){
-                when(result){
-                    is AuthResult.Success -> {
-                        profile = result.data.user!!
-                        Log.d("PROFTAL", "$profile")
-                        getJobs()
+            val profLocal = getProfileUseCase.getProfileLocal()
+            if (profLocal != null) {
+                val result = getProfileUseCase.getProfileFirebaseByEmail(profLocal.email)
+                withContext(Dispatchers.Main){
+                    when(result){
+                        is AuthResult.Success -> {
+                            profile = result.data.user!!
+                            Log.d("PROFTAL", "$profile")
+                            getJobs()
+                        }
+                        is AuthResult.Error -> emitUiState(showProgress = false, exception = result.exception)
                     }
-                    is AuthResult.Error -> emitUiState(showProgress = false, exception = result.exception)
                 }
             }
         }

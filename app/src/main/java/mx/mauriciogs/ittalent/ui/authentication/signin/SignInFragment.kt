@@ -15,6 +15,7 @@ import mx.mauriciogs.ittalent.ui.connectivity.LostConnectionFragment
 import mx.mauriciogs.ittalent.ui.init.InitViewModel
 import mx.mauriciogs.ittalent.ui.main.MainActivity
 import mx.mauriciogs.ittalent.ui.welcome.WelcomeFragment
+import kotlin.math.sign
 
 class SignInFragment: BaseFrag<FragmentSignInBinding>(R.layout.fragment_sign_in) {
 
@@ -29,6 +30,7 @@ class SignInFragment: BaseFrag<FragmentSignInBinding>(R.layout.fragment_sign_in)
     override fun FragmentSignInBinding.initialize() {
         mBinding = this
         initViewModel.monitorStateConnection()
+        signInViewModel.getCredentials()
         initObservers()
         initListeners()
     }
@@ -45,6 +47,7 @@ class SignInFragment: BaseFrag<FragmentSignInBinding>(R.layout.fragment_sign_in)
 
     private fun showLogin(userType: Int?) {
         if (userType != null) {
+            requireActivity().snackbar("Logged $userType").showSuccess()
             val intent = Intent(requireActivity(), MainActivity::class.java).apply {
                 putExtra("userType", userType)
             }
@@ -64,9 +67,16 @@ class SignInFragment: BaseFrag<FragmentSignInBinding>(R.layout.fragment_sign_in)
     private fun checkFields() {
         val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(requireActivity().currentFocus?.windowToken, 0)
-
-        val userCredentials = Credentials(mBinding.etEmail.text.toString(), mBinding.etPass.text.toString())
-        signInViewModel.signInEmailPass(userCredentials)
+        when {
+            mBinding.etEmail.text.toString().isEmpty() ->
+                requireActivity().snackbar("Ingresa un correo").showError()
+            mBinding.etPass.text.toString().isEmpty() ->
+                requireActivity().snackbar("Ingresa una contraseña").showError()
+            else -> {
+                val userCredentials = Credentials(mBinding.etEmail.text.toString(), mBinding.etPass.text.toString())
+                signInViewModel.signInEmailPass(userCredentials)
+            }
+        }
     }
 
     private fun openLostConnDialog() = LostConnectionFragment.newInstance().run {

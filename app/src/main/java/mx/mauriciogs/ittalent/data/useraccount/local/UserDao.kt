@@ -11,7 +11,7 @@ interface UserDao {
     suspend fun insertUserProfile(userProfileEntity: UserProfileEntity)
 
     @Query(GET_USER_PROFILE)
-    suspend fun getUserProfile(): UserProfileEntity
+    suspend fun getUserProfile(): UserProfileEntity?
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     suspend fun updateUserProfile(userProfileEntity: UserProfileEntity)

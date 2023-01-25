@@ -52,8 +52,11 @@ class RecruitmentViewModel @Inject constructor(private val getProfileUseCase: Ge
     fun getProfile() {
         emitUiState(showProgress = true)
         viewModelScope.launch {
-            profile = getProfileUseCase.getProfileLocal().toUserProfile()
-            getMyJobPosts()
+            val profLocal = getProfileUseCase.getProfileLocal()
+            if (profLocal !== null) {
+                profile = profLocal.toUserProfile()
+                getMyJobPosts()
+            }
         }
     }
 

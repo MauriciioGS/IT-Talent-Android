@@ -32,18 +32,20 @@ class MyProfileRecViewModel@Inject constructor(private val getProfileUseCase: Ge
     fun getProfile() {
         emitUiState(showProgress = true)
         viewModelScope.launch(Dispatchers.IO) {
-            val profLocal = getProfileUseCase.getProfileLocal().toUserProfile()
-            val result = getProfileUseCase.getProfileFirebaseByEmail(profLocal.email!!)
-            withContext(Dispatchers.Main){
-                when(result){
-                    is AuthResult.Success -> {
-                        profile = result.data.user!!
-                        emitUiState(showProgress = false, setUI = profile)
+            val profLocal = getProfileUseCase.getProfileLocal()
+            if (profLocal != null) {
+                val profileOb = profLocal.toUserProfile()
+                val result = getProfileUseCase.getProfileFirebaseByEmail(profileOb.email!!)
+                withContext(Dispatchers.Main){
+                    when(result){
+                        is AuthResult.Success -> {
+                            profile = result.data.user!!
+                            emitUiState(showProgress = false, setUI = profile)
+                        }
+                        is AuthResult.Error -> emitUiState(showProgress = false, exception = result.exception)
                     }
-                    is AuthResult.Error -> emitUiState(showProgress = false, exception = result.exception)
                 }
             }
-
         }
     }
 

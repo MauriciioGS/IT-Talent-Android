@@ -189,7 +189,6 @@ class JobsFragment: BaseFrag<FragmentJobsBinding>(R.layout.fragment_jobs) {
             is JobsException.EmptyListOfPastJobs -> {
                 mBinding.rvPast.visibility = View.GONE
                 mBinding.noDataAnim2.visibility = View.VISIBLE
-                requireActivity().snackbar(exception.message).showError()
             }
             is JobsException.EmptyListOfAciveJobs -> {
                 mBinding.rvActives.visibility = View.GONE

@@ -34,9 +34,12 @@ class NewJobViewModel @Inject constructor(private val getProfileUseCase: GetProf
 
     fun getProfile() {
         viewModelScope.launch {
-            profile = getProfileUseCase.getProfileLocal().toUserProfile()
-            Log.d("PROF", "$profile")
-            emitUiState(setUI = profile.enterprise)
+            val profileLocal = getProfileUseCase.getProfileLocal()
+            if (profileLocal != null) {
+                profile = profileLocal.toUserProfile()
+                Log.d("PROF", "$profile")
+                emitUiState(setUI = profile.enterprise)
+            }
         }
     }
 

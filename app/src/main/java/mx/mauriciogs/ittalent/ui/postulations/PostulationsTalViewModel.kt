@@ -33,8 +33,11 @@ class PostulationsTalViewModel@Inject constructor(private val getProfileUseCase:
 
     fun getProfile() {
         viewModelScope.launch {
-            email = getProfileUseCase.getProfileLocal().toUserProfile().email!!
-            getJobs()
+            val profileLocal = getProfileUseCase.getProfileLocal()
+            if (profileLocal != null) {
+                email = profileLocal.toUserProfile().email!!
+                getJobs()
+            }
         }
     }
 
