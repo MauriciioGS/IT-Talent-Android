@@ -64,12 +64,25 @@ class RegisterSkillsFragment : BaseFrag<FragmentRegisterSkillsBinding>(R.layout.
             tilHSkills.editText?.setOnEditorActionListener { textView, id, _ ->
                 val processed = false
                 if (id == EditorInfo.IME_ACTION_DONE) {
-                    setChip(textView.text.toString())
-                    textView.text = String.empty()
+                    val skill = textView.text.toString()
+                    if (skill.isNotBlank()){
+                        setChip(skill)
+                        textView.text = String.empty()
+                        val imm = requireContext().getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+                        imm.hideSoftInputFromWindow(requireActivity().currentFocus?.windowToken, 0)
+                    }
+                }
+                processed
+            }
+
+            tilHSkills.setEndIconOnClickListener {
+                val skill = tilHSkills.editText?.text.toString()
+                if (skill.isNotBlank()){
+                    setChip(skill)
+                    tilHSkills.editText?.setText(String.empty())
                     val imm = requireContext().getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
                     imm.hideSoftInputFromWindow(requireActivity().currentFocus?.windowToken, 0)
                 }
-                processed
             }
 
             btnContinue.setOnClickListener {

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -138,6 +139,8 @@ class MyProfileRecFragment :
                     isEditEnabled = Boolean.yes()
                     btnSave.setBackgroundColor(requireActivity().getColor(R.color.secondary))
                     btnFoto.visibility = View.VISIBLE
+                    dropdownMenuRolProf.setAdapter(ArrayAdapter(
+                        requireActivity(), android.R.layout.simple_list_item_1, resources.getStringArray(R.array.roles)))
                     btnFoto.setOnClickListener {
                         pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
                     }
