@@ -2,6 +2,7 @@
 <resources>
     <string-array name="roles">
         <item>Software Engineer</item>
+        <item>Software Developer</item>
         <item>Frontend Developer</item>
         <item>Backend Developer</item>
         <item>Fullstack Developer</item>
@@ -19,6 +20,7 @@
         <item>IT Consultant</item>
         <item>Tech Lead</item>
         <item>Project Manager</item>
+        <item>Scrum Master</item>
         <item>DevOps Engineer</item>
         <item>Linux Administrator</item>
     </string-array>
@@ -83,6 +85,15 @@
         <item>Salesforce</item>
         <item>Arduino</item>
         <item>Ambassador</item>
+        <item>Scrum</item>
+        <item>Kubernetes</item>
+        <item>Automation</item>
+        <item>Docker</item>
+        <item>Oracle</item>
+        <item>Scrum</item>
+        <item>Agile</item>
+        <item>Jenkins</item>
+        <item>Data Network</item>
         <item>Git</item>
         <item>Linux</item>
         <!--SoftSkills-->

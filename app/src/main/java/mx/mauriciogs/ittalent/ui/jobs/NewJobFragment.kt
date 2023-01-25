@@ -37,6 +37,7 @@ class NewJobFragment: BaseFrag<FragmentNewJobBinding>(R.layout.fragment_new_job)
     }
 
     private fun showPostedSuccess() {
+        newJobViewModel.stopNewJob()
         requireActivity().snackbar("Empleo publicado!").showSuccess()
         findNavControllerSafely()?.popBackStack()
     }

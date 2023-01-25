@@ -69,6 +69,10 @@ class NewJobViewModel @Inject constructor(private val getProfileUseCase: GetProf
         emitUiState(showProgress = false, exception = exception)
     }
 
+    fun stopNewJob() {
+        emitUiState(showSuccess = null)
+    }
+
     private fun emitUiState(setUI: String? = null, showProgress: Boolean = false, exception: Exception? = null, enableContinueButton: Boolean = false, showSuccess: Boolean? = null) {
         val newJobUiModel = JobsUiModel(setUI, showProgress, enableContinueButton, exception, showSuccess)
         _jobsUiModelState.value = newJobUiModel
