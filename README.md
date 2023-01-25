@@ -45,6 +45,9 @@ Se han buscado API's no tan antiguas por la utilización de algunas bibliotecas 
 
 ## 4. Credenciales de Acceso 
 
+- Usuario Reclutador: dadixitho@gmail.com, password: 123456
+- Usuario Talento: correo@correo.com, password: 123456
+
 ## 5. Dependencias
 
 - Android Jetpack
