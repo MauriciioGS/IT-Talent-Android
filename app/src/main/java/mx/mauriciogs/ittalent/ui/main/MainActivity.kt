@@ -19,6 +19,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import androidx.startup.AppInitializer
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomnavigation.LabelVisibilityMode.LABEL_VISIBILITY_UNLABELED
 import com.google.android.material.navigation.NavigationBarView
@@ -28,6 +29,7 @@ import mx.mauriciogs.ittalent.core.extensions.TALENT_UT
 import mx.mauriciogs.ittalent.core.extensions.toast
 import mx.mauriciogs.ittalent.databinding.ActivityMainBinding
 import mx.mauriciogs.ittalent.ui.jobs.JobsViewModel
+import net.danlew.android.joda.JodaTimeInitializer
 
 private const val APPBARKEY = "appbar"
 
@@ -61,6 +63,8 @@ class MainActivity: AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
         mainViewModel.checkToken()
+
+        AppInitializer.getInstance(this).initializeComponent(JodaTimeInitializer::class.java)
         initObserver()
     }
 
